@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dmytro My — Developer</title>
+  <meta name="description" content="Особистий сайт розробника Dmytro My. Портфоліо, навички та контакти.">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <a href="#" class="logo">DM</a>
+      <ul class="nav__list">
+        <li><a href="#about" class="nav__link">Про мене</a></li>
+        <li><a href="#skills" class="nav__link">Навички</a></li>
+        <li><a href="#projects" class="nav__link">Проєкти</a></li>
+        <li><a href="#contact" class="nav__link">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero__title">Привіт, я <span class="accent">Dmytro My</span></h1>
+        <p class="hero__subtitle">Розробник, який створює цифрові рішення</p>
+        <div class="hero__cta">
+          <a href="#projects" class="btn btn--primary">Мої проєкти</a>
+          <a href="#contact" class="btn btn--ghost">Зв'язатися</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section__title">Про мене</h2>
+        <p class="about__text">
+          Я — розробник із пристрастю до створення чистого та ефективного коду.
+          Люблю вирішувати складні завдання та постійно вивчаю нові технології.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="section__title">Навички</h2>
+        <ul class="skills__list">
+          <li class="skill">JavaScript / TypeScript</li>
+          <li class="skill">React / Next.js</li>
+          <li class="skill">Node.js</li>
+          <li class="skill">HTML & CSS</li>
+          <li class="skill">Git & GitHub</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section__title">Проєкти</h2>
+        <div class="projects__grid">
+          <article class="project-card">
+            <h3 class="project-card__title">Проєкт 1</h3>
+            <p class="project-card__desc">Короткий опис першого проєкту.</p>
+            <a href="#" class="project-card__link" target="_blank" rel="noopener">Переглянути →</a>
+          </article>
+          <article class="project-card">
+            <h3 class="project-card__title">Проєкт 2</h3>
+            <p class="project-card__desc">Короткий опис другого проєкту.</p>
+            <a href="#" class="project-card__link" target="_blank" rel="noopener">Переглянути →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section__title">Контакти</h2>
+        <p class="contact__text">Зв'яжіться зі мною через email або соціальні мережі.</p>
+        <div class="contact__links">
+          <a href="mailto:hello@dmytro.my" class="contact__link">hello@dmytro.my</a>
+          <a href="https://github.com/5herw00d" class="contact__link" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/dmytromy" class="contact__link" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Dmytro My. Всі права захищені.</p>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
