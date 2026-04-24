@@ -1,25 +1,18 @@
 # dmytro.my
 
-Personal business card website of developer Dmytro My.
+single-page site · cli aesthetic · plain html/css/js, no build step.
 
-## Structure
+## tree
 
 ```
 .
-├── index.html          # Main page
-├── styles/
-│   └── main.css        # Main styles
-├── scripts/
-│   └── main.js         # Main script
-├── assets/
-│   └── favicon.svg     # Favicon
-├── .gitignore
-└── README.md
+├── index.html          entry
+├── styles/main.css     styles
+├── scripts/main.js     nav highlight + year
+└── assets/favicon.svg
 ```
 
-## Local Development
-
-Open `index.html` in a browser or use a local server:
+## run
 
 ```bash
 npx serve .
@@ -27,6 +20,6 @@ npx serve .
 python -m http.server 8000
 ```
 
-## Deploy
+## deploy
 
-Deploy via GitHub Pages (configure in repository settings).
+github pages — point it at the repo root.

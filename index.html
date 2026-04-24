@@ -3,95 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dmytro My — Developer</title>
-  <meta name="description" content="Personal website of developer Dmytro My. Portfolio, skills, and contacts.">
+  <title>dmytro.my — ~/</title>
+  <meta name="description" content="dmytro my — web developer. typescript, react, node.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
-  <header class="header">
-    <nav class="nav container">
-      <a href="#" class="logo">DM</a>
-      <ul class="nav__list">
-        <li><a href="#about" class="nav__link">About</a></li>
-        <li><a href="#skills" class="nav__link">Skills</a></li>
-        <li><a href="#projects" class="nav__link">Projects</a></li>
-        <li><a href="#contact" class="nav__link">Contact</a></li>
-      </ul>
+  <main class="term" aria-label="dmytro.my terminal">
+    <nav class="nav" aria-label="sections">
+      <a href="#about" class="nav__link">about</a>
+      <span class="nav__sep">·</span>
+      <a href="#stack" class="nav__link">stack</a>
+      <span class="nav__sep">·</span>
+      <a href="#projects" class="nav__link">projects</a>
+      <span class="nav__sep">·</span>
+      <a href="#contact" class="nav__link">contact</a>
     </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <h1 class="hero__title">Hi, I'm <span class="accent">Dmytro My</span></h1>
-        <p class="hero__subtitle">Developer building digital solutions</p>
-        <div class="hero__cta">
-          <a href="#projects" class="btn btn--primary">My Projects</a>
-          <a href="#contact" class="btn btn--ghost">Get in Touch</a>
-        </div>
+    <section class="block">
+      <p class="line"><span class="prompt">$</span> whoami</p>
+      <div class="out">
+        <p>dmytro my — web developer</p>
       </div>
     </section>
 
-    <section id="about" class="about">
-      <div class="container">
-        <h2 class="section__title">About Me</h2>
-        <p class="about__text">
-          I'm a developer with a passion for writing clean and efficient code.
-          I love solving complex problems and constantly learning new technologies.
-        </p>
+    <section id="about" class="block">
+      <p class="line"><span class="prompt">$</span> cat about.md</p>
+      <div class="out">
+        <p>build software for the web. frontend-first, full-stack when the task needs it.</p>
+        <p>prefer small scopes, readable code, and shipping over perfect.</p>
       </div>
     </section>
 
-    <section id="skills" class="skills">
-      <div class="container">
-        <h2 class="section__title">Skills</h2>
-        <ul class="skills__list">
-          <li class="skill">JavaScript / TypeScript</li>
-          <li class="skill">React / Next.js</li>
-          <li class="skill">Node.js</li>
-          <li class="skill">HTML & CSS</li>
-          <li class="skill">Git & GitHub</li>
-        </ul>
+    <section id="stack" class="block">
+      <p class="line"><span class="prompt">$</span> ls ~/stack</p>
+      <div class="out stack">
+        <span class="tag">typescript</span>
+        <span class="tag">react</span>
+        <span class="tag">next.js</span>
+        <span class="tag">node</span>
+        <span class="tag">postgres</span>
+        <span class="tag">git</span>
       </div>
     </section>
 
-    <section id="projects" class="projects">
-      <div class="container">
-        <h2 class="section__title">Projects</h2>
-        <div class="projects__grid">
-          <article class="project-card">
-            <h3 class="project-card__title">Project 1</h3>
-            <p class="project-card__desc">Short description of the first project.</p>
-            <a href="#" class="project-card__link" target="_blank" rel="noopener">View →</a>
-          </article>
-          <article class="project-card">
-            <h3 class="project-card__title">Project 2</h3>
-            <p class="project-card__desc">Short description of the second project.</p>
-            <a href="#" class="project-card__link" target="_blank" rel="noopener">View →</a>
-          </article>
-        </div>
+    <section id="projects" class="block">
+      <p class="line"><span class="prompt">$</span> ls ~/projects</p>
+      <ul class="out proj">
+        <li>
+          <a href="#" class="proj__link" target="_blank" rel="noopener">project-one/</a>
+          <span class="proj__desc">— // TODO: add description</span>
+        </li>
+        <li>
+          <a href="#" class="proj__link" target="_blank" rel="noopener">project-two/</a>
+          <span class="proj__desc">— // TODO: add description</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact" class="block">
+      <p class="line"><span class="prompt">$</span> contact --list</p>
+      <div class="out contact">
+        <p><span class="key">email</span><a href="mailto:hello@dmytro.my">hello@dmytro.my</a></p>
+        <p><span class="key">github</span><a href="https://github.com/5herw00d" target="_blank" rel="noopener">github.com/5herw00d</a></p>
+        <p><span class="key">linked</span><a href="https://linkedin.com/in/dmytromy" target="_blank" rel="noopener">linkedin.com/in/dmytromy</a></p>
       </div>
     </section>
 
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2 class="section__title">Contact</h2>
-        <p class="contact__text">Reach out via email or social media.</p>
-        <div class="contact__links">
-          <a href="mailto:hello@dmytro.my" class="contact__link">hello@dmytro.my</a>
-          <a href="https://github.com/5herw00d" class="contact__link" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://linkedin.com/in/dmytromy" class="contact__link" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-    </section>
+    <footer class="block footer">
+      <p class="line"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+      <p class="sig">© <span id="year"></span> dmytro my</p>
+    </footer>
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Dmytro My. All rights reserved.</p>
-    </div>
-  </footer>
 
   <script src="scripts/main.js"></script>
 </body>

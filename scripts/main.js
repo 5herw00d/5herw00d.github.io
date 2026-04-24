@@ -1,24 +1,24 @@
-// Update copyright year automatically
+// year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Highlight active nav link on scroll
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav__link');
+// active nav link on scroll — IntersectionObserver is cheaper than scroll math
+const links = document.querySelectorAll('.nav__link');
+const linkById = new Map(
+  [...links].map((a) => [a.getAttribute('href').slice(1), a])
+);
 
-function onScroll() {
-  const scrollPos = window.scrollY + 100;
+const io = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const link = linkById.get(entry.target.id);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        links.forEach((l) => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  },
+  { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+);
 
-  sections.forEach((section) => {
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    const id = section.getAttribute('id');
-
-    if (scrollPos >= top && scrollPos < top + height) {
-      navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-      });
-    }
-  });
-}
-
-window.addEventListener('scroll', onScroll);
+document.querySelectorAll('section[id]').forEach((s) => io.observe(s));
