@@ -1,32 +1,32 @@
 # dmytro.my
 
-Особистий сайт-візитка розробника Dmytro My.
+Personal business card website of developer Dmytro My.
 
-## Структура
+## Structure
 
 ```
 .
-├── index.html          # Головна сторінка
+├── index.html          # Main page
 ├── styles/
-│   └── main.css        # Основні стилі
+│   └── main.css        # Main styles
 ├── scripts/
-│   └── main.js         # Основний скрипт
+│   └── main.js         # Main script
 ├── assets/
-│   └── favicon.svg     # Фавікон
+│   └── favicon.svg     # Favicon
 ├── .gitignore
 └── README.md
 ```
 
-## Локальний запуск
+## Local Development
 
-Відкрийте `index.html` у браузері або використовуйте локальний сервер:
+Open `index.html` in a browser or use a local server:
 
 ```bash
 npx serve .
-# або
+# or
 python -m http.server 8000
 ```
 
-## Деплой
+## Deploy
 
-Сайт розгортається через GitHub Pages (налаштуйте у налаштуваннях репозиторію).
+Deploy via GitHub Pages (configure in repository settings).
