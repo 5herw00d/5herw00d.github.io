@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1116">
+  <title>dmytro.my — ~/blog</title>
+  <meta name="description" content="dmytro my — blog post.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body class="page-post">
+  <div class="fx fx--grid" aria-hidden="true"></div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="fx fx--spot" aria-hidden="true"></div>
+  <div class="fx fx--vignette" aria-hidden="true"></div>
+
+  <header class="window" role="banner">
+    <div class="window__lights" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="window__path">
+      <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
+      <span class="window__sep">:</span>
+      <span class="window__cwd" data-cwd>~/blog</span>
+      <span class="window__shell">— zsh</span>
+    </p>
+    <div class="window__hud" aria-hidden="true">
+      <span class="hud__pulse"></span>
+      <span class="window__hud-label">read</span>
+      <span class="window__hud-time" data-clock>—</span>
+    </div>
+  </header>
+
+  <main class="site" aria-label="dmytro.my blog post">
+    <aside class="rail" aria-label="sections">
+      <ol class="rail__list">
+        <li><a href="./" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../blog</span></a></li>
+        <li><a href="../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../home</span></a></li>
+      </ol>
+      <nav class="rail__toc" data-toc aria-label="post sections"></nav>
+      <div class="rail__status">
+        <p><span class="key">slug</span><span data-slug>—</span></p>
+        <p><span class="key">date</span><span data-date>—</span></p>
+        <p><span class="key">read</span><span data-read>—</span></p>
+      </div>
+    </aside>
+
+    <article class="content">
+      <section class="hero hero--post">
+        <div class="hero__head">
+          <p class="line"><span class="prompt">$</span> cat <span data-cat>posts/</span></p>
+          <p class="eyebrow" data-eyebrow>// loading…</p>
+        </div>
+        <h1 class="display display--post" data-title>—</h1>
+        <ul class="post-meta" data-tags></ul>
+      </section>
+
+      <section class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">¶</span>
+          <h2 class="block__title">read</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> less <span data-less>post.md</span></span>
+        </header>
+        <div class="block__body">
+          <article class="prose" data-prose>
+            <p class="prose__loading">loading post…</p>
+          </article>
+        </div>
+      </section>
+
+      <nav class="post-nav" data-postnav aria-label="adjacent posts"></nav>
+
+      <footer class="footer">
+        <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        <div class="footer__row">
+          <p class="sig">© <span data-year>—</span> dmytro my · <a href="./">../blog</a></p>
+          <p class="sig sig--muted"><span class="key">utc</span><span data-clock>—</span></p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script src="../scripts/post.js"></script>
+</body>
+</html>

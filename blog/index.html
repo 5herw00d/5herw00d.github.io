@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1116">
+  <title>dmytro.my — ~/blog</title>
+  <meta name="description" content="dmytro my — blog. Short, practical notes on building AI SaaS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body class="page-blog">
+  <div class="fx fx--grid" aria-hidden="true"></div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="fx fx--spot" aria-hidden="true"></div>
+  <div class="fx fx--vignette" aria-hidden="true"></div>
+
+  <header class="window" role="banner">
+    <div class="window__lights" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="window__path">
+      <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
+      <span class="window__sep">:</span>
+      <span class="window__cwd">~/blog</span>
+      <span class="window__shell">— zsh</span>
+    </p>
+    <div class="window__hud" aria-hidden="true">
+      <span class="hud__pulse"></span>
+      <span class="window__hud-label">link</span>
+      <span class="window__hud-time" data-clock>—</span>
+    </div>
+  </header>
+
+  <main class="site" aria-label="dmytro.my blog">
+    <aside class="rail" aria-label="sections">
+      <ol class="rail__list">
+        <li><a href="../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../home</span></a></li>
+        <li><a href="#latest" class="rail__link is-active"><span class="rail__num">01</span><span class="rail__name">latest</span></a></li>
+        <li><a href="#archive" class="rail__link"><span class="rail__num">02</span><span class="rail__name">archive</span></a></li>
+        <li><a href="#tags" class="rail__link"><span class="rail__num">03</span><span class="rail__name">tags</span></a></li>
+      </ol>
+      <div class="rail__status">
+        <p><span class="key">posts</span><span data-count>—</span></p>
+        <p><span class="key">last</span><span data-last>—</span></p>
+        <p><span class="key">net</span><span class="ok">stable</span></p>
+      </div>
+    </aside>
+
+    <article class="content">
+      <section class="hero hero--blog">
+        <div class="hero__head">
+          <p class="line"><span class="prompt">$</span> ls ~/blog <span class="flag">--reverse --time</span></p>
+          <p class="eyebrow">// notes on shipping ai products · plain markdown</p>
+        </div>
+        <h1 class="display display--blog">
+          <span class="display__name">blog</span><span class="display__dot" aria-hidden="true">.</span>
+        </h1>
+        <p class="lead">Short, practical entries — agents, llm tradeoffs, product loops, infra, and the boring stuff that keeps it all running.</p>
+      </section>
+
+      <section id="latest" class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">01</span>
+          <h2 class="block__title">latest</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> head -n 5 posts.json</span>
+        </header>
+        <div class="block__body">
+          <ol class="post-list" data-post-list>
+            <li class="post-row post-row--skel" aria-hidden="true">
+              <span class="post-row__id">001</span>
+              <span class="post-row__date">— — — —</span>
+              <span class="post-row__title">loading…</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="archive" class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">02</span>
+          <h2 class="block__title">archive</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> ls -1 posts/ | sort -r</span>
+        </header>
+        <div class="block__body">
+          <div class="archive" data-archive>—</div>
+        </div>
+      </section>
+
+      <section id="tags" class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">03</span>
+          <h2 class="block__title">tags</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> grep tags posts.json</span>
+        </header>
+        <div class="block__body">
+          <ul class="tag-cloud" data-tags></ul>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        <div class="footer__row">
+          <p class="sig">© <span data-year>—</span> dmytro my · <a href="../">../home</a></p>
+          <p class="sig sig--muted"><span class="key">tz</span><span data-clock>—</span></p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script src="../scripts/blog.js"></script>
+</body>
+</html>

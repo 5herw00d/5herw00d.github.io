@@ -3,80 +3,229 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1116">
   <title>dmytro.my — ~/</title>
-  <meta name="description" content="dmytro my — web developer. typescript, react, node.">
+  <meta name="description" content="dmytro my — AI SaaS builder. AI products, TypeScript, React, Node.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <style>
+    /* prevent FOUC on scramble target until JS seeds it */
+    [data-scramble]:not(.is-ready) { visibility: hidden; }
+  </style>
+  <noscript>
+    <style>[data-scramble] { visibility: visible !important; }</style>
+  </noscript>
 </head>
 <body>
-  <main class="term" aria-label="dmytro.my terminal">
-    <nav class="nav" aria-label="sections">
-      <a href="#about" class="nav__link">about</a>
-      <span class="nav__sep">·</span>
-      <a href="#stack" class="nav__link">stack</a>
-      <span class="nav__sep">·</span>
-      <a href="#projects" class="nav__link">projects</a>
-      <span class="nav__sep">·</span>
-      <a href="#contact" class="nav__link">contact</a>
-    </nav>
+  <div class="fx fx--grid" aria-hidden="true"></div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="fx fx--spot" aria-hidden="true"></div>
+  <div class="fx fx--vignette" aria-hidden="true"></div>
 
-    <section class="block">
-      <p class="line"><span class="prompt">$</span> whoami</p>
-      <div class="out">
-        <p>dmytro my — web developer</p>
+  <header class="window" role="banner" aria-label="terminal window">
+    <div class="window__lights" aria-hidden="true">
+      <i></i><i></i><i></i>
+    </div>
+    <p class="window__path">
+      <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
+      <span class="window__sep">:</span>
+      <span class="window__cwd">~/dossier</span>
+      <span class="window__shell">— zsh</span>
+    </p>
+    <div class="window__hud" aria-hidden="true">
+      <span class="hud__pulse"></span>
+      <span class="window__hud-label">link</span>
+      <span class="window__hud-time" data-clock>—</span>
+    </div>
+  </header>
+
+  <main class="site" aria-label="dmytro.my dossier">
+    <aside class="rail" aria-label="sections">
+      <ol class="rail__list">
+        <li><a href="#about" class="rail__link" data-rail="about"><span class="rail__num">01</span><span class="rail__name">about</span></a></li>
+        <li><a href="#stack" class="rail__link" data-rail="stack"><span class="rail__num">02</span><span class="rail__name">stack</span></a></li>
+        <li><a href="#projects" class="rail__link" data-rail="projects"><span class="rail__num">03</span><span class="rail__name">projects</span></a></li>
+        <li><a href="#contact" class="rail__link" data-rail="contact"><span class="rail__num">04</span><span class="rail__name">contact</span></a></li>
+        <li><a href="blog/" class="rail__link rail__link--ext"><span class="rail__num">05</span><span class="rail__name">blog →</span></a></li>
+      </ol>
+      <div class="rail__status">
+        <p><span class="key">build</span><span>2026.05</span></p>
+        <p><span class="key">tz</span><span>UA · UTC+3</span></p>
+        <p><span class="key">net</span><span class="ok">stable</span></p>
       </div>
-    </section>
+    </aside>
 
-    <section id="about" class="block">
-      <p class="line"><span class="prompt">$</span> cat about.md</p>
-      <div class="out">
-        <p>build software for the web. frontend-first, full-stack when the task needs it.</p>
-        <p>prefer small scopes, readable code, and shipping over perfect.</p>
-      </div>
-    </section>
+    <article class="content">
+      <section class="hero" aria-label="founder dossier">
+        <div class="hero__head">
+          <p class="line"><span class="prompt">$</span> whoami <span class="flag">--verbose</span></p>
+          <p class="eyebrow">// founder profile · ai build loop · v2026.05</p>
+        </div>
 
-    <section id="stack" class="block">
-      <p class="line"><span class="prompt">$</span> ls ~/stack</p>
-      <div class="out stack">
-        <span class="tag">typescript</span>
-        <span class="tag">react</span>
-        <span class="tag">next.js</span>
-        <span class="tag">node</span>
-        <span class="tag">postgres</span>
-        <span class="tag">git</span>
-      </div>
-    </section>
+        <div class="hero__layout">
+          <div class="hero__type">
+            <h1 class="display">
+              <span class="display__name" data-scramble>Dmytro</span><span class="display__dot" aria-hidden="true">.</span>
+            </h1>
+            <p class="role">
+              <span class="role__text">AI&nbsp;SaaS&nbsp;builder</span><span class="caret" aria-hidden="true"></span>
+            </p>
+            <p class="lead">
+              I build AI products end-to-end. <span class="lead__sep">—</span>
+              idea, interface, backend, automation, deploy.
+            </p>
 
-    <section id="projects" class="block">
-      <p class="line"><span class="prompt">$</span> ls ~/projects</p>
-      <ul class="out proj">
-        <li>
-          <a href="#" class="proj__link" target="_blank" rel="noopener">project-one/</a>
-          <span class="proj__desc">— // TODO: add description</span>
-        </li>
-        <li>
-          <a href="#" class="proj__link" target="_blank" rel="noopener">project-two/</a>
-          <span class="proj__desc">— // TODO: add description</span>
-        </li>
-      </ul>
-    </section>
+            <ul class="chips" aria-label="profile state">
+              <li class="chip chip--live"><span class="chip__dot"></span><span>available</span></li>
+              <li class="chip">UA &nbsp;·&nbsp; EU</li>
+              <li class="chip">small scopes · shipped fast</li>
+            </ul>
 
-    <section id="contact" class="block">
-      <p class="line"><span class="prompt">$</span> contact --list</p>
-      <div class="out contact">
-        <p><span class="key">email</span><a href="mailto:hello@dmytro.my">hello@dmytro.my</a></p>
-        <p><span class="key">github</span><a href="https://github.com/5herw00d" target="_blank" rel="noopener">github.com/5herw00d</a></p>
-        <p><span class="key">linked</span><a href="https://linkedin.com/in/dmytromy" target="_blank" rel="noopener">linkedin.com/in/dmytromy</a></p>
-      </div>
-    </section>
+            <dl class="hero__meta" aria-label="profile highlights">
+              <div><dt>mode</dt><dd>hybrid · product + engineering</dd></div>
+              <div><dt>focus</dt><dd>agents · LLM APIs · SaaS systems</dd></div>
+              <div><dt>signal</dt><dd>open for AI SaaS work</dd></div>
+            </dl>
+          </div>
 
-    <footer class="block footer">
-      <p class="line"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
-      <p class="sig">© <span id="year"></span> dmytro my</p>
-    </footer>
+          <figure class="portrait">
+            <div class="portrait__frame">
+              <header class="portrait__chrome" aria-hidden="true">
+                <span class="portrait__name">./dm.png</span>
+                <span class="portrait__dim">1254 × 1254</span>
+                <span class="portrait__feed">profile-feed · live</span>
+              </header>
+
+              <div class="portrait__media">
+                <img src="dm.png" alt="Dmytro My portrait" class="portrait__img">
+                <div class="portrait__scan" aria-hidden="true"></div>
+                <div class="portrait__sweep" aria-hidden="true"></div>
+                <span class="hud hud--tl" aria-hidden="true"></span>
+                <span class="hud hud--tr" aria-hidden="true"></span>
+                <span class="hud hud--bl" aria-hidden="true"></span>
+                <span class="hud hud--br" aria-hidden="true"></span>
+              </div>
+
+              <figcaption class="portrait__caption">
+                <p><span class="key">subj</span><span>dmytro · founder/eng</span></p>
+                <p><span class="key">link</span><span class="ok">online</span></p>
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section id="about" class="block">
+        <header class="block__head">
+          <span class="block__num">01</span>
+          <h2 class="block__title">about</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> cat about.md</span>
+        </header>
+        <div class="block__body about">
+          <div class="about__copy">
+            <p>build AI products end-to-end: idea, interface, backend, automation, deploy.</p>
+            <p>hybrid: product thinking + engineering + practical AI workflows.</p>
+          </div>
+          <aside class="about__aside">
+            <p><span class="key">/method</span><span>scope · ship · iterate</span></p>
+            <p><span class="key">/style</span><span>terse, instrumented, observable</span></p>
+            <p><span class="key">/loop</span><span>idea → demo → users → revenue</span></p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="stack" class="block">
+        <header class="block__head">
+          <span class="block__num">02</span>
+          <h2 class="block__title">stack</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> ls ~/stack</span>
+        </header>
+        <ol class="stack" role="list">
+          <li class="stack__row" style="--p:.96"><span class="stack__id">001</span><span class="stack__name">AI agents</span><span class="stack__bar" aria-hidden="true"><i></i></span><span class="stack__tag">primary</span></li>
+          <li class="stack__row" style="--p:.94"><span class="stack__id">002</span><span class="stack__name">LLM APIs</span><span class="stack__bar" aria-hidden="true"><i></i></span><span class="stack__tag">primary</span></li>
+          <li class="stack__row" style="--p:.90"><span class="stack__id">003</span><span class="stack__name">typescript</span><span class="stack__bar" aria-hidden="true"><i></i></span><span class="stack__tag">daily</span></li>
+          <li class="stack__row" style="--p:.86"><span class="stack__id">004</span><span class="stack__name">react</span><span class="stack__bar" aria-hidden="true"><i></i></span><span class="stack__tag">daily</span></li>
+          <li class="stack__row" style="--p:.84"><span class="stack__id">005</span><span class="stack__name">next.js</span><span class="stack__bar" aria-hidden="true"><i></i></span><span class="stack__tag">daily</span></li>
+          <li class="stack__row" style="--p:.82"><span class="stack__id">006</span><span class="stack__name">node</span><span class="stack__bar" aria-hidden="true"><i></i></span><span class="stack__tag">daily</span></li>
+          <li class="stack__row" style="--p:.78"><span class="stack__id">007</span><span class="stack__name">postgres</span><span class="stack__bar" aria-hidden="true"><i></i></span><span class="stack__tag">daily</span></li>
+        </ol>
+      </section>
+
+      <section id="projects" class="block">
+        <header class="block__head">
+          <span class="block__num">03</span>
+          <h2 class="block__title">projects</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> ls ~/projects</span>
+        </header>
+        <ul class="proj" role="list">
+          <li class="proj__card">
+            <div class="proj__id">~/projects/<span class="proj__slug">ai-saas</span></div>
+            <h3 class="proj__title">AI SaaS products</h3>
+            <p class="proj__desc">multi-tenant agent stacks, LLM-driven flows, vector retrieval, billing, analytics — built and shipped.</p>
+            <ul class="proj__tags">
+              <li>typescript</li><li>postgres</li><li>llm</li><li>billing</li>
+            </ul>
+            <span class="proj__arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="proj__card">
+            <div class="proj__id">~/projects/<span class="proj__slug">automation</span></div>
+            <h3 class="proj__title">workflows · agents · integrations</h3>
+            <p class="proj__desc">connect APIs, run autonomous loops, orchestrate tools, replace manual ops with reliable jobs.</p>
+            <ul class="proj__tags">
+              <li>node</li><li>queues</li><li>agents</li><li>tooling</li>
+            </ul>
+            <span class="proj__arrow" aria-hidden="true">→</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="contact" class="block">
+        <header class="block__head">
+          <span class="block__num">04</span>
+          <h2 class="block__title">contact</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> contact <span class="flag">--list</span></span>
+        </header>
+        <ul class="contact" role="list">
+          <li>
+            <a class="contact__row" href="mailto:hello@dmytro.my">
+              <span class="key">email</span>
+              <span class="contact__val">hello@dmytro.my</span>
+              <span class="contact__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact__row" href="https://github.com/5herw00d" target="_blank" rel="noopener">
+              <span class="key">github</span>
+              <span class="contact__val">github.com/5herw00d</span>
+              <span class="contact__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact__row" href="https://linkedin.com/in/dmytromy" target="_blank" rel="noopener">
+              <span class="key">linked</span>
+              <span class="contact__val">linkedin.com/in/dmytromy</span>
+              <span class="contact__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        <div class="footer__row">
+          <p class="sig">© <span data-year>—</span> dmytro my · all signals nominal</p>
+          <p class="sig sig--muted"><span class="key">uptime</span><span data-uptime>00:00:00</span></p>
+        </div>
+      </footer>
+    </article>
   </main>
 
   <script src="scripts/main.js"></script>
