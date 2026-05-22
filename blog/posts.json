@@ -1,4 +1,11 @@
 {
+  "site": {
+    "url": "https://dmytro.my",
+    "title": "dmytro.my",
+    "author": "Dmytro My",
+    "twitter": "",
+    "description": "Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra."
+  },
   "posts": [
     {
       "slug": "welcome-2026",

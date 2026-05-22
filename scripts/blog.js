@@ -65,7 +65,7 @@
         li.className = 'post-row';
         const id = String(i + 1).padStart(3, '0');
         li.innerHTML = `
-          <a class="post-row__link" href="post.html?slug=${encodeURIComponent(p.slug)}">
+          <a class="post-row__link" href="posts/${encodeURIComponent(p.slug)}/">
             <span class="post-row__id">${id}</span>
             <time class="post-row__date" datetime="${p.date}">${fmtDate(p.date)}</time>
             <span class="post-row__title"></span>
@@ -104,7 +104,7 @@
           items.forEach((p) => {
             const li = document.createElement('li');
             li.innerHTML = `
-              <a class="archive__row" href="post.html?slug=${encodeURIComponent(p.slug)}">
+              <a class="archive__row" href="posts/${encodeURIComponent(p.slug)}/">
                 <time>${fmtDate(p.date)}</time>
                 <span class="archive__title-text"></span>
                 <span class="archive__arrow" aria-hidden="true">→</span>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dmytro.my — blog</title>
+    <link>https://dmytro.my/blog/</link>
+    <description>Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.</description>
+    <language>en</language>
+    <atom:link href="https://dmytro.my/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 May 2026 09:47:24 GMT</lastBuildDate>
+    <item>
+      <title>log #001 — opening the channel</title>
+      <link>https://dmytro.my/blog/posts/welcome-2026/</link>
+      <guid isPermaLink="true">https://dmytro.my/blog/posts/welcome-2026/</guid>
+      <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
+      <description>Why this blog exists and what to expect: short, practical notes on building AI products.</description>
+      <category>meta</category>
+      <category>writing</category>
+    </item>
+    <item>
+      <title>shipping agents that don&apos;t embarrass you</title>
+      <link>https://dmytro.my/blog/posts/shipping-agents/</link>
+      <guid isPermaLink="true">https://dmytro.my/blog/posts/shipping-agents/</guid>
+      <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+      <description>A pragmatic checklist for taking an LLM agent from a notebook demo to a paying customer.</description>
+      <category>agents</category>
+      <category>production</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

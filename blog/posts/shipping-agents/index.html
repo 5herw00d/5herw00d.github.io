@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1116">
+
+  <title>shipping agents that don&#39;t embarrass you — dmytro.my</title>
+  <meta name="description" content="A pragmatic checklist for taking an LLM agent from a notebook demo to a paying customer.">
+  <meta name="author" content="Dmytro My">
+  <meta name="keywords" content="agents, production, llm">
+  <link rel="canonical" href="https://dmytro.my/blog/posts/shipping-agents/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="shipping agents that don&#39;t embarrass you">
+  <meta property="og:description" content="A pragmatic checklist for taking an LLM agent from a notebook demo to a paying customer.">
+  <meta property="og:url" content="https://dmytro.my/blog/posts/shipping-agents/">
+  <meta property="og:site_name" content="dmytro.my">
+  <meta property="article:published_time" content="2026-05-12">
+  <meta property="article:tag" content="agents">
+  <meta property="article:tag" content="production">
+  <meta property="article:tag" content="llm">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="shipping agents that don&#39;t embarrass you">
+  <meta name="twitter:description" content="A pragmatic checklist for taking an LLM agent from a notebook demo to a paying customer.">
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog" href="../../feed.xml">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"shipping agents that don't embarrass you","description":"A pragmatic checklist for taking an LLM agent from a notebook demo to a paying customer.","datePublished":"2026-05-12","dateModified":"2026-05-12","author":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"publisher":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dmytro.my/blog/posts/shipping-agents/"},"url":"https://dmytro.my/blog/posts/shipping-agents/","keywords":"agents, production, llm","inLanguage":"en"}</script>
+</head>
+<body class="page-post">
+  <div class="fx fx--grid" aria-hidden="true"></div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="fx fx--spot" aria-hidden="true"></div>
+  <div class="fx fx--vignette" aria-hidden="true"></div>
+
+  <header class="window" role="banner">
+    <div class="window__lights" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="window__path">
+      <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
+      <span class="window__sep">:</span>
+      <span class="window__cwd">~/blog/shipping-agents</span>
+      <span class="window__shell">— zsh</span>
+    </p>
+    <div class="window__hud" aria-hidden="true">
+      <span class="hud__pulse"></span>
+      <span class="window__hud-label">read</span>
+      <span class="window__hud-time" data-clock>—</span>
+    </div>
+  </header>
+
+  <main class="site" aria-label="dmytro.my blog post">
+    <aside class="rail" aria-label="sections">
+      <ol class="rail__list">
+        <li><a href="../../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../blog</span></a></li>
+        <li><a href="../../../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../home</span></a></li>
+      </ol>
+      
+        <nav class="rail__toc" aria-label="post sections">
+          <div class="rail__toc-inner">
+            <p class="rail__toc-label">contents</p>
+            <ol class="rail__toc-list">
+              
+                <li>
+                  <a href="#1-cap-the-loop">
+                    <span class="rail__toc-num">01</span>
+                    <span>1. cap the loop</span>
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="#2-structure-the-output">
+                    <span class="rail__toc-num">02</span>
+                    <span>2. structure the output</span>
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="#3-tool-errors-are-first-class">
+                    <span class="rail__toc-num">03</span>
+                    <span>3. tool errors are first-class</span>
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="#4-determinism-where-you-can">
+                    <span class="rail__toc-num">04</span>
+                    <span>4. determinism where you can</span>
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="#5-observability-before-features">
+                    <span class="rail__toc-num">05</span>
+                    <span>5. observability before features</span>
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="#6-a-real-eval-set">
+                    <span class="rail__toc-num">06</span>
+                    <span>6. a real eval set</span>
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="#7-a-kill-switch">
+                    <span class="rail__toc-num">07</span>
+                    <span>7. a kill switch</span>
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        </nav>
+      <div class="rail__status">
+        <p><span class="key">slug</span><span>shipping-agents</span></p>
+        <p><span class="key">date</span><span>2026-05-12</span></p>
+        <p><span class="key">read</span><span>2 min</span></p>
+      </div>
+    </aside>
+
+    <article class="content">
+      <section class="hero hero--post">
+        <div class="hero__head">
+          <p class="line"><span class="prompt">$</span> cat posts/shipping-agents.md</p>
+          <p class="eyebrow">// agents · production · llm</p>
+        </div>
+        <h1 class="display display--post">shipping agents that don&#39;t embarrass you</h1>
+        <ul class="post-meta">
+          <li class="post-meta__tag">agents</li><li class="post-meta__tag">production</li><li class="post-meta__tag">llm</li>
+          <li class="post-meta__date">2026-05-12</li>
+        </ul>
+      </section>
+
+      <section class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">¶</span>
+          <h2 class="block__title">read</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> less shipping-agents.md</span>
+        </header>
+        <div class="block__body">
+          <article class="prose">
+            <h1 id="shipping-agents-that-dont-embarrass-you">shipping agents that don&#39;t embarrass you</h1>
+            <blockquote><p>A short checklist I run through before any LLM agent meets a paying customer.</p></blockquote>
+            <p>A demo agent and a production agent are different species. The demo runs once, in your hands, on a happy-path prompt. The production agent runs <em>thousands of times</em>, in someone else&#39;s hands, on prompts you would never type.</p>
+            <p>Here&#39;s the checklist.</p>
+            <h2 id="1-cap-the-loop">1. cap the loop</h2>
+            <p>Every agent loop needs a hard ceiling. Steps, tokens, wall time — pick all three.</p>
+            <pre class="code" data-lang="ts"><code>const MAX_STEPS = 12;
+            const MAX_TOKENS = 60_000;
+            const MAX_MS = 90_000;</code></pre>
+            <p>If your agent ever hits the cap, that&#39;s a signal — log it, surface it, fix the prompt or the tool.</p>
+            <h2 id="2-structure-the-output">2. structure the output</h2>
+            <p>Free-form text is a liability. Make the model emit JSON with a schema you actually validate. Reject and retry on parse failure. Log every rejection — they tell you where your prompt is fuzzy.</p>
+            <h2 id="3-tool-errors-are-first-class">3. tool errors are first-class</h2>
+            <p>Every tool returns either <code>{ ok: true, data }</code> or <code>{ ok: false, error }</code>. The agent sees the error and decides. No silent throws, no swallowed stack traces.</p>
+            <h2 id="4-determinism-where-you-can">4. determinism where you can</h2>
+            <ul><li>temperature 0 for routing and extraction</li><li>a fixed model version pin (no <code>latest</code>)</li><li>seed the random parts of your prompt (sample order, k examples)</li></ul>
+            <p>You&#39;ll thank yourself when a regression appears and you can actually bisect.</p>
+            <h2 id="5-observability-before-features">5. observability before features</h2>
+            <p>Before you add the next tool, make sure you can answer:</p>
+            <ul><li>which prompt did this user see?</li><li>which model and version answered?</li><li>how many tokens, how many ms, how much money?</li><li>what was the full tool trace?</li></ul>
+            <p>If you can&#39;t answer those, you&#39;re flying blind.</p>
+            <h2 id="6-a-real-eval-set">6. a real eval set</h2>
+            <p>Twenty real prompts with known-good outputs. Run them on every prompt or model change. Diff the outputs. This catches more regressions than any unit test.</p>
+            <h2 id="7-a-kill-switch">7. a kill switch</h2>
+            <p>One env var that disables the agent and falls back to a static response. You will need it.</p>
+            <hr>
+            <p>Most production failures I&#39;ve seen come from skipping items 4-6. Fancy is not what fails. Boring is what fails — and boring is what you control.</p>
+          </article>
+        </div>
+      </section>
+
+      
+        <nav class="post-nav" aria-label="adjacent posts">
+          <span></span>
+          <a class="post-nav__btn post-nav__btn--next" href="../welcome-2026/">
+                <span class="post-nav__dir">newer →</span>
+                <span class="post-nav__title">log #001 — opening the channel</span>
+              </a>
+        </nav>
+
+      <footer class="footer">
+        <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        <div class="footer__row">
+          <p class="sig">© <span data-year>—</span> dmytro my · <a href="../../">../blog</a></p>
+          <p class="sig sig--muted"><span class="key">utc</span><span data-clock>—</span></p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script src="../../../scripts/post-static.js"></script>
+</body>
+</html>
