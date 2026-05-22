@@ -11,22 +11,43 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Sensitive data (never commit)
+# Sensitive data and auth files (never commit in public repo)
+SECURITY_RULES.md
 .env
 .env.*
 !.env.example
+.envrc
 *.pem
 *.key
 *.p12
 *.pfx
+*.jks
+*.keystore
 id_rsa
 id_rsa.pub
 *.kdbx
+*.sqlite
+*.sqlite3
+*.db
 secrets.*
 credentials.*
 token.*
+*.token
+*.jwt
+*.session
+*.cookie
+.npmrc
+.pypirc
+.netrc
+.aws/
+.azure/
+.gcloud/
 
 # Temporary files
 *.tmp
 *.cache
+*.pid
