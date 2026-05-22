@@ -6,7 +6,15 @@
     <description>Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.</description>
     <language>en-us</language>
     <atom:link href="https://dmytro.my/blog/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 22 May 2026 11:48:53 GMT</lastBuildDate>
-
+    <lastBuildDate>Fri, 22 May 2026 11:54:39 GMT</lastBuildDate>
+    <item>
+      <title>test — связь установлена</title>
+      <link>https://dmytro.my/blog/posts/hello-blog/</link>
+      <guid isPermaLink="true">https://dmytro.my/blog/posts/hello-blog/</guid>
+      <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+      <description>Тестовая запись для проверки сборки, рендера, фидов и превью в соцсетях.</description>
+      <category>meta</category>
+      <category>test</category>
+    </item>
   </channel>
 </rss>
