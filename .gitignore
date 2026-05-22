@@ -54,3 +54,6 @@ token.*
 
 # Agent skills / private instructions (local-only, never push)
 .agent/
+
+# Obsidian documentation vault (local-only, never push)
+obsidian-docs/

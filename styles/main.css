@@ -512,6 +512,8 @@
     align-items: start;
   }
   .about__copy { display: grid; gap: 10px; color: var(--text-soft); font-size: 15px; max-width: 60ch; }
+  .about__side { display: grid; gap: 18px; align-content: start; }
+  .portrait--about .portrait__frame { min-height: clamp(340px, 50vw, 560px); }
   .about__aside {
     display: grid; gap: 6px;
     padding: 16px;
