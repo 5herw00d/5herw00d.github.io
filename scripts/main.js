@@ -37,7 +37,7 @@
 
   // active rail link on scroll
   const railLinks = new Map(
-    [...document.querySelectorAll('.rail__link')].map((a) => [
+    [...document.querySelectorAll('.rail__link[href^="#"]')].map((a) => [
       a.getAttribute('href').slice(1),
       a,
     ])

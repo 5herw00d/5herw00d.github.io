@@ -57,7 +57,7 @@
   <main class="site" aria-label="dmytro.my dossier">
     <aside class="rail" aria-label="sections">
       <ol class="rail__list">
-        <li><a href="#about" class="rail__link" data-rail="about"><span class="rail__num">01</span><span class="rail__name">about</span></a></li>
+        <li><a href="about/" class="rail__link rail__link--ext"><span class="rail__num">01</span><span class="rail__name">about →</span></a></li>
         <li><a href="#stack" class="rail__link" data-rail="stack"><span class="rail__num">02</span><span class="rail__name">stack</span></a></li>
         <li><a href="#projects" class="rail__link" data-rail="projects"><span class="rail__num">03</span><span class="rail__name">projects</span></a></li>
         <li><a href="#contact" class="rail__link" data-rail="contact"><span class="rail__num">04</span><span class="rail__name">contact</span></a></li>
@@ -94,58 +94,7 @@
             <li class="chip">UA &nbsp;·&nbsp; EU</li>
             <li class="chip">small scopes · shipped fast</li>
           </ul>
-
-          <dl class="hero__meta" aria-label="profile highlights">
-            <div><dt>mode</dt><dd>hybrid · product + engineering</dd></div>
-            <div><dt>focus</dt><dd>agents · LLM APIs · SaaS systems</dd></div>
-            <div><dt>signal</dt><dd>open for AI SaaS work</dd></div>
-          </dl>
-        </div>
-      </section>
-
-      <section id="about" class="block">
-        <header class="block__head">
-          <span class="block__num">01</span>
-          <h2 class="block__title">about</h2>
-          <span class="block__rule" aria-hidden="true"></span>
-          <span class="block__cmd"><span class="prompt">$</span> cat about.md</span>
-        </header>
-        <div class="block__body about">
-          <div class="about__copy">
-            <p>build AI products end-to-end: idea, interface, backend, automation, deploy.</p>
-            <p>hybrid: product thinking + engineering + practical AI workflows.</p>
-          </div>
-          <div class="about__side">
-            <figure class="portrait portrait--about">
-              <div class="portrait__frame">
-                <header class="portrait__chrome" aria-hidden="true">
-                  <span class="portrait__name">./dm.png</span>
-                  <span class="portrait__dim">1254 × 1254</span>
-                  <span class="portrait__feed">profile-feed · live</span>
-                </header>
-
-                <div class="portrait__media">
-                  <img src="dm.png" alt="Dmytro My portrait" class="portrait__img">
-                  <div class="portrait__scan" aria-hidden="true"></div>
-                  <div class="portrait__sweep" aria-hidden="true"></div>
-                  <span class="hud hud--tl" aria-hidden="true"></span>
-                  <span class="hud hud--tr" aria-hidden="true"></span>
-                  <span class="hud hud--bl" aria-hidden="true"></span>
-                  <span class="hud hud--br" aria-hidden="true"></span>
-                </div>
-
-                <figcaption class="portrait__caption">
-                  <p><span class="key">subj</span><span>dmytro · founder/eng</span></p>
-                  <p><span class="key">link</span><span class="ok">online</span></p>
-                </figcaption>
-              </div>
-            </figure>
-            <aside class="about__aside">
-              <p><span class="key">/method</span><span>scope · ship · iterate</span></p>
-              <p><span class="key">/style</span><span>terse, instrumented, observable</span></p>
-              <p><span class="key">/loop</span><span>idea → demo → users → revenue</span></p>
-            </aside>
-          </div>
+          <p class="line hero__jump"><span class="prompt">$</span><a href="about/">cd ~/about</a></p>
         </div>
       </section>
 

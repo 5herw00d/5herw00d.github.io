@@ -340,6 +340,9 @@
     display: flex; flex-wrap: wrap; gap: 8px;
     margin-top: 4px;
   }
+  .hero__jump { margin-top: 8px; color: var(--muted); }
+  .hero__jump a { color: var(--accent); }
+  .hero__jump a:hover { color: var(--accent-bright); }
   .chip {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 5px 10px;
