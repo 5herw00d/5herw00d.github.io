@@ -51,3 +51,6 @@ token.*
 *.tmp
 *.cache
 *.pid
+
+# Agent skills / private instructions (local-only, never push)
+.agent/
