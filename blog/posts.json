@@ -8,5 +8,14 @@
     "languages": ["en", "ru"],
     "defaultLang": "en"
   },
-  "posts": []
+  "posts": [
+    {
+      "slug": "hello-blog",
+      "title": "test — связь установлена",
+      "lang": "ru",
+      "date": "2026-05-22",
+      "tags": ["meta", "test"],
+      "summary": "Тестовая запись для проверки сборки, рендера, фидов и превью в соцсетях."
+    }
+  ]
 }
