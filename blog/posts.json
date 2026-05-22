@@ -4,22 +4,9 @@
     "title": "dmytro.my",
     "author": "Dmytro My",
     "twitter": "",
-    "description": "Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra."
+    "description": "Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.",
+    "languages": ["en", "ru"],
+    "defaultLang": "en"
   },
-  "posts": [
-    {
-      "slug": "welcome-2026",
-      "title": "log #001 — opening the channel",
-      "date": "2026-05-21",
-      "tags": ["meta", "writing"],
-      "summary": "Why this blog exists and what to expect: short, practical notes on building AI products."
-    },
-    {
-      "slug": "shipping-agents",
-      "title": "shipping agents that don't embarrass you",
-      "date": "2026-05-12",
-      "tags": ["agents", "production", "llm"],
-      "summary": "A pragmatic checklist for taking an LLM agent from a notebook demo to a paying customer."
-    }
-  ]
+  "posts": []
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dmytro.my — blog</title>
+    <title>dmytro.my — blog (en)</title>
     <link>https://dmytro.my/blog/</link>
     <description>Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.</description>
     <language>en-us</language>
-    <atom:link href="https://dmytro.my/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dmytro.my/blog/feed.en.xml" rel="self" type="application/rss+xml" />
     <lastBuildDate>Fri, 22 May 2026 11:48:53 GMT</lastBuildDate>
 
   </channel>

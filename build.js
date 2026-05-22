@@ -5,7 +5,9 @@
 // reads:   blog/posts.json + blog/posts/*.md
 // writes:  blog/posts/<slug>/index.html
 //          sitemap.xml (root)
-//          blog/feed.xml  (RSS 2.0)
+//          robots.txt (root)
+//          blog/feed.xml         (all languages)
+//          blog/feed.<lang>.xml  (per language)
 //
 // no dependencies — node stdlib only.
 
@@ -18,9 +20,15 @@ const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
 
+// language → BCP47 code + OG locale
+const LANG_META = {
+  en: { bcp47: 'en', ogLocale: 'en_US', rss: 'en-us' },
+  ru: { bcp47: 'ru', ogLocale: 'ru_RU', rss: 'ru-ru' },
+  uk: { bcp47: 'uk', ogLocale: 'uk_UA', rss: 'uk-ua' },
+};
+
 function readManifest() {
-  const raw = fs.readFileSync(MANIFEST, 'utf8');
-  return JSON.parse(raw);
+  return JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 }
 
 function escHtml(s) { return MD.escHtml(s); }
@@ -46,8 +54,15 @@ function rfc822(iso) {
   return d.toUTCString();
 }
 
+function langOf(post, defaultLang) {
+  return post.lang || defaultLang || 'en';
+}
+
 // ---- post template ----
-function postPage({ site, post, body, headings, readMin, prev, next, posts }) {
+function postPage({ site, post, body, headings, readMin, prev, next }) {
+  const lang = langOf(post, site.defaultLang);
+  const meta = LANG_META[lang] || LANG_META.en;
+
   const url = `${site.url}/blog/posts/${post.slug}/`;
   const title = `${post.title} — ${site.title}`;
   const desc = (post.summary || site.description || '').slice(0, 200);
@@ -108,11 +123,11 @@ function postPage({ site, post, body, headings, readMin, prev, next, posts }) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url: url,
     keywords: (post.tags || []).join(', '),
-    inLanguage: 'en',
+    inLanguage: meta.bcp47,
   };
 
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${meta.bcp47}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,6 +146,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, posts }) {
   <meta property="og:description" content="${escAttr(desc)}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="${escAttr(site.title)}">
+  <meta property="og:locale" content="${meta.ogLocale}">
   <meta property="article:published_time" content="${escAttr(dateIso)}">
   ${(post.tags || []).map((t) => `<meta property="article:tag" content="${escAttr(t)}">`).join('\n  ')}
 
@@ -145,11 +161,12 @@ function postPage({ site, post, body, headings, readMin, prev, next, posts }) {
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../styles/main.css">
   <link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
-  <link rel="alternate" type="application/rss+xml" title="${escAttr(site.title)} blog" href="../../feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="${escAttr(site.title)} blog (${lang})" href="../../feed.${lang}.xml">
+  <link rel="alternate" type="application/rss+xml" title="${escAttr(site.title)} blog (all)" href="../../feed.xml">
 
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
-<body class="page-post">
+<body class="page-post" data-lang="${lang}">
   <div class="fx fx--grid" aria-hidden="true"></div>
   <div class="fx fx--grain" aria-hidden="true"></div>
   <div class="fx fx--spot" aria-hidden="true"></div>
@@ -165,7 +182,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, posts }) {
     </p>
     <div class="window__hud" aria-hidden="true">
       <span class="hud__pulse"></span>
-      <span class="window__hud-label">read</span>
+      <span class="window__hud-label">read · ${lang}</span>
       <span class="window__hud-time" data-clock>—</span>
     </div>
   </header>
@@ -179,6 +196,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, posts }) {
       ${tocHtml}
       <div class="rail__status">
         <p><span class="key">slug</span><span>${escHtml(post.slug)}</span></p>
+        <p><span class="key">lang</span><span>${lang}</span></p>
         <p><span class="key">date</span><span>${escHtml(dateDisp)}</span></p>
         <p><span class="key">read</span><span>${readMin} min</span></p>
       </div>
@@ -188,10 +206,11 @@ function postPage({ site, post, body, headings, readMin, prev, next, posts }) {
       <section class="hero hero--post">
         <div class="hero__head">
           <p class="line"><span class="prompt">$</span> cat posts/${escHtml(post.slug)}.md</p>
-          <p class="eyebrow">// ${escHtml((post.tags || []).join(' · ') || 'post')}</p>
+          <p class="eyebrow">// ${escHtml((post.tags || []).join(' · ') || 'post')} · lang=${lang}</p>
         </div>
         <h1 class="display display--post">${escHtml(post.title)}</h1>
         <ul class="post-meta">
+          <li class="post-meta__lang">${lang}</li>
           ${tagsBadges}
           <li class="post-meta__date">${escHtml(dateDisp)}</li>
         </ul>
@@ -283,15 +302,20 @@ Sitemap: ${site.url}/sitemap.xml
 }
 
 // ---- rss ----
-function rss(site, posts) {
+function rss(site, posts, lang) {
+  const meta = lang ? LANG_META[lang] : null;
+  const langCode = meta ? meta.rss : 'en-us';
+  const titleSuffix = lang ? ` (${lang})` : '';
+  const feedPath = lang ? `feed.${lang}.xml` : 'feed.xml';
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${escXml(site.title)} — blog</title>
+    <title>${escXml(site.title)} — blog${titleSuffix}</title>
     <link>${escXml(site.url)}/blog/</link>
     <description>${escXml(site.description)}</description>
-    <language>en</language>
-    <atom:link href="${escXml(site.url)}/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <language>${langCode}</language>
+    <atom:link href="${escXml(site.url)}/blog/${feedPath}" rel="self" type="application/rss+xml" />
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${posts.map((p) => `    <item>
       <title>${escXml(p.title)}</title>
@@ -315,6 +339,9 @@ ${(p.tags || []).map((t) => `      <category>${escXml(t)}</category>`).join('\n'
     process.exit(1);
   }
 
+  const languages = site.languages || ['en'];
+  const defaultLang = site.defaultLang || 'en';
+
   // sort newest first
   const posts = manifest.posts.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 
@@ -322,9 +349,14 @@ ${(p.tags || []).map((t) => `      <category>${escXml(t)}</category>`).join('\n'
   posts.forEach((post, idx) => {
     const mdPath = path.join(POSTS_DIR, post.slug + '.md');
     if (!fs.existsSync(mdPath)) {
-      console.warn('skip: missing', mdPath);
+      console.warn('  skip:', post.slug, '— missing .md');
       return;
     }
+    const lang = langOf(post, defaultLang);
+    if (!languages.includes(lang)) {
+      console.warn(`  warn: ${post.slug} has lang="${lang}" not in site.languages [${languages.join(', ')}]`);
+    }
+
     const raw = fs.readFileSync(mdPath, 'utf8');
     const { html, headings, title } = MD.render(raw);
     if (title && !post.title) post.title = title;
@@ -342,14 +374,13 @@ ${(p.tags || []).map((t) => `      <category>${escXml(t)}</category>`).join('\n'
       readMin,
       prev,
       next,
-      posts,
     });
 
     const dir = path.join(POSTS_DIR, post.slug);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), html5);
     built++;
-    console.log('  ok  blog/posts/' + post.slug + '/index.html');
+    console.log(`  ok  blog/posts/${post.slug}/index.html  (${lang})`);
   });
 
   // legacy redirect at blog/post.html
@@ -364,9 +395,16 @@ ${(p.tags || []).map((t) => `      <category>${escXml(t)}</category>`).join('\n'
   fs.writeFileSync(path.join(ROOT, 'robots.txt'), robots(site));
   console.log('  ok  robots.txt');
 
-  // rss feed
-  fs.writeFileSync(path.join(BLOG, 'feed.xml'), rss(site, posts));
-  console.log('  ok  blog/feed.xml');
+  // combined feed
+  fs.writeFileSync(path.join(BLOG, 'feed.xml'), rss(site, posts, null));
+  console.log('  ok  blog/feed.xml (all)');
 
-  console.log(`\nbuilt ${built} post(s).`);
+  // per-language feeds
+  languages.forEach((lang) => {
+    const langPosts = posts.filter((p) => langOf(p, defaultLang) === lang);
+    fs.writeFileSync(path.join(BLOG, `feed.${lang}.xml`), rss(site, langPosts, lang));
+    console.log(`  ok  blog/feed.${lang}.xml`);
+  });
+
+  console.log(`\nbuilt ${built} post(s) across ${languages.length} language(s).`);
 })();
