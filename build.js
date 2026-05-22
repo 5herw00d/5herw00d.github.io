@@ -64,7 +64,7 @@ function postPage({ site, post, body, headings, readMin, prev, next }) {
   const meta = LANG_META[lang] || LANG_META.en;
 
   const url = `${site.url}/blog/posts/${post.slug}/`;
-  const title = `${post.title} — ${site.title}`;
+  const title = post.title;
   const desc = (post.summary || site.description || '').slice(0, 200);
   const tagsList = (post.tags || []).map((t) => escAttr(t)).join(', ');
   const dateIso = post.date;
