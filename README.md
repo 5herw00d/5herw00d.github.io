@@ -19,10 +19,12 @@ single-page site · cli aesthetic · plain html/css/js, with a tiny no-deps node
 ├── assets/favicon.svg
 ├── .nojekyll               disable Jekyll on GitHub Pages
 └── blog/
-    ├── index.html          listing (~/blog)
+    ├── index.html          listing (~/blog) with language filter
     ├── post.html           legacy redirect (?slug= → posts/<slug>/)
-    ├── posts.json          site config + post manifest
-    ├── feed.xml            RSS 2.0 (auto-generated)
+    ├── posts.json          site config + post manifest (lang per post)
+    ├── feed.xml            RSS — all languages
+    ├── feed.en.xml         RSS — english only
+    ├── feed.ru.xml         RSS — russian only
     └── posts/
         ├── <slug>.md       source post
         └── <slug>/
@@ -50,11 +52,15 @@ Pre-rendered posts (`blog/posts/<slug>/index.html`) work fine via `file://` once
 {
   "slug": "<slug>",
   "title": "post title",
+  "lang": "en",
   "date": "YYYY-MM-DD",
   "tags": ["tag1", "tag2"],
   "summary": "one-line teaser"
 }
 ```
+
+`lang` is required and must be one of `site.languages` (currently `en`, `ru`).
+One post = one language. For a translation, create a separate post with a new slug.
 
 3. Run the build:
 
@@ -62,16 +68,26 @@ Pre-rendered posts (`blog/posts/<slug>/index.html`) work fine via `file://` once
 node build.js
 ```
 
-This pre-renders the post into `blog/posts/<slug>/index.html` (with `<title>`, `<meta description>`, OG tags, Twitter cards, JSON-LD `BlogPosting`, canonical URL), and regenerates `sitemap.xml` and `blog/feed.xml`.
+This pre-renders the post into `blog/posts/<slug>/index.html` (with `<title>`, `<meta description>`, OG tags, Twitter cards, JSON-LD `BlogPosting`, `<html lang>`, `og:locale`, canonical URL), and regenerates `sitemap.xml`, `blog/feed.xml`, and per-language feeds (`blog/feed.<lang>.xml`).
 
-4. Commit everything (md sources, manifest, generated html, sitemap, feed).
+4. Commit everything (md sources, manifest, generated html, sitemap, feeds).
+
+## languages
+
+- Configured in `blog/posts.json` → `site.languages` and `site.defaultLang`.
+- Currently: `en` (default), `ru`.
+- Listing has a language filter (`all / en / ru`) with per-language counts. Default selection is `en`, persisted in `localStorage`.
+- Each post page is fully localized at the `<head>` level (`<html lang>`, `og:locale`, JSON-LD `inLanguage`).
+- Slugs and URLs stay English-lowercase, even for non-English posts (Cyrillic in URLs is fragile).
+- Tags stay English-lowercase across all languages so the tag cloud doesn't fragment.
 
 ## SEO
 
 - Each post is a real static html page at `/blog/posts/<slug>/`.
-- Full `<title>`, `<meta description>`, Open Graph, Twitter Card, JSON-LD on every post.
-- `sitemap.xml`, `robots.txt`, RSS feed at `/blog/feed.xml`.
-- Listing/archive/tags still hydrate from `posts.json` via fetch (those pages aren't critical for SEO).
+- Full `<title>`, `<meta description>`, Open Graph (with locale), Twitter Card, JSON-LD `BlogPosting` (with `inLanguage`) on every post.
+- `<html lang>` is set per post (en/ru).
+- `sitemap.xml`, `robots.txt`, RSS feeds: combined `feed.xml` and per-language `feed.<lang>.xml`.
+- Listing/archive/tags hydrate from `posts.json` via fetch (those pages aren't critical for SEO).
 - Update `blog/posts.json` `site.url` if you change domains.
 
 ## deploy

@@ -21,7 +21,9 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (all)" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (en)" href="feed.en.xml">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (ru)" href="feed.ru.xml">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"dmytro.my — blog","url":"https://dmytro.my/blog/","author":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"}}</script>
 </head>
 <body class="page-blog">
@@ -80,6 +82,12 @@
           <span class="block__cmd"><span class="prompt">$</span> head -n 5 posts.json</span>
         </header>
         <div class="block__body">
+          <div class="lang-filter" role="group" aria-label="filter by language" data-lang-filter>
+            <span class="lang-filter__label">lang:</span>
+            <button class="lang-chip" data-lang="all">all <span class="lang-chip__n" data-count-all>—</span></button>
+            <button class="lang-chip" data-lang="en">en <span class="lang-chip__n" data-count-en>—</span></button>
+            <button class="lang-chip" data-lang="ru">ru <span class="lang-chip__n" data-count-ru>—</span></button>
+          </div>
           <ol class="post-list" data-post-list>
             <li class="post-row post-row--skel" aria-hidden="true">
               <span class="post-row__id">001</span>
@@ -87,6 +95,7 @@
               <span class="post-row__title">loading…</span>
             </li>
           </ol>
+          <p class="post-list__empty" data-empty hidden>no posts in this language yet.</p>
         </div>
       </section>
 
