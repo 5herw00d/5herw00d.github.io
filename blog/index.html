@@ -56,9 +56,9 @@
         <li><a href="#tags" class="rail__link"><span class="rail__num">03</span><span class="rail__name">tags</span></a></li>
       </ol>
       <div class="rail__status">
-        <p><span class="key">posts</span><span data-count>—</span></p>
-        <p><span class="key">last</span><span data-last>—</span></p>
-        <p><span class="key">net</span><span class="ok">stable</span></p>
+        <p><span class="key" data-label-posts>posts</span><span data-count>—</span></p>
+        <p><span class="key" data-label-last>last</span><span data-last>—</span></p>
+        <p><span class="key" data-label-net>net</span><span class="ok" data-label-stable>stable</span></p>
       </div>
     </aside>
 
@@ -77,14 +77,14 @@
       <section id="latest" class="block is-visible">
         <header class="block__head">
           <span class="block__num">01</span>
-          <h2 class="block__title">latest</h2>
+          <h2 class="block__title" data-title-latest>latest</h2>
           <span class="block__rule" aria-hidden="true"></span>
           <span class="block__cmd"><span class="prompt">$</span> head -n 5 posts.json</span>
         </header>
         <div class="block__body">
           <div class="lang-filter" role="group" aria-label="filter by language" data-lang-filter>
             <span class="lang-filter__label">lang:</span>
-            <button class="lang-chip" data-lang="all">all <span class="lang-chip__n" data-count-all>—</span></button>
+            <button class="lang-chip" data-lang="all"><span data-lang-label-all>all</span> <span class="lang-chip__n" data-count-all>—</span></button>
             <button class="lang-chip" data-lang="en">en <span class="lang-chip__n" data-count-en>—</span></button>
             <button class="lang-chip" data-lang="ru">ru <span class="lang-chip__n" data-count-ru>—</span></button>
           </div>
@@ -102,7 +102,7 @@
       <section id="archive" class="block is-visible">
         <header class="block__head">
           <span class="block__num">02</span>
-          <h2 class="block__title">archive</h2>
+          <h2 class="block__title" data-title-archive>archive</h2>
           <span class="block__rule" aria-hidden="true"></span>
           <span class="block__cmd"><span class="prompt">$</span> ls -1 posts/ | sort -r</span>
         </header>
@@ -114,7 +114,7 @@
       <section id="tags" class="block is-visible">
         <header class="block__head">
           <span class="block__num">03</span>
-          <h2 class="block__title">tags</h2>
+          <h2 class="block__title" data-title-tags>tags</h2>
           <span class="block__rule" aria-hidden="true"></span>
           <span class="block__cmd"><span class="prompt">$</span> grep tags posts.json</span>
         </header>

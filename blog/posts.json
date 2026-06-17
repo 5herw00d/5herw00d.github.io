@@ -11,7 +11,7 @@
   "posts": [
     {
       "slug": "hello-blog",
-      "title": "test — связь установлена",
+      "title": "тест — связь установлена",
       "lang": "ru",
       "date": "2026-05-22",
       "tags": ["meta", "test"],

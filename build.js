@@ -27,6 +27,54 @@ const LANG_META = {
   uk: { bcp47: 'uk', ogLocale: 'uk_UA', rss: 'uk-ua' },
 };
 
+const POST_UI = {
+  en: {
+    adjacentPosts: 'adjacent posts',
+    blogLink: '../blog',
+    blogPostAria: 'dmytro.my blog post',
+    contents: 'contents',
+    homeLink: '../home',
+    newer: 'newer →',
+    older: '← older',
+    readBlock: 'read',
+    readHud: 'read',
+    readKey: 'read',
+    sectionsAria: 'sections',
+    tocAria: 'post sections',
+    minute: 'min',
+  },
+  ru: {
+    adjacentPosts: 'соседние записи',
+    blogLink: '../блог',
+    blogPostAria: 'пост блога dmytro.my',
+    contents: 'содержание',
+    homeLink: '../главная',
+    newer: 'новее →',
+    older: '← старее',
+    readBlock: 'читать',
+    readHud: 'чтение',
+    readKey: 'чтение',
+    sectionsAria: 'разделы',
+    tocAria: 'разделы поста',
+    minute: 'мин',
+  },
+  uk: {
+    adjacentPosts: 'сусідні дописи',
+    blogLink: '../блог',
+    blogPostAria: 'допис блогу dmytro.my',
+    contents: 'зміст',
+    homeLink: '../головна',
+    newer: 'новіше →',
+    older: '← старіше',
+    readBlock: 'читати',
+    readHud: 'читання',
+    readKey: 'читання',
+    sectionsAria: 'розділи',
+    tocAria: 'розділи допису',
+    minute: 'хв',
+  },
+};
+
 function readManifest() {
   return JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 }
@@ -58,10 +106,15 @@ function langOf(post, defaultLang) {
   return post.lang || defaultLang || 'en';
 }
 
+function uiOf(lang) {
+  return POST_UI[lang] || POST_UI.en;
+}
+
 // ---- post template ----
 function postPage({ site, post, body, headings, readMin, prev, next }) {
   const lang = langOf(post, site.defaultLang);
   const meta = LANG_META[lang] || LANG_META.en;
+  const ui = uiOf(lang);
 
   const url = `${site.url}/blog/posts/${post.slug}/`;
   const title = post.title;
@@ -72,9 +125,9 @@ function postPage({ site, post, body, headings, readMin, prev, next }) {
 
   const tocHtml = headings.length > 1
     ? `
-        <nav class="rail__toc" aria-label="post sections">
+        <nav class="rail__toc" aria-label="${escAttr(ui.tocAria)}">
           <div class="rail__toc-inner">
-            <p class="rail__toc-label">contents</p>
+            <p class="rail__toc-label">${escHtml(ui.contents)}</p>
             <ol class="rail__toc-list">
               ${headings.map((h, i) => `
                 <li${h.lvl === 3 ? ' class="is-sub"' : ''}>
@@ -95,16 +148,16 @@ function postPage({ site, post, body, headings, readMin, prev, next }) {
 
   const navHtml = (prev || next)
     ? `
-        <nav class="post-nav" aria-label="adjacent posts">
+        <nav class="post-nav" aria-label="${escAttr(ui.adjacentPosts)}">
           ${prev
             ? `<a class="post-nav__btn post-nav__btn--prev" href="../${escAttr(prev.slug)}/">
-                <span class="post-nav__dir">← older</span>
+                <span class="post-nav__dir">${escHtml(ui.older)}</span>
                 <span class="post-nav__title">${escHtml(prev.title)}</span>
               </a>`
             : `<span></span>`}
           ${next
             ? `<a class="post-nav__btn post-nav__btn--next" href="../${escAttr(next.slug)}/">
-                <span class="post-nav__dir">newer →</span>
+                <span class="post-nav__dir">${escHtml(ui.newer)}</span>
                 <span class="post-nav__title">${escHtml(next.title)}</span>
               </a>`
             : ``}
@@ -182,23 +235,23 @@ function postPage({ site, post, body, headings, readMin, prev, next }) {
     </p>
     <div class="window__hud" aria-hidden="true">
       <span class="hud__pulse"></span>
-      <span class="window__hud-label">read · ${lang}</span>
+      <span class="window__hud-label">${escHtml(ui.readHud)} · ${lang}</span>
       <span class="window__hud-time" data-clock>—</span>
     </div>
   </header>
 
-  <main class="site" aria-label="dmytro.my blog post">
-    <aside class="rail" aria-label="sections">
+  <main class="site" aria-label="${escAttr(ui.blogPostAria)}">
+    <aside class="rail" aria-label="${escAttr(ui.sectionsAria)}">
       <ol class="rail__list">
-        <li><a href="../../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../blog</span></a></li>
-        <li><a href="../../../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../home</span></a></li>
+        <li><a href="../../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">${escHtml(ui.blogLink)}</span></a></li>
+        <li><a href="../../../" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">${escHtml(ui.homeLink)}</span></a></li>
       </ol>
       ${tocHtml}
       <div class="rail__status">
         <p><span class="key">slug</span><span>${escHtml(post.slug)}</span></p>
         <p><span class="key">lang</span><span>${lang}</span></p>
         <p><span class="key">date</span><span>${escHtml(dateDisp)}</span></p>
-        <p><span class="key">read</span><span>${readMin} min</span></p>
+        <p><span class="key">${escHtml(ui.readKey)}</span><span>${readMin} ${escHtml(ui.minute)}</span></p>
       </div>
     </aside>
 
@@ -219,7 +272,7 @@ function postPage({ site, post, body, headings, readMin, prev, next }) {
       <section class="block is-visible">
         <header class="block__head">
           <span class="block__num">¶</span>
-          <h2 class="block__title">read</h2>
+          <h2 class="block__title">${escHtml(ui.readBlock)}</h2>
           <span class="block__rule" aria-hidden="true"></span>
           <span class="block__cmd"><span class="prompt">$</span> less ${escHtml(post.slug)}.md</span>
         </header>
@@ -235,7 +288,7 @@ ${body}
       <footer class="footer">
         <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
         <div class="footer__row">
-          <p class="sig">© <span data-year>—</span> ${escHtml(site.author).toLowerCase()} · <a href="../../">../blog</a></p>
+          <p class="sig">© <span data-year>—</span> ${escHtml(site.author).toLowerCase()} · <a href="../../">${escHtml(ui.blogLink)}</a></p>
           <p class="sig sig--muted"><span class="key">utc</span><span data-clock>—</span></p>
         </div>
       </footer>

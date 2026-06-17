@@ -2,6 +2,50 @@
 (() => {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const STORAGE_KEY = 'blog.lang';
+  const UI_TEXT = {
+    en: {
+      all: 'all',
+      archive: 'archive',
+      archiveEmpty: 'no posts in this language yet.',
+      empty: 'no posts in this language yet.',
+      eyebrow: '// notes on shipping ai products · plain markdown',
+      failed: 'failed to load posts.json — open via http (not file://)',
+      home: '../home',
+      langFilter: 'filter by language',
+      langLabel: 'lang:',
+      last: 'last',
+      latest: 'latest',
+      lead: 'Short, practical entries — agents, llm tradeoffs, product loops, infra, and the boring stuff that keeps it all running.',
+      loading: 'loading…',
+      net: 'net',
+      posts: 'posts',
+      stable: 'stable',
+      tagEmpty: 'no tags yet.',
+      tags: 'tags',
+      title: 'blog',
+    },
+    ru: {
+      all: 'все',
+      archive: 'архив',
+      archiveEmpty: 'Нет записей на выбранном языке.',
+      empty: 'Нет записей на выбранном языке.',
+      eyebrow: '// заметки о запуске AI-продуктов · plain markdown',
+      failed: 'Ошибка загрузки posts.json — откройте страницу через http, а не file://',
+      home: '../главная',
+      langFilter: 'фильтр по языку',
+      langLabel: 'язык:',
+      last: 'последняя',
+      latest: 'свежее',
+      lead: 'Короткие практические заметки: агенты, компромиссы LLM, продуктовые циклы, инфраструктура и скучные детали, на которых всё держится.',
+      loading: 'загрузка…',
+      net: 'сеть',
+      posts: 'записи',
+      stable: 'стабильно',
+      tagEmpty: 'Тегов пока нет.',
+      tags: 'теги',
+      title: 'блог',
+    },
+  };
 
   // year + clock
   document.querySelectorAll('[data-year]').forEach((el) => {
@@ -51,6 +95,7 @@
   };
 
   const langOf = (post, defaultLang) => post.lang || defaultLang || 'en';
+  const textFor = (lang) => UI_TEXT[lang] || UI_TEXT.en;
 
   // ---- pick initial language ----
   const pickInitial = (defaultLang) => {
@@ -79,6 +124,7 @@
     .then((data) => {
       const site = data.site || {};
       const defaultLang = site.defaultLang || 'en';
+      const configuredLangs = Array.isArray(site.languages) ? site.languages : ['en'];
       const allPosts = (data.posts || []).slice().sort((a, b) =>
         a.date < b.date ? 1 : a.date > b.date ? -1 : 0
       );
@@ -94,15 +140,48 @@
       document.querySelector('[data-count-ru]').textContent = counts.ru;
 
       let activeLang = pickInitial(defaultLang);
-      // if saved language has 0 posts, fall back to default, then 'all'
+      // if saved language has 0 posts, fall back to default, then first non-empty language
       if (activeLang !== 'all' && counts[activeLang] === 0) {
         if (counts[defaultLang] > 0) activeLang = defaultLang;
-        else activeLang = 'all';
+        else activeLang = configuredLangs.find((l) => counts[l] > 0) || 'all';
       }
 
       const filtered = () => activeLang === 'all'
         ? allPosts
         : allPosts.filter((p) => langOf(p, defaultLang) === activeLang);
+
+      const uiLang = () => activeLang === 'all' ? defaultLang : activeLang;
+      const ui = () => textFor(uiLang());
+
+      const setText = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = value;
+      };
+
+      const applyUi = () => {
+        const t = ui();
+        document.documentElement.lang = uiLang();
+        document.querySelector('[data-lang-filter]')?.setAttribute('aria-label', t.langFilter);
+        setText('.rail__link--ext .rail__name', t.home);
+        setText('.rail__link[href="#latest"] .rail__name', t.latest);
+        setText('.rail__link[href="#archive"] .rail__name', t.archive);
+        setText('.rail__link[href="#tags"] .rail__name', t.tags);
+        setText('[data-label-posts]', t.posts);
+        setText('[data-label-last]', t.last);
+        setText('[data-label-net]', t.net);
+        setText('[data-label-stable]', t.stable);
+        setText('.hero--blog .eyebrow', t.eyebrow);
+        setText('.hero--blog .display__name', t.title);
+        setText('.hero--blog .lead', t.lead);
+        setText('[data-title-latest]', t.latest);
+        setText('[data-title-archive]', t.archive);
+        setText('[data-title-tags]', t.tags);
+        setText('.lang-filter__label', t.langLabel);
+        setText('[data-lang-label-all]', t.all);
+        setText('.footer__row a[href="../"]', t.home);
+        setText('[data-empty]', t.empty);
+        setText('.post-row--skel .post-row__title', t.loading);
+      };
 
       const renderListing = () => {
         const posts = filtered();
@@ -150,7 +229,7 @@
         });
         archive.innerHTML = '';
         if (!posts.length) {
-          archive.innerHTML = '<p class="archive__empty">no posts in this language yet.</p>';
+          archive.innerHTML = `<p class="archive__empty">${ui().archiveEmpty}</p>`;
           return;
         }
         [...byYear.entries()]
@@ -188,7 +267,7 @@
         }));
         tagCloud.innerHTML = '';
         if (!tagCount.size) {
-          tagCloud.innerHTML = '<li class="tag-cloud__empty">no tags yet.</li>';
+          tagCloud.innerHTML = `<li class="tag-cloud__empty">${ui().tagEmpty}</li>`;
           return;
         }
         [...tagCount.entries()]
@@ -204,6 +283,7 @@
 
       const renderAll = () => {
         setActiveChip(activeLang);
+        applyUi();
         renderListing();
         renderArchive();
         renderTags();
@@ -229,7 +309,8 @@
     .catch((err) => {
       console.error(err);
       if (list) {
-        list.innerHTML = '<li class="post-row post-row--err">failed to load posts.json — open via http (not file://)</li>';
+        const browserLang = document.documentElement.lang === 'ru' ? 'ru' : 'en';
+        list.innerHTML = `<li class="post-row post-row--err">${textFor(browserLang).failed}</li>`;
       }
     });
 })();
