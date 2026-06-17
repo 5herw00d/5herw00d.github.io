@@ -307,6 +307,14 @@
     flex-wrap: nowrap;
     max-width: 100%;
   }
+  .display--head {
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: inherit;
+    margin-top: 0;
+    text-shadow: none;
+  }
   .display__name {
     display: inline-block;
     min-width: 6ch;
