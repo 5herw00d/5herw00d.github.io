@@ -638,6 +638,18 @@
     color: var(--dim);
     transition: color .25s ease, transform .25s ease;
   }
+  .proj__status {
+    display: inline-block;
+    color: var(--warn);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border: 1px solid oklch(82% 0.16 80 / 0.35);
+    background: oklch(82% 0.16 80 / 0.1);
+    width: fit-content;
+  }
+  .proj__link { display: block; color: inherit; }
+  .proj__link:hover .proj__title { color: var(--accent); }
 
   /* contact */
   .contact {
