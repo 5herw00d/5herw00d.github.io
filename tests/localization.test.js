@@ -34,7 +34,7 @@ function assertExcludes(file, needle) {
 ].forEach(([file, needle]) => assertExcludes(file, needle));
 
 [
-  ['index.html', 'in progress'],
+  ['index.html', 'building'],
   ['scripts/blog.js', 'Нет записей на выбранном языке.'],
   ['scripts/blog.js', 'Ошибка загрузки posts.json'],
   ['blog/posts/hello-blog.md', '# тест — связь установлена'],
