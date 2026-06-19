@@ -10,12 +10,20 @@
   },
   "posts": [
     {
-      "slug": "hello-blog",
-      "title": "тест — связь установлена",
+      "slug": "aws-ai-agent-deployment",
+      "title": "How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes",
+      "lang": "en",
+      "date": "2026-06-19",
+      "tags": ["agents", "aws", "devops"],
+      "summary": "A practical AWS deployment workflow with reusable prompts for ChatGPT, Claude, GLM, and Gemini."
+    },
+    {
+      "slug": "aws-ai-agent-deployment-ru",
+      "title": "Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут",
       "lang": "ru",
-      "date": "2026-05-22",
-      "tags": ["meta", "test"],
-      "summary": "Тестовая запись для проверки сборки, рендера, фидов и превью в соцсетях."
+      "date": "2026-06-19",
+      "tags": ["agents", "aws", "devops"],
+      "summary": "Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini."
     }
   ]
 }

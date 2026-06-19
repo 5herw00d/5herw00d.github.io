@@ -9,8 +9,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dmytro.my/blog/posts/hello-blog/</loc>
-    <lastmod>2026-05-22</lastmod>
+    <loc>https://dmytro.my/blog/posts/aws-ai-agent-deployment/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dmytro.my/blog/posts/aws-ai-agent-deployment-ru/</loc>
+    <lastmod>2026-06-19</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>

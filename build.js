@@ -298,7 +298,7 @@ ${body}
   <script src="../../../scripts/post-static.js"></script>
 </body>
 </html>
-`;
+`.replace(/[ \t]+$/gm, '');
 }
 
 // ---- legacy redirect for old ?slug= links ----

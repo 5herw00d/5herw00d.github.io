@@ -6,15 +6,16 @@
     <description>Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.</description>
     <language>ru-ru</language>
     <atom:link href="https://dmytro.my/blog/feed.ru.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Wed, 17 Jun 2026 22:25:38 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jun 2026 01:11:39 GMT</lastBuildDate>
     <item>
-      <title>тест — связь установлена</title>
-      <link>https://dmytro.my/blog/posts/hello-blog/</link>
-      <guid isPermaLink="true">https://dmytro.my/blog/posts/hello-blog/</guid>
-      <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
-      <description>Тестовая запись для проверки сборки, рендера, фидов и превью в соцсетях.</description>
-      <category>meta</category>
-      <category>test</category>
+      <title>Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут</title>
+      <link>https://dmytro.my/blog/posts/aws-ai-agent-deployment-ru/</link>
+      <guid isPermaLink="true">https://dmytro.my/blog/posts/aws-ai-agent-deployment-ru/</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini.</description>
+      <category>agents</category>
+      <category>aws</category>
+      <category>devops</category>
     </item>
   </channel>
 </rss>
