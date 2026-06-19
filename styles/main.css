@@ -274,6 +274,11 @@
     font-size: 11px;
     color: var(--muted);
   }
+  .rail__status p {
+    display: grid;
+    grid-template-columns: minmax(9ch, auto) minmax(0, 1fr);
+    gap: 8px;
+  }
   .rail__status .key { min-width: 6ch; }
 
   /* -------------------- hero -------------------- */

@@ -32,6 +32,15 @@ function assertExists(file) {
   assert(fs.existsSync(path.join(ROOT, file)), `${file} should exist`);
 }
 
+function assertMatches(file, pattern) {
+  assert(pattern.test(read(file)), `${file} should match ${pattern}`);
+}
+
+assertMatches(
+  'styles/main.css',
+  /\.rail__status p\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(9ch,\s*auto\)\s+minmax\(0,\s*1fr\);[^}]*gap:\s*8px;[^}]*\}/
+);
+
 [
   ['index.html', 'в работе'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'contents'],
