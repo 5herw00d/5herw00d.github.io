@@ -38,7 +38,19 @@ function assertMatches(file, pattern) {
 
 assertMatches(
   'styles/main.css',
-  /\.rail__status p\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(9ch,\s*auto\)\s+minmax\(0,\s*1fr\);[^}]*gap:\s*8px;[^}]*\}/
+  /\.rail__status p\s*\{[^}]*display:\s*flex;[^}]*align-items:\s*baseline;[^}]*justify-content:\s*space-between;[^}]*gap:\s*8px;[^}]*\}/
+);
+assertMatches(
+  'styles/main.css',
+  /\.rail__status p > :last-child\s*\{[^}]*white-space:\s*nowrap;[^}]*text-align:\s*right;[^}]*\}/
+);
+assertMatches(
+  'styles/main.css',
+  /\.rail__status p > :first-child\s*\{[^}]*flex:\s*0 0 auto;[^}]*white-space:\s*nowrap;[^}]*\}/
+);
+assertMatches(
+  'styles/main.css',
+  /\.visually-hidden\s*\{[^}]*position:\s*absolute;[^}]*clip:\s*rect\(0 0 0 0\);[^}]*overflow:\s*hidden;[^}]*\}/
 );
 
 [
@@ -98,6 +110,8 @@ assertMatches(
   ['blog/posts/aws-ai-agent-deployment/index.html', 'Как ИИ-агент настроил AWS'],
   ['ru/index.html', 'I build AI products end-to-end.'],
   ['ru/about/index.html', 'I build AI products end-to-end.'],
+  ['index.html', 'class="display__name"'],
+  ['ru/index.html', 'class="display__name"'],
 ].forEach(([file, needle]) => assertExcludes(file, needle));
 
 [
@@ -122,6 +136,7 @@ assertMatches(
   ['index.html', '<link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/">'],
   ['index.html', 'class="site-lang"'],
   ['index.html', 'hreflang="ru" href="/ru/"'],
+  ['index.html', '<h1 class="visually-hidden">Dmytro My</h1>'],
   ['about/index.html', '<link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/about/">'],
   ['about/index.html', 'hreflang="ru" href="/ru/about/"'],
   ['ru/index.html', '<html lang="ru">'],
@@ -130,6 +145,7 @@ assertMatches(
   ['ru/index.html', 'Я создаю AI-продукты под ключ.'],
   ['ru/index.html', 'href="/ru/about/"'],
   ['ru/index.html', 'href="/ru/blog/"'],
+  ['ru/index.html', '<h1 class="visually-hidden">Dmytro My</h1>'],
   ['ru/about/index.html', '<html lang="ru">'],
   ['ru/about/index.html', '<link rel="canonical" href="https://dmytro.my/ru/about/">'],
   ['ru/about/index.html', 'hreflang="en" href="/about/"'],
