@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1116">
+
+  <title>OpenClaw: личный ИИ-ассистент для всех устройств</title>
+  <meta name="description" content="Как OpenClaw объединяет агентов, память, skills, автоматизацию, устройства и мессенджеры через единый Gateway.">
+  <meta name="author" content="Dmytro My">
+  <meta name="keywords" content="agents, automation, infrastructure">
+  <link rel="canonical" href="https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/">
+  <link rel="alternate" hreflang="en" href="https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/">
+  <link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/">
+  <link rel="alternate" hreflang="x-default" href="https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="OpenClaw: личный ИИ-ассистент для всех устройств">
+  <meta property="og:description" content="Как OpenClaw объединяет агентов, память, skills, автоматизацию, устройства и мессенджеры через единый Gateway.">
+  <meta property="og:url" content="https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/">
+  <meta property="og:site_name" content="dmytro.my">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="article:published_time" content="2026-06-19">
+  <meta property="article:tag" content="agents">
+  <meta property="article:tag" content="automation">
+  <meta property="article:tag" content="infrastructure">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenClaw: личный ИИ-ассистент для всех устройств">
+  <meta name="twitter:description" content="Как OpenClaw объединяет агентов, память, skills, автоматизацию, устройства и мессенджеры через единый Gateway.">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (ru)" href="/blog/feed.ru.xml">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (all)" href="/blog/feed.xml">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"OpenClaw: личный ИИ-ассистент для всех устройств","description":"Как OpenClaw объединяет агентов, память, skills, автоматизацию, устройства и мессенджеры через единый Gateway.","datePublished":"2026-06-19","dateModified":"2026-06-19","author":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"publisher":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/"},"url":"https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/","keywords":"agents, automation, infrastructure","inLanguage":"ru"}</script>
+</head>
+<body class="page-post" data-lang="ru">
+  <div class="fx fx--grid" aria-hidden="true"></div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="fx fx--spot" aria-hidden="true"></div>
+  <div class="fx fx--vignette" aria-hidden="true"></div>
+
+  <header class="window" role="banner">
+    <div class="window__lights" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="window__path">
+      <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
+      <span class="window__sep">:</span>
+      <span class="window__cwd">~/ru/blog/posts/openclaw-personal-ai-assistant/</span>
+      <span class="window__shell">— zsh</span>
+    </p>
+    <nav class="site-lang" aria-label="язык">
+          <a class="lang-chip" hreflang="en" href="/blog/posts/openclaw-personal-ai-assistant/">EN</a><span class="lang-chip is-active" aria-current="page">RU</span>
+        </nav>
+    <div class="window__hud" aria-hidden="true">
+      <span class="hud__pulse"></span>
+      <span class="window__hud-label">чтение · ru</span>
+      <span class="window__hud-time" data-clock>—</span>
+    </div>
+  </header>
+
+  <main class="site" aria-label="пост блога dmytro.my">
+    <aside class="rail" aria-label="разделы">
+      <ol class="rail__list">
+        <li><a href="/ru/blog/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../блог</span></a></li>
+        <li><a href="/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../главная</span></a></li>
+      </ol>
+
+        <nav class="rail__toc" aria-label="разделы поста">
+          <div class="rail__toc-inner">
+            <p class="rail__toc-label">содержание</p>
+            <ol class="rail__toc-list">
+
+                <li>
+                  <a href="#один-gateway---много-каналов">
+                    <span class="rail__toc-num">01</span>
+                    <span>один Gateway - много каналов</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#память">
+                    <span class="rail__toc-num">02</span>
+                    <span>память</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#skills-и-clawhub">
+                    <span class="rail__toc-num">03</span>
+                    <span>skills и ClawHub</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#cron-и-heartbeat">
+                    <span class="rail__toc-num">04</span>
+                    <span>cron и heartbeat</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#безопасность">
+                    <span class="rail__toc-num">05</span>
+                    <span>безопасность</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#кому-подойдёт-openclaw">
+                    <span class="rail__toc-num">06</span>
+                    <span>кому подойдёт OpenClaw</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#что-проверить-перед-запуском">
+                    <span class="rail__toc-num">07</span>
+                    <span>что проверить перед запуском</span>
+                  </a>
+                </li>
+
+            </ol>
+          </div>
+        </nav>
+      <div class="rail__status">
+        <p><span class="key">slug</span><span>openclaw-personal-ai-assistant-ru</span></p>
+        <p><span class="key">lang</span><span>ru</span></p>
+        <p><span class="key">date</span><span>2026-06-19</span></p>
+        <p><span class="key">чтение</span><span>2 мин</span></p>
+      </div>
+    </aside>
+
+    <article class="content">
+      <section class="hero hero--post">
+        <div class="hero__head">
+          <p class="line"><span class="prompt">$</span> cat posts/openclaw-personal-ai-assistant-ru.md</p>
+          <p class="eyebrow">// agents · automation · infrastructure · lang=ru</p>
+        </div>
+        <h1 class="display display--post">OpenClaw: личный ИИ-ассистент для всех устройств</h1>
+        <ul class="post-meta">
+          <li class="post-meta__lang">ru</li>
+          <li class="post-meta__tag">agents</li><li class="post-meta__tag">automation</li><li class="post-meta__tag">infrastructure</li>
+          <li class="post-meta__date">2026-06-19</li>
+        </ul>
+      </section>
+
+      <section class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">¶</span>
+          <h2 class="block__title">читать</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> less openclaw-personal-ai-assistant-ru.md</span>
+        </header>
+        <div class="block__body">
+          <article class="prose">
+            <h1 id="openclaw-личный-ии-ассистент-для-всех-устройств">OpenClaw: личный ИИ-ассистент для всех устройств</h1>
+            <p>OpenClaw - это open-source-ассистент, который работает на вашей инфраструктуре и отвечает в привычных каналах связи.</p>
+            <p>В центре системы находится Gateway. Он соединяет модели, инструменты, память, устройства и мессенджеры в одну систему.</p>
+            <h2 id="один-gateway---много-каналов">один Gateway - много каналов</h2>
+            <p>OpenClaw поддерживает WhatsApp, Telegram, Slack, Discord, Signal, iMessage, Microsoft Teams, Matrix и другие платформы.</p>
+            <p>Это не просто одинаковый бот в нескольких мессенджерах. Gateway управляет сессиями, маршрутизацией, инструментами и событиями.</p>
+            <p>Можно создать несколько изолированных агентов. Например:</p>
+            <ul><li>личного ассистента;</li><li>агента для разработки;</li><li>бота поддержки;</li><li>агента для командного чата.</li></ul>
+            <p>Для каждого задаётся собственная рабочая директория, история, память и набор разрешений.</p>
+            <h2 id="память">память</h2>
+            <p>OpenClaw хранит долгосрочную память в Markdown-файлах внутри workspace. Также доступен встроенный SQLite-бэкенд и дополнительные системы памяти: QMD, Honcho и LanceDB.</p>
+            <p>Перед сжатием длинного диалога агент может сохранить важные факты в память. Это помогает не потерять информацию во время compaction.</p>
+            <p>Память остаётся частью рабочей директории, поэтому её можно читать, редактировать, резервировать и хранить в собственной инфраструктуре.</p>
+            <h2 id="skills-и-clawhub">skills и ClawHub</h2>
+            <p>Skills в OpenClaw - это инструкции в формате <code>SKILL.md</code>, которые объясняют агенту, как использовать инструменты и выполнять конкретные процессы.</p>
+            <p>Они могут находиться на нескольких уровнях:</p>
+            <ul><li>внутри workspace;</li><li>в проекте;</li><li>в личном каталоге пользователя;</li><li>в общем каталоге OpenClaw;</li><li>внутри плагинов.</li></ul>
+            <p>Приоритет локальных skills выше встроенных. Поэтому стандартное поведение можно переопределять без изменения исходного кода.</p>
+            <p>Готовые skills распространяются через ClawHub. Также есть Skill Workshop для просмотра и подтверждения процедур, подготовленных агентом.</p>
+            <h2 id="cron-и-heartbeat">cron и heartbeat</h2>
+            <p>В OpenClaw есть два разных механизма автоматизации.</p>
+            <p>Cron подходит для точных задач: отправить отчёт утром, запустить резервное копирование ночью или выполнить проверку в определённое время.</p>
+            <p>Heartbeat используется для периодической фоновой активности, когда точное время не так важно: проверить состояние сервисов, новые сообщения или незавершённые задачи.</p>
+            <p>Есть также фоновые tasks и webhooks. Поэтому OpenClaw можно использовать не только как реактивного бота, но и как постоянный автоматизированный процесс.</p>
+            <h2 id="безопасность">безопасность</h2>
+            <p>Основная сессия по умолчанию может выполнять инструменты на хосте. Это удобно, но требует осторожности.</p>
+            <p>Для дополнительных агентов и групповых каналов можно включить sandbox. OpenClaw поддерживает Docker, SSH и OpenShell как бэкенды изоляции.</p>
+            <p>Неизвестные пользователи в мессенджерах по умолчанию проходят pairing. Агент не начинает обрабатывать их сообщения, пока владелец не подтвердит код подключения.</p>
+            <p>Экспорт диагностики через OpenTelemetry подключается отдельно. Содержимое промптов, ответов и tool calls по умолчанию не экспортируется.</p>
+            <h2 id="кому-подойдёт-openclaw">кому подойдёт OpenClaw</h2>
+            <p>OpenClaw стоит рассмотреть, если нужен:</p>
+            <ul><li>постоянно работающий личный ассистент;</li><li>доступ через множество мессенджеров;</li><li>iMessage;</li><li>несколько изолированных агентов;</li><li>единый Gateway для устройств и каналов;</li><li>большой каталог готовых skills;</li><li>автоматизация через cron, heartbeat и webhooks.</li></ul>
+            <h2 id="что-проверить-перед-запуском">что проверить перед запуском</h2>
+            <p>Перед подключением реальных аккаунтов я бы:</p>
+            <ul><li>запустил Gateway локально;</li><li>включил pairing для личных сообщений;</li><li>вынес групповые сессии в sandbox;</li><li>ограничил доступ к файлам и командам;</li><li>создал отдельные API-ключи с минимальными правами;</li><li>проверил резервное копирование workspace;</li><li>подключал каналы по одному.</li></ul>
+            <p>OpenClaw - это уже не просто бот для Telegram или WhatsApp. Это локальный control plane для личного ИИ-ассистента, который может работать на разных устройствах и общаться через десятки каналов.</p>
+            <p>Его сильная сторона - не одна конкретная модель, а инфраструктура вокруг агента: Gateway, маршрутизация, память, skills, автоматизация и безопасность.</p>
+            <p>Источники: <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a>, <a href="https://docs.openclaw.ai/" target="_blank" rel="noopener">официальная документация</a>.</p>
+          </article>
+        </div>
+      </section>
+
+
+        <nav class="post-nav" aria-label="соседние записи">
+          <span></span>
+          <a class="post-nav__btn post-nav__btn--next" href="/ru/blog/posts/hermes-agent-learning-assistant/">
+                <span class="post-nav__dir">новее →</span>
+                <span class="post-nav__title">Hermes Agent: личный ИИ-агент, который учится</span>
+              </a>
+        </nav>
+
+      <footer class="footer">
+        <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        <div class="footer__row">
+          <p class="sig">© <span data-year>—</span> dmytro my · <a href="/ru/blog/">../блог</a></p>
+          <p class="sig sig--muted"><span class="key">utc</span><span data-clock>—</span></p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script src="/scripts/post-static.js"></script>
+</body>
+</html>

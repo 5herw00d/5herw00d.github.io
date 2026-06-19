@@ -6,7 +6,7 @@
     <description>Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.</description>
     <language>en-us</language>
     <atom:link href="https://dmytro.my/blog/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 19 Jun 2026 18:59:53 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jun 2026 20:56:54 GMT</lastBuildDate>
     <item>
       <title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</title>
       <link>https://dmytro.my/blog/posts/aws-ai-agent-deployment/</link>
@@ -26,6 +26,46 @@
       <category>agents</category>
       <category>aws</category>
       <category>devops</category>
+    </item>
+    <item>
+      <title>Hermes Agent: A Personal AI Agent That Learns</title>
+      <link>https://dmytro.my/blog/posts/hermes-agent-learning-assistant/</link>
+      <guid isPermaLink="true">https://dmytro.my/blog/posts/hermes-agent-learning-assistant/</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>How Hermes Agent uses persistent memory, self-improving skills, flexible execution backends, and messaging channels.</description>
+      <category>agents</category>
+      <category>memory</category>
+      <category>automation</category>
+    </item>
+    <item>
+      <title>Hermes Agent: личный ИИ-агент, который учится</title>
+      <link>https://dmytro.my/ru/blog/posts/hermes-agent-learning-assistant/</link>
+      <guid isPermaLink="true">https://dmytro.my/ru/blog/posts/hermes-agent-learning-assistant/</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Как Hermes Agent использует постоянную память, улучшает skills и работает локально, на сервере или через мессенджеры.</description>
+      <category>agents</category>
+      <category>memory</category>
+      <category>automation</category>
+    </item>
+    <item>
+      <title>OpenClaw: A Personal AI Assistant Across Devices</title>
+      <link>https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/</link>
+      <guid isPermaLink="true">https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>How OpenClaw connects agents, memory, skills, automation, devices, and messaging platforms through one Gateway.</description>
+      <category>agents</category>
+      <category>automation</category>
+      <category>infrastructure</category>
+    </item>
+    <item>
+      <title>OpenClaw: личный ИИ-ассистент для всех устройств</title>
+      <link>https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/</link>
+      <guid isPermaLink="true">https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Как OpenClaw объединяет агентов, память, skills, автоматизацию, устройства и мессенджеры через единый Gateway.</description>
+      <category>agents</category>
+      <category>automation</category>
+      <category>infrastructure</category>
     </item>
   </channel>
 </rss>

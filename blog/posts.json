@@ -28,6 +28,46 @@
       "date": "2026-06-19",
       "tags": ["agents", "aws", "devops"],
       "summary": "Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini."
+    },
+    {
+      "slug": "hermes-agent-learning-assistant",
+      "route": "hermes-agent-learning-assistant",
+      "translationKey": "hermes-agent-learning-assistant",
+      "title": "Hermes Agent: A Personal AI Agent That Learns",
+      "lang": "en",
+      "date": "2026-06-19",
+      "tags": ["agents", "memory", "automation"],
+      "summary": "How Hermes Agent uses persistent memory, self-improving skills, flexible execution backends, and messaging channels."
+    },
+    {
+      "slug": "hermes-agent-learning-assistant-ru",
+      "route": "hermes-agent-learning-assistant",
+      "translationKey": "hermes-agent-learning-assistant",
+      "title": "Hermes Agent: личный ИИ-агент, который учится",
+      "lang": "ru",
+      "date": "2026-06-19",
+      "tags": ["agents", "memory", "automation"],
+      "summary": "Как Hermes Agent использует постоянную память, улучшает skills и работает локально, на сервере или через мессенджеры."
+    },
+    {
+      "slug": "openclaw-personal-ai-assistant",
+      "route": "openclaw-personal-ai-assistant",
+      "translationKey": "openclaw-personal-ai-assistant",
+      "title": "OpenClaw: A Personal AI Assistant Across Devices",
+      "lang": "en",
+      "date": "2026-06-19",
+      "tags": ["agents", "automation", "infrastructure"],
+      "summary": "How OpenClaw connects agents, memory, skills, automation, devices, and messaging platforms through one Gateway."
+    },
+    {
+      "slug": "openclaw-personal-ai-assistant-ru",
+      "route": "openclaw-personal-ai-assistant",
+      "translationKey": "openclaw-personal-ai-assistant",
+      "title": "OpenClaw: личный ИИ-ассистент для всех устройств",
+      "lang": "ru",
+      "date": "2026-06-19",
+      "tags": ["agents", "automation", "infrastructure"],
+      "summary": "Как OpenClaw объединяет агентов, память, skills, автоматизацию, устройства и мессенджеры через единый Gateway."
     }
   ]
 }

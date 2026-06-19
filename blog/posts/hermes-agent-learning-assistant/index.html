@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1116">
+
+  <title>Hermes Agent: A Personal AI Agent That Learns</title>
+  <meta name="description" content="How Hermes Agent uses persistent memory, self-improving skills, flexible execution backends, and messaging channels.">
+  <meta name="author" content="Dmytro My">
+  <meta name="keywords" content="agents, memory, automation">
+  <link rel="canonical" href="https://dmytro.my/blog/posts/hermes-agent-learning-assistant/">
+  <link rel="alternate" hreflang="en" href="https://dmytro.my/blog/posts/hermes-agent-learning-assistant/">
+  <link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/blog/posts/hermes-agent-learning-assistant/">
+  <link rel="alternate" hreflang="x-default" href="https://dmytro.my/blog/posts/hermes-agent-learning-assistant/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Hermes Agent: A Personal AI Agent That Learns">
+  <meta property="og:description" content="How Hermes Agent uses persistent memory, self-improving skills, flexible execution backends, and messaging channels.">
+  <meta property="og:url" content="https://dmytro.my/blog/posts/hermes-agent-learning-assistant/">
+  <meta property="og:site_name" content="dmytro.my">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-06-19">
+  <meta property="article:tag" content="agents">
+  <meta property="article:tag" content="memory">
+  <meta property="article:tag" content="automation">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hermes Agent: A Personal AI Agent That Learns">
+  <meta name="twitter:description" content="How Hermes Agent uses persistent memory, self-improving skills, flexible execution backends, and messaging channels.">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (en)" href="/blog/feed.en.xml">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (all)" href="/blog/feed.xml">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hermes Agent: A Personal AI Agent That Learns","description":"How Hermes Agent uses persistent memory, self-improving skills, flexible execution backends, and messaging channels.","datePublished":"2026-06-19","dateModified":"2026-06-19","author":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"publisher":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dmytro.my/blog/posts/hermes-agent-learning-assistant/"},"url":"https://dmytro.my/blog/posts/hermes-agent-learning-assistant/","keywords":"agents, memory, automation","inLanguage":"en"}</script>
+</head>
+<body class="page-post" data-lang="en">
+  <div class="fx fx--grid" aria-hidden="true"></div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="fx fx--spot" aria-hidden="true"></div>
+  <div class="fx fx--vignette" aria-hidden="true"></div>
+
+  <header class="window" role="banner">
+    <div class="window__lights" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="window__path">
+      <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
+      <span class="window__sep">:</span>
+      <span class="window__cwd">~/blog/posts/hermes-agent-learning-assistant/</span>
+      <span class="window__shell">— zsh</span>
+    </p>
+    <nav class="site-lang" aria-label="language">
+          <span class="lang-chip is-active" aria-current="page">EN</span><a class="lang-chip" hreflang="ru" href="/ru/blog/posts/hermes-agent-learning-assistant/">RU</a>
+        </nav>
+    <div class="window__hud" aria-hidden="true">
+      <span class="hud__pulse"></span>
+      <span class="window__hud-label">read · en</span>
+      <span class="window__hud-time" data-clock>—</span>
+    </div>
+  </header>
+
+  <main class="site" aria-label="dmytro.my blog post">
+    <aside class="rail" aria-label="sections">
+      <ol class="rail__list">
+        <li><a href="/blog/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../blog</span></a></li>
+        <li><a href="/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../home</span></a></li>
+      </ol>
+
+        <nav class="rail__toc" aria-label="post sections">
+          <div class="rail__toc-inner">
+            <p class="rail__toc-label">contents</p>
+            <ol class="rail__toc-list">
+
+                <li>
+                  <a href="#how-memory-works">
+                    <span class="rail__toc-num">01</span>
+                    <span>how memory works</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#skills-as-procedural-memory">
+                    <span class="rail__toc-num">02</span>
+                    <span>skills as procedural memory</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#where-hermes-can-run">
+                    <span class="rail__toc-num">03</span>
+                    <span>where Hermes can run</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#who-hermes-is-for">
+                    <span class="rail__toc-num">04</span>
+                    <span>who Hermes is for</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#what-to-check-before-installation">
+                    <span class="rail__toc-num">05</span>
+                    <span>what to check before installation</span>
+                  </a>
+                </li>
+
+            </ol>
+          </div>
+        </nav>
+      <div class="rail__status">
+        <p><span class="key">slug</span><span>hermes-agent-learning-assistant</span></p>
+        <p><span class="key">lang</span><span>en</span></p>
+        <p><span class="key">date</span><span>2026-06-19</span></p>
+        <p><span class="key">read</span><span>2 min</span></p>
+      </div>
+    </aside>
+
+    <article class="content">
+      <section class="hero hero--post">
+        <div class="hero__head">
+          <p class="line"><span class="prompt">$</span> cat posts/hermes-agent-learning-assistant.md</p>
+          <p class="eyebrow">// agents · memory · automation · lang=en</p>
+        </div>
+        <h1 class="display display--post">Hermes Agent: A Personal AI Agent That Learns</h1>
+        <ul class="post-meta">
+          <li class="post-meta__lang">en</li>
+          <li class="post-meta__tag">agents</li><li class="post-meta__tag">memory</li><li class="post-meta__tag">automation</li>
+          <li class="post-meta__date">2026-06-19</li>
+        </ul>
+      </section>
+
+      <section class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">¶</span>
+          <h2 class="block__title">read</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> less hermes-agent-learning-assistant.md</span>
+        </header>
+        <div class="block__body">
+          <article class="prose">
+            <h1 id="hermes-agent-a-personal-ai-agent-that-learns">Hermes Agent: A Personal AI Agent That Learns</h1>
+            <p>Most AI assistants start each new conversation with almost no knowledge of previous work. Hermes Agent takes a different approach: it preserves useful experience, learns user preferences, and turns recurring workflows into reusable skills.</p>
+            <p>Hermes Agent is an open-source project from Nous Research. It supports multiple model providers and can run locally, in Docker, on a remote server, or in a serverless environment.</p>
+            <h2 id="how-memory-works">how memory works</h2>
+            <p>Hermes uses several memory layers.</p>
+            <p><code>MEMORY.md</code> stores technical facts, conventions, and lessons learned. <code>USER.md</code> contains user preferences, communication style, and working habits.</p>
+            <p>Together, these files are limited to roughly 1,300 tokens. This forces the agent to keep important information instead of copying the entire conversation history.</p>
+            <p>Complete sessions are stored separately in SQLite and indexed with FTS5. The agent can search a conversation from several weeks ago even when it is not included in active memory.</p>
+            <p>External memory providers such as Honcho and Mem0 can also be connected.</p>
+            <h2 id="skills-as-procedural-memory">skills as procedural memory</h2>
+            <p>The most interesting Hermes feature is its ability to create and improve skills.</p>
+            <p>After completing a complex task, the agent can save the successful procedure as a <code>SKILL.md</code> file. The next time it encounters a similar problem, it can reuse the process instead of starting from zero.</p>
+            <p>The format is compatible with the open <a href="https://agentskills.io" target="_blank" rel="noopener">Agent Skills</a> standard, making skills portable between compatible agents.</p>
+            <p>Automatic memory and skill changes can require approval. This matters because an agent may learn independently, but the user should still control what it learns.</p>
+            <h2 id="where-hermes-can-run">where Hermes can run</h2>
+            <p>Hermes supports six execution backends:</p>
+            <ul><li>local;</li><li>Docker;</li><li>SSH;</li><li>Singularity;</li><li>Daytona;</li><li>Modal.</li></ul>
+            <p>The same agent can work on a laptop, home server, VPS, or serverless infrastructure.</p>
+            <p>It can be accessed through the CLI, Telegram, Discord, Slack, WhatsApp, and Signal. A conversation started in the terminal can continue in a messenger.</p>
+            <p>Hermes also supports natural-language cron jobs and parallel subagents. One agent can research documentation while others inspect code and prepare a report.</p>
+            <h2 id="who-hermes-is-for">who Hermes is for</h2>
+            <p>Hermes is useful when you need a persistent working agent rather than another chat interface:</p>
+            <ul><li>it should remember projects and preferences;</li><li>work through both terminal and messaging apps;</li><li>handle long technical tasks;</li><li>build a reusable library of procedures;</li><li>run locally or on your own infrastructure.</li></ul>
+            <p>A built-in migration tool can import settings, memories, and skills from OpenClaw.</p>
+            <h2 id="what-to-check-before-installation">what to check before installation</h2>
+            <p>Hermes may access your terminal, files, and external services. I would not enable maximum permissions immediately.</p>
+            <p>Start by:</p>
+            <ul><li>running it in Docker or on an isolated machine;</li><li>restricting available commands and directories;</li><li>requiring approval for memory and skill changes;</li><li>keeping secrets out of messaging platforms;</li><li>monitoring model costs;</li><li>backing up the <code>~/.hermes</code> directory.</li></ul>
+            <p>Hermes is not interesting simply because it has many tools. Its main advantage is the learning loop: complete a task, preserve useful experience, and reuse it next time.</p>
+            <p>That feels less like a chatbot and more like a personal technical assistant that gradually adapts to its owner.</p>
+            <p>Sources: <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a>, <a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noopener">official documentation</a>.</p>
+          </article>
+        </div>
+      </section>
+
+
+        <nav class="post-nav" aria-label="adjacent posts">
+          <a class="post-nav__btn post-nav__btn--prev" href="/blog/posts/openclaw-personal-ai-assistant/">
+                <span class="post-nav__dir">← older</span>
+                <span class="post-nav__title">OpenClaw: A Personal AI Assistant Across Devices</span>
+              </a>
+          <a class="post-nav__btn post-nav__btn--next" href="/blog/posts/aws-ai-agent-deployment/">
+                <span class="post-nav__dir">newer →</span>
+                <span class="post-nav__title">How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</span>
+              </a>
+        </nav>
+
+      <footer class="footer">
+        <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        <div class="footer__row">
+          <p class="sig">© <span data-year>—</span> dmytro my · <a href="/blog/">../blog</a></p>
+          <p class="sig sig--muted"><span class="key">utc</span><span data-clock>—</span></p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script src="/scripts/post-static.js"></script>
+</body>
+</html>

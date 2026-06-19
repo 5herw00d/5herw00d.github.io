@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1116">
+
+  <title>OpenClaw: A Personal AI Assistant Across Devices</title>
+  <meta name="description" content="How OpenClaw connects agents, memory, skills, automation, devices, and messaging platforms through one Gateway.">
+  <meta name="author" content="Dmytro My">
+  <meta name="keywords" content="agents, automation, infrastructure">
+  <link rel="canonical" href="https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/">
+  <link rel="alternate" hreflang="en" href="https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/">
+  <link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/blog/posts/openclaw-personal-ai-assistant/">
+  <link rel="alternate" hreflang="x-default" href="https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="OpenClaw: A Personal AI Assistant Across Devices">
+  <meta property="og:description" content="How OpenClaw connects agents, memory, skills, automation, devices, and messaging platforms through one Gateway.">
+  <meta property="og:url" content="https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/">
+  <meta property="og:site_name" content="dmytro.my">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-06-19">
+  <meta property="article:tag" content="agents">
+  <meta property="article:tag" content="automation">
+  <meta property="article:tag" content="infrastructure">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenClaw: A Personal AI Assistant Across Devices">
+  <meta name="twitter:description" content="How OpenClaw connects agents, memory, skills, automation, devices, and messaging platforms through one Gateway.">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (en)" href="/blog/feed.en.xml">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (all)" href="/blog/feed.xml">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"OpenClaw: A Personal AI Assistant Across Devices","description":"How OpenClaw connects agents, memory, skills, automation, devices, and messaging platforms through one Gateway.","datePublished":"2026-06-19","dateModified":"2026-06-19","author":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"publisher":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/"},"url":"https://dmytro.my/blog/posts/openclaw-personal-ai-assistant/","keywords":"agents, automation, infrastructure","inLanguage":"en"}</script>
+</head>
+<body class="page-post" data-lang="en">
+  <div class="fx fx--grid" aria-hidden="true"></div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="fx fx--spot" aria-hidden="true"></div>
+  <div class="fx fx--vignette" aria-hidden="true"></div>
+
+  <header class="window" role="banner">
+    <div class="window__lights" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="window__path">
+      <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
+      <span class="window__sep">:</span>
+      <span class="window__cwd">~/blog/posts/openclaw-personal-ai-assistant/</span>
+      <span class="window__shell">— zsh</span>
+    </p>
+    <nav class="site-lang" aria-label="language">
+          <span class="lang-chip is-active" aria-current="page">EN</span><a class="lang-chip" hreflang="ru" href="/ru/blog/posts/openclaw-personal-ai-assistant/">RU</a>
+        </nav>
+    <div class="window__hud" aria-hidden="true">
+      <span class="hud__pulse"></span>
+      <span class="window__hud-label">read · en</span>
+      <span class="window__hud-time" data-clock>—</span>
+    </div>
+  </header>
+
+  <main class="site" aria-label="dmytro.my blog post">
+    <aside class="rail" aria-label="sections">
+      <ol class="rail__list">
+        <li><a href="/blog/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../blog</span></a></li>
+        <li><a href="/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../home</span></a></li>
+      </ol>
+
+        <nav class="rail__toc" aria-label="post sections">
+          <div class="rail__toc-inner">
+            <p class="rail__toc-label">contents</p>
+            <ol class="rail__toc-list">
+
+                <li>
+                  <a href="#one-gateway-many-channels">
+                    <span class="rail__toc-num">01</span>
+                    <span>one Gateway, many channels</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#memory">
+                    <span class="rail__toc-num">02</span>
+                    <span>memory</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#skills-and-clawhub">
+                    <span class="rail__toc-num">03</span>
+                    <span>skills and ClawHub</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#cron-and-heartbeat">
+                    <span class="rail__toc-num">04</span>
+                    <span>cron and heartbeat</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#security">
+                    <span class="rail__toc-num">05</span>
+                    <span>security</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#who-openclaw-is-for">
+                    <span class="rail__toc-num">06</span>
+                    <span>who OpenClaw is for</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#what-to-check-before-launch">
+                    <span class="rail__toc-num">07</span>
+                    <span>what to check before launch</span>
+                  </a>
+                </li>
+
+            </ol>
+          </div>
+        </nav>
+      <div class="rail__status">
+        <p><span class="key">slug</span><span>openclaw-personal-ai-assistant</span></p>
+        <p><span class="key">lang</span><span>en</span></p>
+        <p><span class="key">date</span><span>2026-06-19</span></p>
+        <p><span class="key">read</span><span>3 min</span></p>
+      </div>
+    </aside>
+
+    <article class="content">
+      <section class="hero hero--post">
+        <div class="hero__head">
+          <p class="line"><span class="prompt">$</span> cat posts/openclaw-personal-ai-assistant.md</p>
+          <p class="eyebrow">// agents · automation · infrastructure · lang=en</p>
+        </div>
+        <h1 class="display display--post">OpenClaw: A Personal AI Assistant Across Devices</h1>
+        <ul class="post-meta">
+          <li class="post-meta__lang">en</li>
+          <li class="post-meta__tag">agents</li><li class="post-meta__tag">automation</li><li class="post-meta__tag">infrastructure</li>
+          <li class="post-meta__date">2026-06-19</li>
+        </ul>
+      </section>
+
+      <section class="block is-visible">
+        <header class="block__head">
+          <span class="block__num">¶</span>
+          <h2 class="block__title">read</h2>
+          <span class="block__rule" aria-hidden="true"></span>
+          <span class="block__cmd"><span class="prompt">$</span> less openclaw-personal-ai-assistant.md</span>
+        </header>
+        <div class="block__body">
+          <article class="prose">
+            <h1 id="openclaw-a-personal-ai-assistant-across-devices">OpenClaw: A Personal AI Assistant Across Devices</h1>
+            <p>OpenClaw is an open-source assistant that runs on your infrastructure and responds through the communication channels you already use.</p>
+            <p>At the center of the system is the Gateway. It connects models, tools, memory, devices, and messaging platforms.</p>
+            <h2 id="one-gateway-many-channels">one Gateway, many channels</h2>
+            <p>OpenClaw supports WhatsApp, Telegram, Slack, Discord, Signal, iMessage, Microsoft Teams, Matrix, and many other platforms.</p>
+            <p>This is more than the same bot connected to several messengers. The Gateway manages sessions, routing, tools, and events.</p>
+            <p>You can create multiple isolated agents, for example:</p>
+            <ul><li>a personal assistant;</li><li>a development agent;</li><li>a support bot;</li><li>an agent for a team channel.</li></ul>
+            <p>Each agent can have its own workspace, history, memory, and permissions.</p>
+            <h2 id="memory">memory</h2>
+            <p>OpenClaw stores long-term memory in Markdown files inside the workspace. It also provides a built-in SQLite backend and optional memory systems such as QMD, Honcho, and LanceDB.</p>
+            <p>Before a long conversation is compacted, the agent can save important facts to memory. This reduces the chance of useful information disappearing during context compression.</p>
+            <p>Because memory lives in the workspace, it can be inspected, edited, backed up, and stored on your own infrastructure.</p>
+            <h2 id="skills-and-clawhub">skills and ClawHub</h2>
+            <p>OpenClaw skills are <code>SKILL.md</code> instruction files that teach an agent how to use tools and follow specific procedures.</p>
+            <p>Skills can exist at several levels:</p>
+            <ul><li>inside a workspace;</li><li>inside a project;</li><li>in a personal user directory;</li><li>in the shared OpenClaw directory;</li><li>inside plugins.</li></ul>
+            <p>Local skills have higher priority than bundled ones. This makes it possible to override standard behavior without modifying OpenClaw itself.</p>
+            <p>Community skills are available through ClawHub. OpenClaw also provides Skill Workshop for reviewing and approving agent-drafted procedures.</p>
+            <h2 id="cron-and-heartbeat">cron and heartbeat</h2>
+            <p>OpenClaw has separate automation mechanisms.</p>
+            <p>Cron is useful for precise schedules: sending a morning report, running a nightly backup, or performing a check at a specific time.</p>
+            <p>Heartbeat handles periodic background activity where exact timing is less important, such as checking services, new messages, or unfinished work.</p>
+            <p>Background tasks and webhooks are also supported. OpenClaw can therefore operate as a continuous automation system, not only as a reactive chatbot.</p>
+            <h2 id="security">security</h2>
+            <p>The main session can run tools directly on the host by default. This is convenient, but it requires careful configuration.</p>
+            <p>Additional agents and group sessions can run in sandboxes. OpenClaw supports Docker, SSH, and OpenShell isolation backends.</p>
+            <p>Unknown users in messaging apps must normally complete pairing. Their messages are not processed until the owner approves the pairing code.</p>
+            <p>OpenTelemetry diagnostics are optional. Prompt text, responses, and tool inputs or outputs are not exported by default.</p>
+            <h2 id="who-openclaw-is-for">who OpenClaw is for</h2>
+            <p>OpenClaw is worth considering when you need:</p>
+            <ul><li>an always-on personal assistant;</li><li>access through many messaging platforms;</li><li>iMessage support;</li><li>several isolated agents;</li><li>one Gateway for multiple devices and channels;</li><li>a large ecosystem of reusable skills;</li><li>automation through cron, heartbeat, and webhooks.</li></ul>
+            <h2 id="what-to-check-before-launch">what to check before launch</h2>
+            <p>Before connecting real accounts, I would:</p>
+            <ul><li>run the Gateway locally;</li><li>keep DM pairing enabled;</li><li>place group sessions in sandboxes;</li><li>restrict filesystem and command access;</li><li>create separate API keys with minimal permissions;</li><li>configure workspace backups;</li><li>connect channels one at a time.</li></ul>
+            <p>OpenClaw is more than a Telegram or WhatsApp bot. It is a local control plane for a personal AI assistant that can work across devices and communicate through many different channels.</p>
+            <p>Its main advantage is not a particular model. It is the infrastructure around the agent: Gateway, routing, memory, skills, automation, and security.</p>
+            <p>Sources: <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a>, <a href="https://docs.openclaw.ai/" target="_blank" rel="noopener">official documentation</a>.</p>
+          </article>
+        </div>
+      </section>
+
+
+        <nav class="post-nav" aria-label="adjacent posts">
+          <span></span>
+          <a class="post-nav__btn post-nav__btn--next" href="/blog/posts/hermes-agent-learning-assistant/">
+                <span class="post-nav__dir">newer →</span>
+                <span class="post-nav__title">Hermes Agent: A Personal AI Agent That Learns</span>
+              </a>
+        </nav>
+
+      <footer class="footer">
+        <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        <div class="footer__row">
+          <p class="sig">© <span data-year>—</span> dmytro my · <a href="/blog/">../blog</a></p>
+          <p class="sig sig--muted"><span class="key">utc</span><span data-clock>—</span></p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script src="/scripts/post-static.js"></script>
+</body>
+</html>
