@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#0a1116">
 
-  <title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</title>
-  <meta name="description" content="A practical AWS deployment workflow with reusable prompts for ChatGPT, Claude, GLM, and Gemini.">
+  <title>Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут</title>
+  <meta name="description" content="Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini.">
   <meta name="author" content="Dmytro My">
   <meta name="keywords" content="agents, aws, devops">
-  <link rel="canonical" href="https://dmytro.my/blog/posts/aws-ai-agent-deployment/">
+  <link rel="canonical" href="https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/">
   <link rel="alternate" hreflang="en" href="https://dmytro.my/blog/posts/aws-ai-agent-deployment/">
   <link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/">
   <link rel="alternate" hreflang="x-default" href="https://dmytro.my/blog/posts/aws-ai-agent-deployment/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes">
-  <meta property="og:description" content="A practical AWS deployment workflow with reusable prompts for ChatGPT, Claude, GLM, and Gemini.">
-  <meta property="og:url" content="https://dmytro.my/blog/posts/aws-ai-agent-deployment/">
+  <meta property="og:title" content="Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут">
+  <meta property="og:description" content="Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini.">
+  <meta property="og:url" content="https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/">
   <meta property="og:site_name" content="dmytro.my">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="ru_RU">
   <meta property="article:published_time" content="2026-06-19">
   <meta property="article:tag" content="agents">
   <meta property="article:tag" content="aws">
@@ -29,8 +29,8 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes">
-  <meta name="twitter:description" content="A practical AWS deployment workflow with reusable prompts for ChatGPT, Claude, GLM, and Gemini.">
+  <meta name="twitter:title" content="Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут">
+  <meta name="twitter:description" content="Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini.">
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,12 +38,12 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/main.css">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (en)" href="/blog/feed.en.xml">
+  <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (ru)" href="/blog/feed.ru.xml">
   <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (all)" href="/blog/feed.xml">
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes","description":"A practical AWS deployment workflow with reusable prompts for ChatGPT, Claude, GLM, and Gemini.","datePublished":"2026-06-19","dateModified":"2026-06-19","author":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"publisher":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dmytro.my/blog/posts/aws-ai-agent-deployment/"},"url":"https://dmytro.my/blog/posts/aws-ai-agent-deployment/","keywords":"agents, aws, devops","inLanguage":"en"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут","description":"Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini.","datePublished":"2026-06-19","dateModified":"2026-06-19","author":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"publisher":{"@type":"Person","name":"Dmytro My","url":"https://dmytro.my"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/"},"url":"https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/","keywords":"agents, aws, devops","inLanguage":"ru"}</script>
 </head>
-<body class="page-post" data-lang="en">
+<body class="page-post" data-lang="ru">
   <div class="fx fx--grid" aria-hidden="true"></div>
   <div class="fx fx--grain" aria-hidden="true"></div>
   <div class="fx fx--spot" aria-hidden="true"></div>
@@ -54,32 +54,32 @@
     <p class="window__path">
       <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
       <span class="window__sep">:</span>
-      <span class="window__cwd">~/blog/posts/aws-ai-agent-deployment/</span>
+      <span class="window__cwd">~/ru/blog/posts/aws-ai-agent-deployment/</span>
       <span class="window__shell">— zsh</span>
     </p>
     <div class="window__hud" aria-hidden="true">
       <span class="hud__pulse"></span>
-      <span class="window__hud-label">read · en</span>
+      <span class="window__hud-label">чтение · ru</span>
       <span class="window__hud-time" data-clock>—</span>
     </div>
   </header>
 
-  <main class="site" aria-label="dmytro.my blog post">
-    <aside class="rail" aria-label="sections">
+  <main class="site" aria-label="пост блога dmytro.my">
+    <aside class="rail" aria-label="разделы">
       <ol class="rail__list">
-        <li><a href="/blog/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../blog</span></a></li>
-        <li><a href="/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../home</span></a></li>
+        <li><a href="/ru/blog/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../блог</span></a></li>
+        <li><a href="/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">../главная</span></a></li>
       </ol>
 
-        <nav class="rail__toc" aria-label="post sections">
+        <nav class="rail__toc" aria-label="разделы поста">
           <div class="rail__toc-inner">
-            <p class="rail__toc-label">contents</p>
+            <p class="rail__toc-label">содержание</p>
             <ol class="rail__toc-list">
 
                 <li>
-                  <a href="#prompts-for-different-models">
+                  <a href="#промпты-для-разных-моделей">
                     <span class="rail__toc-num">01</span>
-                    <span>prompts for different models</span>
+                    <span>промпты для разных моделей</span>
                   </a>
                 </li>
 
@@ -112,9 +112,9 @@
                 </li>
 
                 <li>
-                  <a href="#post-deployment-checklist">
+                  <a href="#что-проверить-после-запуска">
                     <span class="rail__toc-num">06</span>
-                    <span>post-deployment checklist</span>
+                    <span>что проверить после запуска</span>
                   </a>
                 </li>
 
@@ -122,48 +122,48 @@
           </div>
         </nav>
       <div class="rail__status">
-        <p><span class="key">slug</span><span>aws-ai-agent-deployment</span></p>
-        <p><span class="key">lang</span><span>en</span></p>
+        <p><span class="key">slug</span><span>aws-ai-agent-deployment-ru</span></p>
+        <p><span class="key">lang</span><span>ru</span></p>
         <p><span class="key">date</span><span>2026-06-19</span></p>
-        <p><span class="key">read</span><span>1 min</span></p>
+        <p><span class="key">чтение</span><span>1 мин</span></p>
       </div>
     </aside>
 
     <article class="content">
       <section class="hero hero--post">
         <div class="hero__head">
-          <p class="line"><span class="prompt">$</span> cat posts/aws-ai-agent-deployment.md</p>
-          <p class="eyebrow">// agents · aws · devops · lang=en</p>
+          <p class="line"><span class="prompt">$</span> cat posts/aws-ai-agent-deployment-ru.md</p>
+          <p class="eyebrow">// agents · aws · devops · lang=ru</p>
         </div>
-        <h1 class="display display--post">How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</h1>
+        <h1 class="display display--post">Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут</h1>
         <ul class="post-meta">
-          <li class="post-meta__lang">en</li>
+          <li class="post-meta__lang">ru</li>
           <li class="post-meta__tag">agents</li><li class="post-meta__tag">aws</li><li class="post-meta__tag">devops</li>
           <li class="post-meta__date">2026-06-19</li>
         </ul>
-        <nav class="lang-switch" aria-label="language">
-          <span class="lang-chip is-active" aria-current="page">EN</span><a class="lang-chip" hreflang="ru" href="/ru/blog/posts/aws-ai-agent-deployment/">RU</a>
+        <nav class="lang-switch" aria-label="язык">
+          <a class="lang-chip" hreflang="en" href="/blog/posts/aws-ai-agent-deployment/">EN</a><span class="lang-chip is-active" aria-current="page">RU</span>
         </nav>
       </section>
 
       <section class="block is-visible">
         <header class="block__head">
           <span class="block__num">¶</span>
-          <h2 class="block__title">read</h2>
+          <h2 class="block__title">читать</h2>
           <span class="block__rule" aria-hidden="true"></span>
-          <span class="block__cmd"><span class="prompt">$</span> less aws-ai-agent-deployment.md</span>
+          <span class="block__cmd"><span class="prompt">$</span> less aws-ai-agent-deployment-ru.md</span>
         </header>
         <div class="block__body">
           <article class="prose">
-            <h1 id="how-an-ai-agent-configured-aws-a-domain-ssl-and-cdn-in-10-mi">How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</h1>
-            <p>I recently deployed a new project to AWS with the help of an AI agent.</p>
-            <p>The hosting itself took about five minutes. The agent asked several questions, clarified my requirements and budget, and suggested suitable deployment options.</p>
-            <p>Connecting the domain and issuing an SSL certificate took another five minutes. At the same time, the agent configured the CDN.</p>
-            <p>This kind of task would normally take me at least 30 minutes. Without prepared templates, I would need to read documentation, compare services, configure DNS, and verify HTTPS manually.</p>
-            <p>This time, the entire launch took about 10 minutes. The project is already online and ready for promotion.</p>
-            <p>An AI agent is starting to feel like a system administrator available 24/7. The result still needs to be reviewed: the agent makes the work faster, but the project owner remains responsible for costs, access, and security.</p>
-            <h2 id="prompts-for-different-models">prompts for different models</h2>
-            <p>Replace the values in brackets with your project details. If the model cannot access your terminal or AWS account, ask it to prepare the commands and guide you through each step.</p>
+            <h1 id="как-ии-агент-настроил-aws-домен-ssl-и-cdn-за-10-минут">Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут</h1>
+            <p>Недавно я разместил новый проект на AWS с помощью ИИ-агента.</p>
+            <p>Первые пять минут ушли на хостинг. Агент задал несколько вопросов, уточнил требования и бюджет, а затем предложил подходящие варианты размещения.</p>
+            <p>Ещё пять минут заняли подключение домена и выпуск SSL-сертификата. Параллельно агент настроил CDN.</p>
+            <p>Обычно такая задача занимает у меня от 30 минут. Особенно если нет готовых шаблонов и приходится разбираться с незнакомой конфигурацией хостинга: читать документацию, сравнивать сервисы, настраивать DNS и проверять HTTPS.</p>
+            <p>В этот раз весь запуск занял около 10 минут. Проект уже работает и готов к продвижению.</p>
+            <p>ИИ-агент начинает напоминать системного администратора, доступного 24/7. Но результат всё равно нужно проверять: агент ускоряет работу, а ответственность за расходы, доступы и безопасность остаётся у владельца проекта.</p>
+            <h2 id="промпты-для-разных-моделей">промпты для разных моделей</h2>
+            <p>Замените значения в квадратных скобках своими данными. Если у модели нет доступа к терминалу или AWS, попросите её подготовить команды и сопровождать вас по шагам.</p>
             <h3 id="chatgpt">ChatGPT</h3>
             <pre class="code" data-lang="text"><code>Act as my DevOps assistant and help me deploy a web project to AWS.
 
@@ -255,9 +255,9 @@
             5. Verify the final result.
 
             Never expose secrets or commit credentials to Git. End with a report of created resources, completed checks, estimated costs, remaining risks, and rollback steps.</code></pre>
-            <h2 id="post-deployment-checklist">post-deployment checklist</h2>
-            <ul><li>The website opens on the primary domain.</li><li>HTTP redirects to HTTPS.</li><li>The SSL certificate is valid.</li><li>The CDN serves the latest version.</li><li>No credentials or secrets were committed to the repository.</li><li>AWS spending limits and alerts are configured.</li></ul>
-            <p>The model name is not the most important part. A good result starts with the right process: clarify the requirements, compare the options, approve the plan, deploy, and verify everything.</p>
+            <h2 id="что-проверить-после-запуска">что проверить после запуска</h2>
+            <ul><li>Сайт открывается по основному домену.</li><li>HTTP перенаправляется на HTTPS.</li><li>SSL-сертификат действителен.</li><li>CDN отдаёт актуальную версию сайта.</li><li>Ключи и другие секреты не попали в репозиторий.</li><li>В AWS настроены лимиты расходов и уведомления.</li></ul>
+            <p>Название модели здесь не самое важное. Хороший результат начинается с правильного процесса: сначала вопросы и сравнение вариантов, затем подтверждение, настройка и финальная проверка.</p>
           </article>
         </div>
       </section>
@@ -267,7 +267,7 @@
       <footer class="footer">
         <p class="line line--prompt"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
         <div class="footer__row">
-          <p class="sig">© <span data-year>—</span> dmytro my · <a href="/blog/">../blog</a></p>
+          <p class="sig">© <span data-year>—</span> dmytro my · <a href="/ru/blog/">../блог</a></p>
           <p class="sig sig--muted"><span class="key">utc</span><span data-clock>—</span></p>
         </div>
       </footer>

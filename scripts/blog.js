@@ -1,10 +1,8 @@
 // blog.js — listing page with language filter
 (() => {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const STORAGE_KEY = 'blog.lang';
   const UI_TEXT = {
     en: {
-      all: 'all',
       archive: 'archive',
       archiveEmpty: 'no posts in this language yet.',
       empty: 'no posts in this language yet.',
@@ -25,7 +23,6 @@
       title: 'blog',
     },
     ru: {
-      all: 'все',
       archive: 'архив',
       archiveEmpty: 'Нет записей на выбранном языке.',
       empty: 'Нет записей на выбранном языке.',
@@ -97,26 +94,13 @@
   const langOf = (post, defaultLang) => post.lang || defaultLang || 'en';
   const textFor = (lang) => UI_TEXT[lang] || UI_TEXT.en;
 
-  // ---- pick initial language ----
-  const pickInitial = (defaultLang) => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved && (saved === 'all' || saved === 'en' || saved === 'ru')) return saved;
-    } catch (_) { /* localStorage may be blocked */ }
-    return defaultLang || 'en';
-  };
-
   const setActiveChip = (lang) => {
     filter?.querySelectorAll('.lang-chip').forEach((b) => {
       b.classList.toggle('is-active', b.dataset.lang === lang);
     });
   };
 
-  const persistLang = (lang) => {
-    try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) {}
-  };
-
-  fetch('posts.json', { cache: 'no-cache' })
+  fetch('/blog/posts.json', { cache: 'no-cache' })
     .then((r) => {
       if (!r.ok) throw new Error('posts.json ' + r.status);
       return r.json();
@@ -130,27 +114,22 @@
       );
 
       // counts per lang
-      const counts = { all: allPosts.length, en: 0, ru: 0 };
+      const counts = { en: 0, ru: 0 };
       allPosts.forEach((p) => {
         const l = langOf(p, defaultLang);
         if (counts[l] !== undefined) counts[l]++;
       });
-      document.querySelector('[data-count-all]').textContent = counts.all;
-      document.querySelector('[data-count-en]').textContent = counts.en;
-      document.querySelector('[data-count-ru]').textContent = counts.ru;
+      const countEn = document.querySelector('[data-count-en]');
+      const countRu = document.querySelector('[data-count-ru]');
+      if (countEn) countEn.textContent = counts.en;
+      if (countRu) countRu.textContent = counts.ru;
 
-      let activeLang = pickInitial(defaultLang);
-      // if saved language has 0 posts, fall back to default, then first non-empty language
-      if (activeLang !== 'all' && counts[activeLang] === 0) {
-        if (counts[defaultLang] > 0) activeLang = defaultLang;
-        else activeLang = configuredLangs.find((l) => counts[l] > 0) || 'all';
-      }
+      let activeLang = document.body.dataset.pageLang || document.documentElement.lang || defaultLang;
+      if (!configuredLangs.includes(activeLang)) activeLang = defaultLang;
 
-      const filtered = () => activeLang === 'all'
-        ? allPosts
-        : allPosts.filter((p) => langOf(p, defaultLang) === activeLang);
+      const filtered = () => allPosts.filter((p) => langOf(p, defaultLang) === activeLang);
 
-      const uiLang = () => activeLang === 'all' ? defaultLang : activeLang;
+      const uiLang = () => activeLang;
       const ui = () => textFor(uiLang());
 
       const setText = (selector, value) => {
@@ -177,8 +156,7 @@
         setText('[data-title-archive]', t.archive);
         setText('[data-title-tags]', t.tags);
         setText('.lang-filter__label', t.langLabel);
-        setText('[data-lang-label-all]', t.all);
-        setText('.footer__row a[href="../"]', t.home);
+        setText('.footer__row a[href="/"]', t.home);
         setText('[data-empty]', t.empty);
         setText('.post-row--skel .post-row__title', t.loading);
       };
@@ -197,7 +175,7 @@
           const id = String(i + 1).padStart(3, '0');
           const lang = langOf(p, defaultLang);
           li.innerHTML = `
-            <a class="post-row__link" href="posts/${encodeURIComponent(p.slug)}/" lang="${lang}">
+            <a class="post-row__link" href="posts/${encodeURIComponent(p.route || p.slug)}/" lang="${lang}">
               <span class="post-row__id">${id}</span>
               <time class="post-row__date" datetime="${p.date}">${fmtDate(p.date)}</time>
               <span class="post-row__lang">${lang}</span>
@@ -244,7 +222,7 @@
               const lang = langOf(p, defaultLang);
               const li = document.createElement('li');
               li.innerHTML = `
-                <a class="archive__row" href="posts/${encodeURIComponent(p.slug)}/" lang="${lang}">
+                <a class="archive__row" href="posts/${encodeURIComponent(p.route || p.slug)}/" lang="${lang}">
                   <time>${fmtDate(p.date)}</time>
                   <span class="archive__lang">${lang}</span>
                   <span class="archive__title-text"></span>
@@ -289,20 +267,10 @@
         renderTags();
       };
 
-      // wire up filter
-      filter?.querySelectorAll('.lang-chip').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lang = btn.dataset.lang;
-          if (lang === activeLang) return;
-          activeLang = lang;
-          persistLang(lang);
-          renderAll();
-        });
-      });
-
       // status
-      if (countEl) countEl.textContent = allPosts.length;
-      if (lastEl) lastEl.textContent = allPosts[0] ? fmtDate(allPosts[0].date) : '—';
+      const visiblePosts = filtered();
+      if (countEl) countEl.textContent = visiblePosts.length;
+      if (lastEl) lastEl.textContent = visiblePosts[0] ? fmtDate(visiblePosts[0].date) : '—';
 
       renderAll();
     })

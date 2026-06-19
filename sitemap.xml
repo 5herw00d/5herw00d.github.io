@@ -9,12 +9,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dmytro.my/ru/blog/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dmytro.my/blog/posts/aws-ai-agent-deployment/</loc>
     <lastmod>2026-06-19</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dmytro.my/blog/posts/aws-ai-agent-deployment-ru/</loc>
+    <loc>https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/</loc>
     <lastmod>2026-06-19</lastmod>
     <priority>0.7</priority>
   </url>

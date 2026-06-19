@@ -28,15 +28,19 @@ function assertNoTrailingWhitespace(file) {
   assert.strictEqual(line, -1, `${file}:${line + 1} should not contain trailing whitespace`);
 }
 
+function assertExists(file) {
+  assert(fs.existsSync(path.join(ROOT, file)), `${file} should exist`);
+}
+
 [
   ['index.html', 'в работе'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', 'contents'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', 'post sections'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', 'dmytro.my blog post'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', '../home'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', 'read · ru'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', '<h2 class="block__title">read</h2>'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', '1 min'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'contents'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'post sections'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'dmytro.my blog post'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '../home'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'read · ru'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">read</h2>'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '1 min'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'содержание'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'разделы поста'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'пост блога dmytro.my'],
@@ -51,12 +55,12 @@ function assertNoTrailingWhitespace(file) {
   ['scripts/blog.js', 'Нет записей на выбранном языке.'],
   ['scripts/blog.js', 'Ошибка загрузки posts.json'],
   ['blog/posts/aws-ai-agent-deployment-ru.md', '# Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', 'aria-label="пост блога dmytro.my"'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', 'содержание'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', '../главная'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', 'чтение · ru'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', '<h2 class="block__title">читать</h2>'],
-  ['blog/posts/aws-ai-agent-deployment-ru/index.html', '1 мин'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'aria-label="пост блога dmytro.my"'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'содержание'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '../главная'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'чтение · ru'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">читать</h2>'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '1 мин'],
   ['blog/posts/aws-ai-agent-deployment.md', '# How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'aria-label="dmytro.my blog post"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'contents'],
@@ -68,7 +72,40 @@ function assertNoTrailingWhitespace(file) {
 
 [
   'blog/posts/aws-ai-agent-deployment/index.html',
-  'blog/posts/aws-ai-agent-deployment-ru/index.html',
+  'ru/blog/posts/aws-ai-agent-deployment/index.html',
 ].forEach(assertNoTrailingWhitespace);
+
+[
+  'ru/blog/index.html',
+  'ru/blog/posts/aws-ai-agent-deployment/index.html',
+].forEach(assertExists);
+
+[
+  ['blog/index.html', 'data-lang="all"'],
+  ['blog/index.html', 'aria-current="page" aria-current'],
+  ['ru/blog/index.html', 'data-lang="en" aria-current="page"'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'Как ИИ-агент настроил AWS'],
+].forEach(([file, needle]) => assertExcludes(file, needle));
+
+[
+  ['blog/index.html', 'href="/blog/" hreflang="en"'],
+  ['blog/index.html', 'href="/ru/blog/" hreflang="ru"'],
+  ['blog/index.html', 'class="lang-chip is-active" data-lang="en" aria-current="page"'],
+  ['ru/blog/index.html', '<html lang="ru">'],
+  ['ru/blog/index.html', '<link rel="canonical" href="https://dmytro.my/ru/blog/">'],
+  ['ru/blog/index.html', 'aria-label="фильтр по языку"'],
+  ['ru/blog/index.html', '<span class="display__name">блог</span>'],
+  ['ru/blog/index.html', 'Короткие практические заметки'],
+  ['ru/blog/index.html', 'class="lang-chip is-active" data-lang="ru" aria-current="page"'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'class="lang-switch"'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'hreflang="ru" href="/ru/blog/posts/aws-ai-agent-deployment/"'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'rel="alternate" hreflang="x-default"'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<html lang="ru">'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'hreflang="en" href="/blog/posts/aws-ai-agent-deployment/"'],
+  ['blog/posts/aws-ai-agent-deployment-ru/index.html', '/ru/blog/posts/aws-ai-agent-deployment/'],
+  ['sitemap.xml', 'https://dmytro.my/ru/blog/'],
+  ['sitemap.xml', 'https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/'],
+  ['blog/feed.ru.xml', 'https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/'],
+].forEach(([file, needle]) => assertIncludes(file, needle));
 
 console.log('localization checks passed');

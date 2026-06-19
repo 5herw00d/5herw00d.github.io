@@ -1249,12 +1249,21 @@
     letter-spacing: 0.06em;
     cursor: pointer;
     transition: color .18s ease, border-color .18s ease, background .18s ease;
+    text-decoration: none;
   }
   .lang-chip:hover { color: var(--text); border-color: var(--line-bright); }
   .lang-chip.is-active {
     color: var(--accent);
     border-color: var(--accent-line);
     background: var(--accent-soft);
+    cursor: default;
+  }
+
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
   }
   .lang-chip__n {
     color: var(--dim);

@@ -11,6 +11,8 @@
   "posts": [
     {
       "slug": "aws-ai-agent-deployment",
+      "route": "aws-ai-agent-deployment",
+      "translationKey": "aws-ai-agent-deployment",
       "title": "How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes",
       "lang": "en",
       "date": "2026-06-19",
@@ -19,6 +21,8 @@
     },
     {
       "slug": "aws-ai-agent-deployment-ru",
+      "route": "aws-ai-agent-deployment",
+      "translationKey": "aws-ai-agent-deployment",
       "title": "Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут",
       "lang": "ru",
       "date": "2026-06-19",
