@@ -209,6 +209,17 @@
   .window__hud-label { color: var(--accent); }
   .window__hud-time { color: var(--text); font-variant-numeric: tabular-nums; }
 
+  .site-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex: 0 0 auto;
+  }
+  .site-lang .lang-chip {
+    padding: 2px 7px;
+    font-size: 10px;
+  }
+
   .hud__pulse {
     width: 7px; height: 7px; border-radius: 50%;
     background: var(--accent);
@@ -864,6 +875,7 @@
   @media (max-width: 560px) {
     body { font-size: 13px; }
     .window__shell, .portrait__feed { display: none; }
+    .window__hud-label, .hud__pulse { display: none; }
     .display { font-size: clamp(40px, 12vw, 64px); }
     .proj { grid-template-columns: 1fr; }
     .proj__card { min-height: 0; }

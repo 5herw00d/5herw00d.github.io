@@ -200,7 +200,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, translation
   alternateLinks.push(`<link rel="alternate" hreflang="x-default" href="${escAttr(absoluteUrl(site, postPath(defaultTranslation, defaultLang)))}">`);
 
   const languageSwitch = translations.length > 1
-    ? `<nav class="lang-switch" aria-label="${escAttr(ui.languageLabel)}">
+    ? `<nav class="site-lang" aria-label="${escAttr(ui.languageLabel)}">
           ${translations.map((translation) => {
             const translationLang = langOf(translation, defaultLang);
             const label = translationLang.toUpperCase();
@@ -299,6 +299,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, translation
       <span class="window__cwd">~${escHtml(postPath(post, defaultLang))}</span>
       <span class="window__shell">— zsh</span>
     </p>
+    ${languageSwitch}
     <div class="window__hud" aria-hidden="true">
       <span class="hud__pulse"></span>
       <span class="window__hud-label">${escHtml(ui.readHud)} · ${lang}</span>
@@ -333,7 +334,6 @@ function postPage({ site, post, body, headings, readMin, prev, next, translation
           ${tagsBadges}
           <li class="post-meta__date">${escHtml(dateDisp)}</li>
         </ul>
-        ${languageSwitch}
       </section>
 
       <section class="block is-visible">
@@ -412,6 +412,9 @@ function redirectPage(target) {
 function sitemap(site, posts, languages, defaultLang) {
   const urls = [
     { loc: `${site.url}/`, priority: '1.0' },
+    { loc: `${site.url}/about/`, priority: '0.8' },
+    { loc: `${site.url}/ru/`, priority: '1.0' },
+    { loc: `${site.url}/ru/about/`, priority: '0.8' },
     ...languages.map((lang) => ({
       loc: absoluteUrl(site, listingPath(lang, defaultLang)),
       priority: '0.8',
@@ -548,8 +551,7 @@ function localizedBlogIndex(template, site, lang, defaultLang, posts) {
     .replace(/(<h2 class="block__title" data-title-latest>)[^<]+/, `$1${escHtml(ui.latest)}`)
     .replace(/(<h2 class="block__title" data-title-archive>)[^<]+/, `$1${escHtml(ui.archive)}`)
     .replace(/(<h2 class="block__title" data-title-tags>)[^<]+/, `$1${escHtml(ui.tags)}`)
-    .replace(/(<div class="lang-filter" role="group" aria-label=")[^"]+/, `$1${escAttr(ui.filter)}`)
-    .replace(/(<span class="lang-filter__label">)[^<]+/, `$1${lang === 'ru' ? 'язык:' : 'lang:'}`)
+    .replace(/(<nav class="site-lang" aria-label=")[^"]+/, `$1${escAttr(ui.filter)}`)
     .replace(/(<p class="sig">© <span data-year>—<\/span> dmytro my · <a href="\/">)[^<]+/, `$1${escHtml(ui.home)}`)
     .replace(/class="lang-chip(?: is-active)?" data-lang="en"(?: aria-current="page")*/, `class="lang-chip${lang === 'en' ? ' is-active' : ''}" data-lang="en"${lang === 'en' ? ' aria-current="page"' : ''}`)
     .replace(/class="lang-chip(?: is-active)?" data-lang="ru"(?: aria-current="page")*/, `class="lang-chip${lang === 'ru' ? ' is-active' : ''}" data-lang="ru"${lang === 'ru' ? ' aria-current="page"' : ''}`)

@@ -76,6 +76,8 @@ function assertExists(file) {
 ].forEach(assertNoTrailingWhitespace);
 
 [
+  'ru/index.html',
+  'ru/about/index.html',
   'ru/blog/index.html',
   'ru/blog/posts/aws-ai-agent-deployment/index.html',
 ].forEach(assertExists);
@@ -85,6 +87,8 @@ function assertExists(file) {
   ['blog/index.html', 'aria-current="page" aria-current'],
   ['ru/blog/index.html', 'data-lang="en" aria-current="page"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'Как ИИ-агент настроил AWS'],
+  ['ru/index.html', 'I build AI products end-to-end.'],
+  ['ru/about/index.html', 'I build AI products end-to-end.'],
 ].forEach(([file, needle]) => assertExcludes(file, needle));
 
 [
@@ -97,7 +101,7 @@ function assertExists(file) {
   ['ru/blog/index.html', '<span class="display__name">блог</span>'],
   ['ru/blog/index.html', 'Короткие практические заметки'],
   ['ru/blog/index.html', 'class="lang-chip is-active" data-lang="ru" aria-current="page"'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', 'class="lang-switch"'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'class="site-lang"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'hreflang="ru" href="/ru/blog/posts/aws-ai-agent-deployment/"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'rel="alternate" hreflang="x-default"'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<html lang="ru">'],
@@ -106,6 +110,26 @@ function assertExists(file) {
   ['sitemap.xml', 'https://dmytro.my/ru/blog/'],
   ['sitemap.xml', 'https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/'],
   ['blog/feed.ru.xml', 'https://dmytro.my/ru/blog/posts/aws-ai-agent-deployment/'],
+  ['index.html', '<link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/">'],
+  ['index.html', 'class="site-lang"'],
+  ['index.html', 'hreflang="ru" href="/ru/"'],
+  ['about/index.html', '<link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/about/">'],
+  ['about/index.html', 'hreflang="ru" href="/ru/about/"'],
+  ['ru/index.html', '<html lang="ru">'],
+  ['ru/index.html', '<link rel="canonical" href="https://dmytro.my/ru/">'],
+  ['ru/index.html', 'hreflang="en" href="/"'],
+  ['ru/index.html', 'Я создаю AI-продукты под ключ.'],
+  ['ru/index.html', 'href="/ru/about/"'],
+  ['ru/index.html', 'href="/ru/blog/"'],
+  ['ru/about/index.html', '<html lang="ru">'],
+  ['ru/about/index.html', '<link rel="canonical" href="https://dmytro.my/ru/about/">'],
+  ['ru/about/index.html', 'hreflang="en" href="/about/"'],
+  ['ru/about/index.html', 'продуктовое мышление + инженерия'],
+  ['ru/about/index.html', 'href="/ru/blog/"'],
+  ['blog/index.html', 'class="site-lang"'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'class="site-lang"'],
+  ['sitemap.xml', '<loc>https://dmytro.my/ru/</loc>'],
+  ['sitemap.xml', '<loc>https://dmytro.my/ru/about/</loc>'],
 ].forEach(([file, needle]) => assertIncludes(file, needle));
 
 console.log('localization checks passed');

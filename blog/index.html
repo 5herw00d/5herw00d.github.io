@@ -43,6 +43,10 @@
       <span class="window__cwd">~/blog</span>
       <span class="window__shell">— zsh</span>
     </p>
+    <nav class="site-lang" aria-label="filter by language" data-lang-filter>
+      <a class="lang-chip is-active" data-lang="en" aria-current="page" href="/blog/" hreflang="en">EN</a>
+      <a class="lang-chip" data-lang="ru" href="/ru/blog/" hreflang="ru">RU</a>
+    </nav>
     <div class="window__hud" aria-hidden="true">
       <span class="hud__pulse"></span>
       <span class="window__hud-label">link</span>
@@ -85,11 +89,6 @@
           <span class="block__cmd"><span class="prompt">$</span> head -n 5 posts.json</span>
         </header>
         <div class="block__body">
-          <div class="lang-filter" role="group" aria-label="filter by language" data-lang-filter>
-            <span class="lang-filter__label">lang:</span>
-            <a class="lang-chip is-active" data-lang="en" aria-current="page" href="/blog/" hreflang="en">en <span class="lang-chip__n" data-count-en>—</span></a>
-            <a class="lang-chip" data-lang="ru" href="/ru/blog/" hreflang="ru">ru <span class="lang-chip__n" data-count-ru>—</span></a>
-          </div>
           <!-- posts:start -->
           <ol class="post-list" data-post-list>
             <li class="post-row">
