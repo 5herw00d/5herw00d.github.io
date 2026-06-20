@@ -59,6 +59,10 @@ assertMatches(
   'styles/main.css',
   /\.rail__status \.rail__status-row--slug > :last-child\s*\{[^}]*white-space:\s*normal;[^}]*overflow-wrap:\s*anywhere;[^}]*\}/
 );
+assertIncludes(
+  'ru/blog/posts/aws-ai-agent-deployment/index.html',
+  '<p class="rail__status-row rail__status-row--slug"><span class="key">slug</span><span>aws-ai-agent-deployment</span></p>'
+);
 assertMatches(
   'styles/main.css',
   /\.visually-hidden\s*\{[^}]*position:\s*absolute;[^}]*clip:\s*rect\(0 0 0 0\);[^}]*overflow:\s*hidden;[^}]*\}/

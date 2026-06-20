@@ -335,7 +335,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
       </ol>
       ${tocHtml}
       <div class="rail__status">
-        <p class="rail__status-row rail__status-row--slug"><span class="key">slug</span><span>${escHtml(post.slug)}</span></p>
+        <p class="rail__status-row rail__status-row--slug"><span class="key">slug</span><span>${escHtml(routeOf(post))}</span></p>
         <p><span class="key">lang</span><span>${lang}</span></p>
         <p><span class="key">date</span><span>${escHtml(dateDisp)}</span></p>
         <p><span class="key">${escHtml(ui.readKey)}</span><span>${readMin} ${escHtml(ui.minute)}</span></p>
