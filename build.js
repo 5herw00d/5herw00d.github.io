@@ -19,6 +19,7 @@ const ROOT = __dirname;
 const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
+const STYLE_VERSION = '20260619-1';
 
 // language → BCP47 code + OG locale
 const LANG_META = {
@@ -278,7 +279,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, translation
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/main.css?v=${STYLE_VERSION}">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="alternate" type="application/rss+xml" title="${escAttr(site.title)} blog (${lang})" href="/blog/feed.${lang}.xml">
   <link rel="alternate" type="application/rss+xml" title="${escAttr(site.title)} blog (all)" href="/blog/feed.xml">
@@ -315,7 +316,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, translation
       </ol>
       ${tocHtml}
       <div class="rail__status">
-        <p><span class="key">slug</span><span>${escHtml(post.slug)}</span></p>
+        <p class="rail__status-row rail__status-row--slug"><span class="key">slug</span><span>${escHtml(post.slug)}</span></p>
         <p><span class="key">lang</span><span>${lang}</span></p>
         <p><span class="key">date</span><span>${escHtml(dateDisp)}</span></p>
         <p><span class="key">${escHtml(ui.readKey)}</span><span>${readMin} ${escHtml(ui.minute)}</span></p>

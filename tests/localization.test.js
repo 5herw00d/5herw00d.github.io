@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
+const STYLE_VERSION = '20260619-1';
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -50,8 +51,23 @@ assertMatches(
 );
 assertMatches(
   'styles/main.css',
+  /\.rail__status \.rail__status-row--slug > :last-child\s*\{[^}]*white-space:\s*normal;[^}]*overflow-wrap:\s*anywhere;[^}]*\}/
+);
+assertMatches(
+  'styles/main.css',
   /\.visually-hidden\s*\{[^}]*position:\s*absolute;[^}]*clip:\s*rect\(0 0 0 0\);[^}]*overflow:\s*hidden;[^}]*\}/
 );
+
+[
+  'index.html',
+  'about/index.html',
+  'ru/index.html',
+  'ru/about/index.html',
+  'blog/index.html',
+  'ru/blog/index.html',
+  'blog/posts/openclaw-personal-ai-assistant/index.html',
+  'ru/blog/posts/openclaw-personal-ai-assistant/index.html',
+].forEach((file) => assertIncludes(file, `main.css?v=${STYLE_VERSION}`));
 
 [
   ['index.html', 'в работе'],
@@ -89,6 +105,7 @@ assertMatches(
   ['blog/posts/aws-ai-agent-deployment/index.html', 'read · en'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">read</h2>'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '1 min'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', '<p class="rail__status-row rail__status-row--slug">'],
 ].forEach(([file, needle]) => assertIncludes(file, needle));
 
 [
@@ -112,6 +129,8 @@ assertMatches(
   ['ru/about/index.html', 'I build AI products end-to-end.'],
   ['index.html', 'class="display__name"'],
   ['ru/index.html', 'class="display__name"'],
+  ['ru/index.html', 'часовой пояс'],
+  ['ru/about/index.html', 'часовой пояс'],
 ].forEach(([file, needle]) => assertExcludes(file, needle));
 
 [
@@ -146,11 +165,13 @@ assertMatches(
   ['ru/index.html', 'href="/ru/about/"'],
   ['ru/index.html', 'href="/ru/blog/"'],
   ['ru/index.html', '<h1 class="visually-hidden">Dmytro My</h1>'],
+  ['ru/index.html', '<span class="key">TZ</span><span>UA · UTC+3</span>'],
   ['ru/about/index.html', '<html lang="ru">'],
   ['ru/about/index.html', '<link rel="canonical" href="https://dmytro.my/ru/about/">'],
   ['ru/about/index.html', 'hreflang="en" href="/about/"'],
   ['ru/about/index.html', 'продуктовое мышление + инженерия'],
   ['ru/about/index.html', 'href="/ru/blog/"'],
+  ['ru/about/index.html', '<span class="key">TZ</span><span>UA · UTC+3</span>'],
   ['blog/index.html', 'class="site-lang"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'class="site-lang"'],
   ['sitemap.xml', '<loc>https://dmytro.my/ru/</loc>'],

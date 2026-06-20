@@ -303,6 +303,15 @@
     white-space: nowrap;
     text-align: right;
   }
+  .rail__status .rail__status-row--slug {
+    align-items: flex-start;
+  }
+  .rail__status .rail__status-row--slug > :last-child {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
   .rail__status .key { min-width: 6ch; }
 
   /* -------------------- hero -------------------- */
