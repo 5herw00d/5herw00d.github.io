@@ -17,7 +17,7 @@
       "lang": "en",
       "date": "2026-06-19",
       "tags": ["agents", "aws", "devops"],
-      "summary": "A practical AWS deployment workflow with reusable prompts for ChatGPT, Claude, GLM, and Gemini."
+      "summary": "Deploy a project to AWS in 10 minutes with AI agents. Ready-to-use DevOps prompts for ChatGPT, Claude, Gemini, and GLM."
     },
     {
       "slug": "aws-ai-agent-deployment-ru",
@@ -27,7 +27,7 @@
       "lang": "ru",
       "date": "2026-06-19",
       "tags": ["agents", "aws", "devops"],
-      "summary": "Практический сценарий деплоя на AWS и готовые промпты для ChatGPT, Claude, GLM и Gemini."
+      "summary": "Как развернуть проект на AWS за 10 минут с ИИ-агентом: готовые DevOps-промпты для ChatGPT, Claude, Gemini и GLM."
     },
     {
       "slug": "hermes-agent-learning-assistant",

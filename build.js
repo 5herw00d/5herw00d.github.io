@@ -14,12 +14,13 @@
 const fs = require('fs');
 const path = require('path');
 const MD = require('./scripts/markdown.js');
+const { relatedPostsFor, validatePost } = require('./scripts/blog-data.js');
 
 const ROOT = __dirname;
 const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
-const STYLE_VERSION = '20260619-1';
+const STYLE_VERSION = '20260620-1';
 
 // language → BCP47 code + OG locale
 const LANG_META = {
@@ -44,6 +45,7 @@ const POST_UI = {
     sectionsAria: 'sections',
     tocAria: 'post sections',
     minute: 'min',
+    relatedPosts: 'related posts',
   },
   ru: {
     adjacentPosts: 'соседние записи',
@@ -60,6 +62,7 @@ const POST_UI = {
     sectionsAria: 'разделы',
     tocAria: 'разделы поста',
     minute: 'мин',
+    relatedPosts: 'похожие статьи',
   },
   uk: {
     adjacentPosts: 'сусідні дописи',
@@ -76,6 +79,7 @@ const POST_UI = {
     sectionsAria: 'розділи',
     tocAria: 'розділи допису',
     minute: 'хв',
+    relatedPosts: 'схожі дописи',
   },
 };
 
@@ -157,7 +161,7 @@ function postOutputDir(post, defaultLang) {
 }
 
 // ---- post template ----
-function postPage({ site, post, body, headings, readMin, prev, next, translations }) {
+function postPage({ site, post, body, headings, readMin, prev, next, relatedPosts, translations }) {
   const lang = langOf(post, site.defaultLang);
   const defaultLang = site.defaultLang || 'en';
   const meta = LANG_META[lang] || LANG_META.en;
@@ -228,6 +232,21 @@ function postPage({ site, post, body, headings, readMin, prev, next, translation
               </a>`
             : ``}
         </nav>`
+    : '';
+
+  const relatedHtml = relatedPosts.length
+    ? `
+        <section class="related-posts" aria-labelledby="related-posts-title-${escAttr(post.slug)}">
+          <h2 class="related-posts__title" id="related-posts-title-${escAttr(post.slug)}">${escHtml(ui.relatedPosts)}</h2>
+          <div class="related-posts__list">
+            ${relatedPosts.map((related) => `
+              <a class="related-posts__link" href="${escAttr(postPath(related, defaultLang))}">
+                <span class="related-posts__meta">${escHtml((related.tags || []).join(' · '))}</span>
+                <span class="related-posts__name">${escHtml(related.title)}</span>
+                <span class="related-posts__arrow" aria-hidden="true">→</span>
+              </a>`).join('')}
+          </div>
+        </section>`
     : '';
 
   const jsonLd = {
@@ -350,6 +369,8 @@ ${body}
           </article>
         </div>
       </section>
+
+      ${relatedHtml}
 
       ${navHtml}
 
@@ -579,6 +600,7 @@ function localizedBlogIndex(template, site, lang, defaultLang, posts) {
 
   // sort newest first
   const posts = manifest.posts.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  posts.forEach(validatePost);
   const postsByLang = new Map(languages.map((lang) => [
     lang,
     posts.filter((post) => langOf(post, defaultLang) === lang),
@@ -603,15 +625,14 @@ function localizedBlogIndex(template, site, lang, defaultLang, posts) {
     }
 
     const raw = fs.readFileSync(mdPath, 'utf8');
-    const { html, headings, title } = MD.render(raw);
-    if (title && !post.title) post.title = title;
+    const { html, headings } = MD.render(raw);
     const readMin = MD.readTime(raw);
-    if (!post.summary) post.summary = MD.summarize(raw);
 
     const languagePosts = postsByLang.get(lang) || [];
     const languageIndex = languagePosts.indexOf(post);
     const prev = languagePosts[languageIndex + 1]; // older
     const next = languagePosts[languageIndex - 1]; // newer
+    const relatedPosts = relatedPostsFor(post, posts, defaultLang, 2);
     const translations = translationsByKey.get(post.translationKey || post.slug) || [post];
 
     const html5 = postPage({
@@ -622,6 +643,7 @@ function localizedBlogIndex(template, site, lang, defaultLang, posts) {
       readMin,
       prev,
       next,
+      relatedPosts,
       translations,
     });
 

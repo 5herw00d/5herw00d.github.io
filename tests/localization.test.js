@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const STYLE_VERSION = '20260619-1';
+const STYLE_VERSION = '20260620-1';
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -37,6 +37,12 @@ function assertMatches(file, pattern) {
   assert(pattern.test(read(file)), `${file} should match ${pattern}`);
 }
 
+function relatedSection(file) {
+  const match = read(file).match(/<section class="related-posts"[\s\S]*?<\/section>/);
+  assert(match, `${file} should include a related posts section`);
+  return match[0];
+}
+
 assertMatches(
   'styles/main.css',
   /\.rail__status p\s*\{[^}]*display:\s*flex;[^}]*align-items:\s*baseline;[^}]*justify-content:\s*space-between;[^}]*gap:\s*8px;[^}]*\}/
@@ -68,6 +74,13 @@ assertMatches(
   'blog/posts/openclaw-personal-ai-assistant/index.html',
   'ru/blog/posts/openclaw-personal-ai-assistant/index.html',
 ].forEach((file) => assertIncludes(file, `main.css?v=${STYLE_VERSION}`));
+
+const manifest = JSON.parse(read('blog/posts.json'));
+manifest.posts.forEach((post) => {
+  assert(post.title && post.title.trim(), `${post.slug}: title required`);
+  assert(post.summary && post.summary.trim(), `${post.slug}: summary required`);
+  assert([...post.summary].length <= 160, `${post.slug}: summary too long`);
+});
 
 [
   ['index.html', 'в работе'],
@@ -177,5 +190,31 @@ assertMatches(
   ['sitemap.xml', '<loc>https://dmytro.my/ru/</loc>'],
   ['sitemap.xml', '<loc>https://dmytro.my/ru/about/</loc>'],
 ].forEach(([file, needle]) => assertIncludes(file, needle));
+
+const awsSummaryEn = 'Deploy a project to AWS in 10 minutes with AI agents. Ready-to-use DevOps prompts for ChatGPT, Claude, Gemini, and GLM.';
+const awsSummaryRu = 'Как развернуть проект на AWS за 10 минут с ИИ-агентом: готовые DevOps-промпты для ChatGPT, Claude, Gemini и GLM.';
+assertIncludes('blog/posts/aws-ai-agent-deployment/index.html', `<meta name="description" content="${awsSummaryEn}">`);
+assertIncludes('blog/posts/aws-ai-agent-deployment/index.html', `<meta property="og:description" content="${awsSummaryEn}">`);
+assertIncludes('blog/posts/aws-ai-agent-deployment/index.html', `<meta name="twitter:description" content="${awsSummaryEn}">`);
+assertIncludes('ru/blog/posts/aws-ai-agent-deployment/index.html', `<meta name="description" content="${awsSummaryRu}">`);
+
+const relatedEn = relatedSection('blog/posts/aws-ai-agent-deployment/index.html');
+assert(relatedEn.includes('<h2 class="related-posts__title"'), 'EN related heading should exist');
+assert(relatedEn.includes('>related posts</h2>'), 'EN related heading should be localized');
+assert(relatedEn.includes('/blog/posts/hermes-agent-learning-assistant/'), 'EN related posts should include Hermes');
+assert(relatedEn.includes('/blog/posts/openclaw-personal-ai-assistant/'), 'EN related posts should include OpenClaw');
+assert(!relatedEn.includes('/ru/'), 'EN related posts should not link to RU');
+assert(!relatedEn.includes('/blog/posts/aws-ai-agent-deployment/'), 'EN related posts should not link to itself');
+assert.strictEqual((relatedEn.match(/class="related-posts__link"/g) || []).length, 2, 'EN should have two related links');
+
+const relatedRu = relatedSection('ru/blog/posts/aws-ai-agent-deployment/index.html');
+assert(relatedRu.includes('>похожие статьи</h2>'), 'RU related heading should be localized');
+assert(relatedRu.includes('/ru/blog/posts/hermes-agent-learning-assistant/'), 'RU related posts should include Hermes');
+assert(relatedRu.includes('/ru/blog/posts/openclaw-personal-ai-assistant/'), 'RU related posts should include OpenClaw');
+assert(!relatedRu.includes('/ru/blog/posts/aws-ai-agent-deployment/'), 'RU related posts should not link to itself');
+assert.strictEqual((relatedRu.match(/class="related-posts__link"/g) || []).length, 2, 'RU should have two related links');
+
+assertIncludes('blog/posts/aws-ai-agent-deployment/index.html', 'class="post-nav"');
+assertIncludes('ru/blog/posts/aws-ai-agent-deployment/index.html', 'class="post-nav"');
 
 console.log('localization checks passed');
