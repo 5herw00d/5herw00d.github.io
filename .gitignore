@@ -54,6 +54,7 @@ token.*
 
 # Agent skills / private instructions (local-only, never push)
 .agent/
+docs/superpowers/
 
 # Obsidian documentation vault (local-only, never push)
 obsidian-docs/
