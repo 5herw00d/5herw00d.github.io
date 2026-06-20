@@ -6,7 +6,7 @@
     <description>Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.</description>
     <language>en-us</language>
     <atom:link href="https://dmytro.my/blog/feed.en.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 20 Jun 2026 03:07:19 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jun 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</title>
       <link>https://dmytro.my/blog/posts/aws-ai-agent-deployment/</link>

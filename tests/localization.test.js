@@ -83,6 +83,12 @@ manifest.posts.forEach((post) => {
 });
 
 [
+  'blog/feed.xml',
+  'blog/feed.en.xml',
+  'blog/feed.ru.xml',
+].forEach((file) => assertIncludes(file, '<lastBuildDate>Fri, 19 Jun 2026 00:00:00 GMT</lastBuildDate>'));
+
+[
   ['index.html', 'в работе'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'contents'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'post sections'],

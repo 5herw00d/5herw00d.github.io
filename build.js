@@ -473,6 +473,10 @@ function rss(site, posts, lang) {
   const langCode = meta ? meta.rss : 'en-us';
   const titleSuffix = lang ? ` (${lang})` : '';
   const feedPath = lang ? `feed.${lang}.xml` : 'feed.xml';
+  const latestPostDate = posts.reduce(
+    (latest, post) => (!latest || post.date > latest ? post.date : latest),
+    '1970-01-01'
+  );
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -482,7 +486,7 @@ function rss(site, posts, lang) {
     <description>${escXml(site.description)}</description>
     <language>${langCode}</language>
     <atom:link href="${escXml(site.url)}/blog/${feedPath}" rel="self" type="application/rss+xml" />
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${rfc822(latestPostDate)}</lastBuildDate>
 ${posts.map((p) => `    <item>
       <title>${escXml(p.title)}</title>
       <link>${escXml(absoluteUrl(site, postPath(p, defaultLang)))}</link>
