@@ -6,7 +6,17 @@
     <description>Notes on building AI SaaS — agents, llm tradeoffs, product loops, infra.</description>
     <language>en-us</language>
     <atom:link href="https://dmytro.my/blog/feed.en.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 19 Jun 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Kimi K3 vs Claude: Open Weights, Long Context, and Production Risk</title>
+      <link>https://dmytro.my/blog/posts/kimi-k3-vs-claude/</link>
+      <guid isPermaLink="true">https://dmytro.my/blog/posts/kimi-k3-vs-claude/</guid>
+      <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A practical Kimi K3 vs Claude comparison for AI SaaS: cost, open weights, context, coding, agents, and production risk.</description>
+      <category>llm</category>
+      <category>agents</category>
+      <category>ai</category>
+    </item>
     <item>
       <title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</title>
       <link>https://dmytro.my/blog/posts/aws-ai-agent-deployment/</link>

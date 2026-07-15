@@ -68,6 +68,26 @@
       "date": "2026-06-19",
       "tags": ["agents", "automation", "infrastructure"],
       "summary": "Как OpenClaw объединяет агентов, память, skills, автоматизацию, устройства и мессенджеры через единый Gateway."
+    },
+    {
+      "slug": "kimi-k3-vs-claude",
+      "route": "kimi-k3-vs-claude",
+      "translationKey": "kimi-k3-vs-claude",
+      "title": "Kimi K3 vs Claude: Open Weights, Long Context, and Production Risk",
+      "lang": "en",
+      "date": "2026-07-15",
+      "tags": ["llm", "agents", "ai"],
+      "summary": "A practical Kimi K3 vs Claude comparison for AI SaaS: cost, open weights, context, coding, agents, and production risk."
+    },
+    {
+      "slug": "kimi-k3-vs-claude-ru",
+      "route": "kimi-k3-vs-claude",
+      "translationKey": "kimi-k3-vs-claude",
+      "title": "Kimi K3 vs Claude: open weights, длинный контекст и production-риск",
+      "lang": "ru",
+      "date": "2026-07-15",
+      "tags": ["llm", "agents", "ai"],
+      "summary": "Практичное сравнение Kimi K3 и Claude для AI SaaS: цена, open weights, контекст, кодинг, агенты и production-риск."
     }
   ]
 }
