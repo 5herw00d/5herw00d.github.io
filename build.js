@@ -20,7 +20,7 @@ const ROOT = __dirname;
 const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
-const STYLE_VERSION = '20260620-1';
+const STYLE_VERSION = '20260718-1';
 
 // language → BCP47 code + OG locale
 const LANG_META = {
@@ -269,8 +269,8 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0a1116">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f7f8fa">
 
   <title>${escHtml(title)}</title>
   <meta name="description" content="${escAttr(desc)}">
@@ -297,7 +297,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/main.css?v=${STYLE_VERSION}">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="alternate" type="application/rss+xml" title="${escAttr(site.title)} blog (${lang})" href="/blog/feed.${lang}.xml">

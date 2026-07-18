@@ -1,9 +1,10 @@
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
+const { relatedPostsFor } = require('../scripts/blog-data.js');
 
 const ROOT = path.resolve(__dirname, '..');
-const STYLE_VERSION = '20260620-1';
+const STYLE_VERSION = '20260718-1';
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -86,11 +87,17 @@ manifest.posts.forEach((post) => {
   assert([...post.summary].length <= 160, `${post.slug}: summary too long`);
 });
 
+const latestPostDate = manifest.posts.reduce(
+  (latest, post) => (post.date > latest ? post.date : latest),
+  manifest.posts[0].date
+);
+const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
+
 [
   'blog/feed.xml',
   'blog/feed.en.xml',
   'blog/feed.ru.xml',
-].forEach((file) => assertIncludes(file, '<lastBuildDate>Fri, 19 Jun 2026 00:00:00 GMT</lastBuildDate>'));
+].forEach((file) => assertIncludes(file, `<lastBuildDate>${expectedFeedDate}</lastBuildDate>`));
 
 [
   ['index.html', 'в работе'],
@@ -209,18 +216,24 @@ assertIncludes('blog/posts/aws-ai-agent-deployment/index.html', `<meta name="twi
 assertIncludes('ru/blog/posts/aws-ai-agent-deployment/index.html', `<meta name="description" content="${awsSummaryRu}">`);
 
 const relatedEn = relatedSection('blog/posts/aws-ai-agent-deployment/index.html');
+const awsEnPost = manifest.posts.find((post) => post.slug === 'aws-ai-agent-deployment');
+const expectedRelatedEn = relatedPostsFor(awsEnPost, manifest.posts, 'en');
 assert(relatedEn.includes('<h2 class="related-posts__title"'), 'EN related heading should exist');
 assert(relatedEn.includes('>related posts</h2>'), 'EN related heading should be localized');
-assert(relatedEn.includes('/blog/posts/hermes-agent-learning-assistant/'), 'EN related posts should include Hermes');
-assert(relatedEn.includes('/blog/posts/openclaw-personal-ai-assistant/'), 'EN related posts should include OpenClaw');
+expectedRelatedEn.forEach((post) => {
+  assert(relatedEn.includes(`/blog/posts/${post.route}/`), `EN related posts should include ${post.route}`);
+});
 assert(!relatedEn.includes('/ru/'), 'EN related posts should not link to RU');
 assert(!relatedEn.includes('/blog/posts/aws-ai-agent-deployment/'), 'EN related posts should not link to itself');
 assert.strictEqual((relatedEn.match(/class="related-posts__link"/g) || []).length, 2, 'EN should have two related links');
 
 const relatedRu = relatedSection('ru/blog/posts/aws-ai-agent-deployment/index.html');
+const awsRuPost = manifest.posts.find((post) => post.slug === 'aws-ai-agent-deployment-ru');
+const expectedRelatedRu = relatedPostsFor(awsRuPost, manifest.posts, 'en');
 assert(relatedRu.includes('>похожие статьи</h2>'), 'RU related heading should be localized');
-assert(relatedRu.includes('/ru/blog/posts/hermes-agent-learning-assistant/'), 'RU related posts should include Hermes');
-assert(relatedRu.includes('/ru/blog/posts/openclaw-personal-ai-assistant/'), 'RU related posts should include OpenClaw');
+expectedRelatedRu.forEach((post) => {
+  assert(relatedRu.includes(`/ru/blog/posts/${post.route}/`), `RU related posts should include ${post.route}`);
+});
 assert(!relatedRu.includes('/ru/blog/posts/aws-ai-agent-deployment/'), 'RU related posts should not link to itself');
 assert.strictEqual((relatedRu.match(/class="related-posts__link"/g) || []).length, 2, 'RU should have two related links');
 
