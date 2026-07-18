@@ -4,7 +4,7 @@ const path = require('path');
 const { relatedPostsFor } = require('../scripts/blog-data.js');
 
 const ROOT = path.resolve(__dirname, '..');
-const STYLE_VERSION = '20260718-2';
+const STYLE_VERSION = '20260718-3';
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -157,8 +157,6 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['blog/posts/aws-ai-agent-deployment/index.html', 'Как ИИ-агент настроил AWS'],
   ['ru/index.html', 'I build AI products end-to-end.'],
   ['ru/about/index.html', 'I build AI products end-to-end.'],
-  ['index.html', 'class="display__name"'],
-  ['ru/index.html', 'class="display__name"'],
   ['ru/index.html', 'часовой пояс'],
   ['ru/about/index.html', 'часовой пояс'],
 ].forEach(([file, needle]) => assertExcludes(file, needle));
@@ -185,22 +183,32 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['index.html', '<link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/">'],
   ['index.html', 'class="site-lang"'],
   ['index.html', 'hreflang="ru" href="/ru/"'],
-  ['index.html', '<h1 class="visually-hidden">Dmytro My</h1>'],
+  ['index.html', '<h1 class="display display--head">'],
+  ['index.html', '<span class="display__family">My</span>'],
+  ['index.html', '<meta name="author" content="Dmytro My">'],
+  ['index.html', 'og:image" content="https://dmytro.my/dm.png"'],
   ['about/index.html', '<link rel="alternate" hreflang="ru" href="https://dmytro.my/ru/about/">'],
   ['about/index.html', 'hreflang="ru" href="/ru/about/"'],
+  ['about/index.html', 'og:type" content="profile"'],
+  ['about/index.html', 'profile:first_name" content="Dmytro"'],
+  ['about/index.html', 'article:author" content="https://dmytro.my/about/"'],
+  ['about/index.html', '"@type":"ProfilePage"'],
   ['ru/index.html', '<html lang="ru">'],
   ['ru/index.html', '<link rel="canonical" href="https://dmytro.my/ru/">'],
   ['ru/index.html', 'hreflang="en" href="/"'],
-  ['ru/index.html', 'Я создаю AI-продукты под ключ.'],
+  ['ru/index.html', 'Я создаю AI-продукты под ключ:'],
   ['ru/index.html', 'href="/ru/about/"'],
   ['ru/index.html', 'href="/ru/blog/"'],
-  ['ru/index.html', '<h1 class="visually-hidden">Dmytro My</h1>'],
+  ['ru/index.html', '<h1 class="display display--head">'],
+  ['ru/index.html', '<span class="display__family">My</span>'],
   ['ru/index.html', '<span class="key">TZ</span><span>UA · UTC+3</span>'],
   ['ru/about/index.html', '<html lang="ru">'],
   ['ru/about/index.html', '<link rel="canonical" href="https://dmytro.my/ru/about/">'],
   ['ru/about/index.html', 'hreflang="en" href="/about/"'],
   ['ru/about/index.html', 'продуктовое мышление + инженерия'],
   ['ru/about/index.html', 'href="/ru/blog/"'],
+  ['ru/about/index.html', 'og:type" content="profile"'],
+  ['ru/about/index.html', 'profile:first_name" content="Dmytro"'],
   ['ru/about/index.html', '<span class="key">TZ</span><span>UA · UTC+3</span>'],
   ['blog/index.html', 'class="site-lang"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'class="site-lang"'],
