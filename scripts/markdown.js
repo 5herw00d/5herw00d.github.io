@@ -71,7 +71,13 @@
         var lvl = h[1].length;
         var text = h[2];
         var id = slugify(text);
-        if (lvl === 1 && !title) title = text;
+        // First H1 is the document title; page templates render it as .display.
+        // Keep it out of the body to avoid a second, differently styled H1.
+        if (lvl === 1 && !title) {
+          title = text;
+          i++;
+          continue;
+        }
         if (lvl >= 2 && lvl <= 3) headings.push({ id: id, text: text, lvl: lvl });
         out.push('<h' + lvl + ' id="' + id + '">' + inline(escHtml(text)) + '</h' + lvl + '>');
         i++;

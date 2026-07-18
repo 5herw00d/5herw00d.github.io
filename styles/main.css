@@ -63,6 +63,14 @@
     --max: 1360px;
     --rail: 172px;
 
+    /* type scale — shared across home, about, blog, posts */
+    --title-page: clamp(40px, 5.5vw, 64px);
+    --title-post: clamp(34px, 4.6vw, 52px);
+    --title-section: clamp(22px, 2.4vw, 28px);
+    --title-card: clamp(20px, 2.1vw, 24px);
+    --title-prose-h2: clamp(24px, 2.8vw, 30px);
+    --title-prose-h3: clamp(18px, 2vw, 22px);
+
     /* cursor spotlight (set by js, in px) — start off-screen */
     --mx: -9999px;
     --my: -9999px;
@@ -368,29 +376,41 @@
     gap: 18px;
   }
 
+  /* Page H1 — one system for home / about / blog / posts */
   .display {
     color: var(--text);
     font-family: var(--display);
-    font-size: clamp(42px, 6.4vw, 72px);
+    font-size: var(--title-page);
     font-weight: 600;
     letter-spacing: -0.03em;
-    line-height: 0.98;
-    margin-top: 8px;
+    line-height: 1.05;
+    margin: 8px 0 0;
     text-shadow: none;
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
-    column-gap: 0.18em;
-    row-gap: 0.04em;
-    max-width: 14ch;
+    column-gap: 0.16em;
+    row-gap: 0.02em;
+    max-width: 100%;
   }
-  .display--head {
-    font-size: 1em;
+  .display--head,
+  .display--blog {
+    /* short page titles share the same page scale */
+    font-size: var(--title-page);
     font-weight: 600;
-    letter-spacing: inherit;
-    line-height: inherit;
-    margin-top: 0;
-    text-shadow: none;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 8px 0 0;
+  }
+  .display--post {
+    display: block;
+    font-size: var(--title-post);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    max-width: 22ch;
+    margin: 8px 0 0;
+    text-wrap: balance;
   }
   .display__name {
     display: inline-block;
@@ -594,7 +614,7 @@
   .block__title {
     color: var(--text);
     font-family: var(--display);
-    font-size: clamp(22px, 2.4vw, 28px);
+    font-size: var(--title-section);
     font-weight: 600;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -744,7 +764,7 @@
     color: var(--text);
     max-width: 24ch;
     font-family: var(--display);
-    font-size: clamp(20px, 2.1vw, 24px);
+    font-size: var(--title-card);
     line-height: 1.18;
     font-weight: 500;
     letter-spacing: -0.02em;
@@ -961,7 +981,7 @@
     body { font-size: 13px; }
     .window__shell, .portrait__feed { display: none; }
     .window__hud-label, .hud__pulse { display: none; }
-    .display { font-size: clamp(40px, 12vw, 64px); }
+    /* page titles keep the shared --title-* scale */
     .proj { grid-template-columns: 1fr; }
     .proj__card { min-height: 0; }
     .proj__inner { gap: 12px; padding: 18px; }
@@ -1033,12 +1053,14 @@
     border-bottom: 1px solid var(--line);
     padding-bottom: 42px;
   }
-  .display--blog { max-width: 15ch; }
-  .display--post {
-    max-width: 18ch;
-    font-size: clamp(30px, 4vw, 52px);
+  .post-row__title {
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
   }
-  .post-row__title { color: var(--text); font-size: 17px; font-weight: 600; }
   .post-row__summary { color: var(--text-soft); font-size: 15px; }
   .portrait, .portrait__frame, .portrait__feed { box-shadow: none; }
 
@@ -1046,8 +1068,6 @@
     .window { padding: 12px 20px; }
     .site { gap: 34px; padding-top: 26px; }
     .content { gap: 72px; }
-    .display { font-size: 54px; max-width: 100%; }
-    .display--post { font-size: 40px; }
     .hero__layout { gap: 36px; }
   }
 
@@ -1071,12 +1091,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    .display { font-size: 38px; line-height: 1.1; }
-    .display--post { font-size: 30px; }
     .lead, .prose { font-size: 16px; }
-    .block__title { font-size: 20px; }
-    .prose h2 { font-size: 24px; }
-    .prose h3 { font-size: 18px; }
     .post-row__title { font-size: 16px; }
     .contact__row { padding: 12px 0; }
   }
@@ -1091,17 +1106,6 @@
 
   .hero--blog, .hero--post {
     padding-top: clamp(20px, 4vw, 40px);
-  }
-  .display--blog, .display--post {
-    font-size: clamp(40px, 6vw, 80px);
-  }
-  .display--post {
-    display: block;
-    font-size: clamp(28px, 3.5vw, 44px);
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    max-width: 32ch;
-    text-shadow: none;
   }
 
   /* ---------- listing ---------- */
@@ -1162,9 +1166,10 @@
   .archive__title {
     color: var(--text);
     font-family: var(--display);
-    font-size: 14px;
-    letter-spacing: 0;
+    font-size: var(--title-card);
+    letter-spacing: -0.02em;
     font-weight: 600;
+    line-height: 1.05;
   }
   .archive__list { display: grid; }
   .archive__row {
@@ -1271,6 +1276,9 @@
   .prose__loading, .prose__err { color: var(--muted); }
   .prose__err { color: var(--signal); }
 
+  /* First markdown H1 is the page title — hide if present (build also strips it). */
+  .prose > h1:first-child { display: none; }
+
   .prose h2, .prose h3, .prose h4 {
     color: var(--text);
     font-family: var(--display);
@@ -1281,11 +1289,11 @@
     scroll-margin-top: 96px;
   }
   .prose h2 {
-    font-size: clamp(26px, 3vw, 32px);
+    font-size: var(--title-prose-h2);
     padding-top: 0.65em;
     border-top: 1px solid var(--line);
   }
-  .prose h3 { font-size: clamp(18px, 2vw, 22px); font-weight: 500; color: var(--accent); }
+  .prose h3 { font-size: var(--title-prose-h3); font-weight: 500; color: var(--accent); }
   .prose h4 { font-size: 16px; font-family: var(--sans); font-weight: 600; letter-spacing: 0; color: var(--text); }
 
   .prose p { margin: 0; }
@@ -1471,10 +1479,7 @@
     .post-row__id, .post-row__date {
       display: none;
     }
-    .display--post { font-size: clamp(24px, 7vw, 32px); }
     .prose { font-size: 14px; }
-    .prose h2 { font-size: 19px; }
-    .prose h3 { font-size: 16px; }
   }
 }
 
