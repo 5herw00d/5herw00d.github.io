@@ -1,6 +1,5 @@
 // blog.js — listing page with language filter
 (() => {
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const UI_TEXT = {
     en: {
       archive: 'archive',
@@ -61,20 +60,6 @@
     };
     tick();
     setInterval(tick, 1000);
-  }
-
-  // cursor spotlight
-  if (!reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let raf = 0;
-    const root = document.documentElement;
-    addEventListener('pointermove', (e) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        root.style.setProperty('--mx', `${e.clientX}px`);
-        root.style.setProperty('--my', `${e.clientY}px`);
-        raf = 0;
-      });
-    }, { passive: true });
   }
 
   const list = document.querySelector('[data-post-list]');

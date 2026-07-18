@@ -1,7 +1,5 @@
 // post-static.js — runtime niceties for pre-rendered post pages
 (() => {
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   document.querySelectorAll('[data-year]').forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
@@ -18,19 +16,6 @@
     };
     tick();
     setInterval(tick, 1000);
-  }
-
-  if (!reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let raf = 0;
-    const root = document.documentElement;
-    addEventListener('pointermove', (e) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        root.style.setProperty('--mx', `${e.clientX}px`);
-        root.style.setProperty('--my', `${e.clientY}px`);
-        raf = 0;
-      });
-    }, { passive: true });
   }
 
   // active TOC heading on scroll

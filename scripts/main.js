@@ -72,31 +72,6 @@
   );
   document.querySelectorAll('.block').forEach((b) => revealObs.observe(b));
 
-  // cursor spotlight (skip on touch / reduced motion)
-  if (!reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let raf = 0;
-    const root = document.documentElement;
-    const cards = document.querySelectorAll('.proj__card');
-    addEventListener(
-      'pointermove',
-      (e) => {
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          root.style.setProperty('--mx', `${e.clientX}px`);
-          root.style.setProperty('--my', `${e.clientY}px`);
-          // local cursor on cards
-          cards.forEach((c) => {
-            const r = c.getBoundingClientRect();
-            c.style.setProperty('--mx', `${e.clientX - r.left}px`);
-            c.style.setProperty('--my', `${e.clientY - r.top}px`);
-          });
-          raf = 0;
-        });
-      },
-      { passive: true }
-    );
-  }
-
   // scramble effect on h1 (one-shot, fast, plain text)
   const scrambleEl = document.querySelector('[data-scramble]');
   if (scrambleEl) {

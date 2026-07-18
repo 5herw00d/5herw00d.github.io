@@ -20,7 +20,7 @@ const ROOT = __dirname;
 const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
-const STYLE_VERSION = '20260718-4';
+const STYLE_VERSION = '20260718-5';
 
 // language → BCP47 code + OG locale
 const LANG_META = {
@@ -306,13 +306,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="page-post" data-lang="${lang}">
-  <div class="fx fx--grid" aria-hidden="true"></div>
-  <div class="fx fx--grain" aria-hidden="true"></div>
-  <div class="fx fx--spot" aria-hidden="true"></div>
-  <div class="fx fx--vignette" aria-hidden="true"></div>
-
   <header class="window" role="banner">
-    <div class="window__lights" aria-hidden="true"><i></i><i></i><i></i></div>
     <p class="window__path">
       <span class="window__user">dmytro</span><span class="window__at">@</span><span class="window__host">my</span>
       <span class="window__sep">:</span>
@@ -321,7 +315,6 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
     </p>
     ${languageSwitch}
     <div class="window__hud" aria-hidden="true">
-      <span class="hud__pulse"></span>
       <span class="window__hud-label">${escHtml(ui.readHud)} · ${lang}</span>
       <span class="window__hud-time" data-clock>—</span>
     </div>
