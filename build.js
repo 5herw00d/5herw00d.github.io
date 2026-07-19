@@ -357,10 +357,6 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
 
     <article class="content">
       <section class="hero hero--post">
-        <div class="hero__head">
-          <p class="line"><span class="prompt">$</span> cat posts/${escHtml(post.slug)}.md</p>
-          <p class="eyebrow">// ${escHtml((post.tags || []).join(' · ') || 'post')} · lang=${lang}</p>
-        </div>
         <h1 class="display display--post">${escHtml(post.title)}</h1>
         <ul class="post-meta">
           <li class="post-meta__lang">${lang}</li>
