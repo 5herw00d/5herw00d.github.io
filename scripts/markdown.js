@@ -30,6 +30,15 @@
       .slice(0, 60);
   }
 
+  /** Sentence case for headings: first letter upper, rest unchanged. */
+  function leadingCap(s) {
+    if (!s) return s;
+    var i = 0;
+    while (i < s.length && /\s/.test(s.charAt(i))) i++;
+    if (i >= s.length) return s;
+    return s.slice(0, i) + s.charAt(i).toLocaleUpperCase() + s.slice(i + 1);
+  }
+
   function inline(s) {
     s = s.replace(/`([^`]+)`/g, function (_, t) { return '<code>' + t + '</code>'; });
     s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (_, t, u) {
@@ -78,8 +87,10 @@
           i++;
           continue;
         }
-        if (lvl >= 2 && lvl <= 3) headings.push({ id: id, text: text, lvl: lvl });
-        out.push('<h' + lvl + ' id="' + id + '">' + inline(escHtml(text)) + '</h' + lvl + '>');
+        // H2/H3 start with a capital in the rendered page and TOC.
+        var display = (lvl === 2 || lvl === 3) ? leadingCap(text) : text;
+        if (lvl >= 2 && lvl <= 3) headings.push({ id: id, text: display, lvl: lvl });
+        out.push('<h' + lvl + ' id="' + id + '">' + inline(escHtml(display)) + '</h' + lvl + '>');
         i++;
         continue;
       }

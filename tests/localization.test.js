@@ -4,7 +4,7 @@ const path = require('path');
 const { relatedPostsFor } = require('../scripts/blog-data.js');
 
 const ROOT = path.resolve(__dirname, '..');
-const STYLE_VERSION = '20260718-5';
+const STYLE_VERSION = '20260718-8';
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -101,19 +101,19 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
 
 [
   ['index.html', 'в работе'],
-  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'contents'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'Contents'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'post sections'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'dmytro.my blog post'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '../home'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'read · ru'],
-  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">read</h2>'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Read</h2>'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '1 min'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', 'содержание'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'Содержание'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'разделы поста'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'пост блога dmytro.my'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '../главная'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'чтение · en'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">читать</h2>'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Читать</h2>'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '1 мин'],
 ].forEach(([file, needle]) => assertExcludes(file, needle));
 
@@ -123,17 +123,17 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['scripts/blog.js', 'Ошибка загрузки posts.json'],
   ['blog/posts/aws-ai-agent-deployment-ru.md', '# Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'aria-label="пост блога dmytro.my"'],
-  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'содержание'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'Содержание'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '../главная'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'чтение · ru'],
-  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">читать</h2>'],
+  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Читать</h2>'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '1 мин'],
   ['blog/posts/aws-ai-agent-deployment.md', '# How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'aria-label="dmytro.my blog post"'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', 'contents'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', 'Contents'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '../home'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'read · en'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">read</h2>'],
+  ['blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Read</h2>'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '1 min'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '<p class="rail__status-row rail__status-row--slug">'],
 ].forEach(([file, needle]) => assertIncludes(file, needle));
@@ -252,18 +252,18 @@ assertIncludes('blog/index.html', '<title>Dmytro My Blog — AI SaaS, Agents, LL
 assertIncludes('ru/blog/index.html', '<title>Блог Dmytro My — AI SaaS, агенты, LLM</title>');
 assertIncludes(
   'blog/posts/aws-ai-agent-deployment/index.html',
-  '<title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes | Dmytro My</title>'
+  '<title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</title>'
 );
 assertIncludes(
   'ru/blog/posts/aws-ai-agent-deployment/index.html',
-  '<title>Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут | Dmytro My</title>'
+  '<title>Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут</title>'
 );
 
 const relatedEn = relatedSection('blog/posts/aws-ai-agent-deployment/index.html');
 const awsEnPost = manifest.posts.find((post) => post.slug === 'aws-ai-agent-deployment');
 const expectedRelatedEn = relatedPostsFor(awsEnPost, manifest.posts, 'en');
 assert(relatedEn.includes('<h2 class="related-posts__title"'), 'EN related heading should exist');
-assert(relatedEn.includes('>related posts</h2>'), 'EN related heading should be localized');
+assert(relatedEn.includes('>Related posts</h2>'), 'EN related heading should be localized');
 expectedRelatedEn.forEach((post) => {
   assert(relatedEn.includes(`/blog/posts/${post.route}/`), `EN related posts should include ${post.route}`);
 });
@@ -274,7 +274,7 @@ assert.strictEqual((relatedEn.match(/class="related-posts__link"/g) || []).lengt
 const relatedRu = relatedSection('ru/blog/posts/aws-ai-agent-deployment/index.html');
 const awsRuPost = manifest.posts.find((post) => post.slug === 'aws-ai-agent-deployment-ru');
 const expectedRelatedRu = relatedPostsFor(awsRuPost, manifest.posts, 'en');
-assert(relatedRu.includes('>похожие статьи</h2>'), 'RU related heading should be localized');
+assert(relatedRu.includes('>Похожие статьи</h2>'), 'RU related heading should be localized');
 expectedRelatedRu.forEach((post) => {
   assert(relatedRu.includes(`/ru/blog/posts/${post.route}/`), `RU related posts should include ${post.route}`);
 });

@@ -558,7 +558,7 @@
     font-weight: 600;
     line-height: 1.05;
     letter-spacing: -0.02em;
-    text-transform: lowercase;
+    text-transform: none;
   }
   .block__rule {
     height: 1px;
@@ -651,7 +651,7 @@
     grid-template-columns: 1fr;
     gap: 0;
     align-items: stretch;
-    border-top: 1px solid var(--line);
+    border: 0;
   }
   .proj__card {
     position: relative;
@@ -663,6 +663,9 @@
     background: transparent;
     transition: border-color .25s ease, background .25s ease, color .25s ease;
     overflow: hidden;
+  }
+  .proj__card:first-child {
+    border-top: 0;
   }
   .proj__card:hover {
     border-color: var(--accent);
@@ -1138,18 +1141,36 @@
 
   /* ---------- post ---------- */
   .post-meta {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 0;
+    list-style: none;
   }
-  .post-meta__tag, .post-meta__date {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    padding: 3px 10px;
+  .post-meta > li,
+  .post-meta__lang,
+  .post-meta__tag,
+  .post-meta__date {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 28px;
+    margin: 0;
+    padding: 0 10px;
     border: 1px solid var(--line);
-    background: var(--bg-2);
     border-radius: 2px;
+    background: var(--bg-2);
+    color: var(--text-soft);
     font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: lowercase;
+    white-space: nowrap;
   }
 
   .rail__toc { display: grid; gap: 8px; }
@@ -1481,17 +1502,25 @@
     grid-template-columns: 5ch 12ch 4ch minmax(0, 1fr) auto;
   }
   .post-row__lang,
-  .archive__lang,
-  .post-meta__lang {
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 2px 6px;
+  .archive__lang {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 22px;
+    color: var(--text-soft);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    padding: 0 8px;
     border: 1px solid var(--line);
+    border-radius: 2px;
     background: var(--bg-2);
     align-self: center;
     line-height: 1;
+    white-space: nowrap;
   }
 
   .archive__row {

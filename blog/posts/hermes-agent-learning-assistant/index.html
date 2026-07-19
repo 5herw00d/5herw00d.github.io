@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f7f8fa">
 
-  <title>Hermes Agent: A Personal AI Agent That Learns | Dmytro My</title>
+  <title>Hermes Agent: A Personal AI Agent That Learns</title>
   <meta name="description" content="How Hermes Agent uses persistent memory, self-improving skills, flexible execution backends, and messaging channels.">
   <meta name="author" content="Dmytro My">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/main.css?v=20260718-5">
+  <link rel="stylesheet" href="/styles/main.css?v=20260718-8">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (en)" href="/blog/feed.en.xml">
   <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (all)" href="/blog/feed.xml">
@@ -76,41 +76,41 @@
 
         <nav class="rail__toc" aria-label="post sections">
           <div class="rail__toc-inner">
-            <p class="rail__toc-label">contents</p>
+            <p class="rail__toc-label">Contents</p>
             <ol class="rail__toc-list">
 
                 <li>
                   <a href="#how-memory-works">
                     <span class="rail__toc-num">01</span>
-                    <span>how memory works</span>
+                    <span>How memory works</span>
                   </a>
                 </li>
 
                 <li>
                   <a href="#skills-as-procedural-memory">
                     <span class="rail__toc-num">02</span>
-                    <span>skills as procedural memory</span>
+                    <span>Skills as procedural memory</span>
                   </a>
                 </li>
 
                 <li>
                   <a href="#where-hermes-can-run">
                     <span class="rail__toc-num">03</span>
-                    <span>where Hermes can run</span>
+                    <span>Where Hermes can run</span>
                   </a>
                 </li>
 
                 <li>
                   <a href="#who-hermes-is-for">
                     <span class="rail__toc-num">04</span>
-                    <span>who Hermes is for</span>
+                    <span>Who Hermes is for</span>
                   </a>
                 </li>
 
                 <li>
                   <a href="#what-to-check-before-installation">
                     <span class="rail__toc-num">05</span>
-                    <span>what to check before installation</span>
+                    <span>What to check before installation</span>
                   </a>
                 </li>
 
@@ -142,7 +142,7 @@
       <section class="block is-visible">
         <header class="block__head">
           <span class="block__num">¶</span>
-          <h2 class="block__title">read</h2>
+          <h2 class="block__title">Read</h2>
           <span class="block__rule" aria-hidden="true"></span>
           <span class="block__cmd"><span class="prompt">$</span> less hermes-agent-learning-assistant.md</span>
         </header>
@@ -150,28 +150,28 @@
           <article class="prose">
             <p>Most AI assistants start each new conversation with almost no knowledge of previous work. Hermes Agent takes a different approach: it preserves useful experience, learns user preferences, and turns recurring workflows into reusable skills.</p>
             <p>Hermes Agent is an open-source project from Nous Research. It supports multiple model providers and can run locally, in Docker, on a remote server, or in a serverless environment.</p>
-            <h2 id="how-memory-works">how memory works</h2>
+            <h2 id="how-memory-works">How memory works</h2>
             <p>Hermes uses several memory layers.</p>
             <p><code>MEMORY.md</code> stores technical facts, conventions, and lessons learned. <code>USER.md</code> contains user preferences, communication style, and working habits.</p>
             <p>Together, these files are limited to roughly 1,300 tokens. This forces the agent to keep important information instead of copying the entire conversation history.</p>
             <p>Complete sessions are stored separately in SQLite and indexed with FTS5. The agent can search a conversation from several weeks ago even when it is not included in active memory.</p>
             <p>External memory providers such as Honcho and Mem0 can also be connected.</p>
-            <h2 id="skills-as-procedural-memory">skills as procedural memory</h2>
+            <h2 id="skills-as-procedural-memory">Skills as procedural memory</h2>
             <p>The most interesting Hermes feature is its ability to create and improve skills.</p>
             <p>After completing a complex task, the agent can save the successful procedure as a <code>SKILL.md</code> file. The next time it encounters a similar problem, it can reuse the process instead of starting from zero.</p>
             <p>The format is compatible with the open <a href="https://agentskills.io" target="_blank" rel="noopener">Agent Skills</a> standard, making skills portable between compatible agents.</p>
             <p>Automatic memory and skill changes can require approval. This matters because an agent may learn independently, but the user should still control what it learns.</p>
-            <h2 id="where-hermes-can-run">where Hermes can run</h2>
+            <h2 id="where-hermes-can-run">Where Hermes can run</h2>
             <p>Hermes supports six execution backends:</p>
             <ul><li>local;</li><li>Docker;</li><li>SSH;</li><li>Singularity;</li><li>Daytona;</li><li>Modal.</li></ul>
             <p>The same agent can work on a laptop, home server, VPS, or serverless infrastructure.</p>
             <p>It can be accessed through the CLI, Telegram, Discord, Slack, WhatsApp, and Signal. A conversation started in the terminal can continue in a messenger.</p>
             <p>Hermes also supports natural-language cron jobs and parallel subagents. One agent can research documentation while others inspect code and prepare a report.</p>
-            <h2 id="who-hermes-is-for">who Hermes is for</h2>
+            <h2 id="who-hermes-is-for">Who Hermes is for</h2>
             <p>Hermes is useful when you need a persistent working agent rather than another chat interface:</p>
             <ul><li>it should remember projects and preferences;</li><li>work through both terminal and messaging apps;</li><li>handle long technical tasks;</li><li>build a reusable library of procedures;</li><li>run locally or on your own infrastructure.</li></ul>
             <p>A built-in migration tool can import settings, memories, and skills from OpenClaw.</p>
-            <h2 id="what-to-check-before-installation">what to check before installation</h2>
+            <h2 id="what-to-check-before-installation">What to check before installation</h2>
             <p>Hermes may access your terminal, files, and external services. I would not enable maximum permissions immediately.</p>
             <p>Start by:</p>
             <ul><li>running it in Docker or on an isolated machine;</li><li>restricting available commands and directories;</li><li>requiring approval for memory and skill changes;</li><li>keeping secrets out of messaging platforms;</li><li>monitoring model costs;</li><li>backing up the <code>~/.hermes</code> directory.</li></ul>
@@ -184,7 +184,7 @@
 
 
         <section class="related-posts" aria-labelledby="related-posts-title-hermes-agent-learning-assistant">
-          <h2 class="related-posts__title" id="related-posts-title-hermes-agent-learning-assistant">related posts</h2>
+          <h2 class="related-posts__title" id="related-posts-title-hermes-agent-learning-assistant">Related posts</h2>
           <div class="related-posts__list">
 
               <a class="related-posts__link" href="/blog/posts/openclaw-personal-ai-assistant/">
@@ -201,7 +201,7 @@
         </section>
 
 
-        <nav class="post-nav" aria-label="adjacent posts">
+        <nav class="post-nav" aria-label="Adjacent posts">
           <a class="post-nav__btn post-nav__btn--prev" href="/blog/posts/openclaw-personal-ai-assistant/">
                 <span class="post-nav__dir">← older</span>
                 <span class="post-nav__title">OpenClaw: A Personal AI Assistant Across Devices</span>

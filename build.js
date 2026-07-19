@@ -20,7 +20,7 @@ const ROOT = __dirname;
 const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
-const STYLE_VERSION = '20260718-5';
+const STYLE_VERSION = '20260718-8';
 
 // language → BCP47 code + OG locale
 const LANG_META = {
@@ -31,38 +31,38 @@ const LANG_META = {
 
 const POST_UI = {
   en: {
-    adjacentPosts: 'adjacent posts',
+    adjacentPosts: 'Adjacent posts',
     blogLink: '../blog',
     blogPostAria: 'dmytro.my blog post',
-    contents: 'contents',
+    contents: 'Contents',
     homeLink: '../home',
     languageLabel: 'language',
     newer: 'newer →',
     older: '← older',
-    readBlock: 'read',
+    readBlock: 'Read',
     readHud: 'read',
     readKey: 'read',
     sectionsAria: 'sections',
     tocAria: 'post sections',
     minute: 'min',
-    relatedPosts: 'related posts',
+    relatedPosts: 'Related posts',
   },
   ru: {
-    adjacentPosts: 'соседние записи',
+    adjacentPosts: 'Соседние записи',
     blogLink: '../блог',
     blogPostAria: 'пост блога dmytro.my',
-    contents: 'содержание',
+    contents: 'Содержание',
     homeLink: '../главная',
     languageLabel: 'язык',
     newer: 'новее →',
     older: '← старее',
-    readBlock: 'читать',
+    readBlock: 'Читать',
     readHud: 'чтение',
     readKey: 'чтение',
     sectionsAria: 'разделы',
     tocAria: 'разделы поста',
     minute: 'мин',
-    relatedPosts: 'похожие статьи',
+    relatedPosts: 'Похожие статьи',
   },
   uk: {
     adjacentPosts: 'сусідні дописи',
@@ -85,16 +85,16 @@ const POST_UI = {
 
 const BLOG_UI = {
   en: {
-    archive: 'archive', eyebrow: '// notes on shipping ai products · plain markdown',
-    filter: 'filter by language', home: '../home', last: 'last', latest: 'latest',
+    archive: 'Archive', eyebrow: '// notes on shipping ai products · plain markdown',
+    filter: 'filter by language', home: '../home', last: 'last', latest: 'Latest',
     lead: 'Short, practical entries — agents, llm tradeoffs, product loops, infra, and the boring stuff that keeps it all running.',
-    net: 'net', posts: 'posts', sections: 'sections', stable: 'stable', tags: 'tags', title: 'blog',
+    net: 'net', posts: 'posts', sections: 'sections', stable: 'stable', tags: 'Tags', title: 'blog',
   },
   ru: {
-    archive: 'архив', eyebrow: '// заметки о запуске AI-продуктов · plain markdown',
-    filter: 'фильтр по языку', home: '../главная', last: 'последняя', latest: 'свежее',
+    archive: 'Архив', eyebrow: '// заметки о запуске AI-продуктов · plain markdown',
+    filter: 'фильтр по языку', home: '../главная', last: 'последняя', latest: 'Свежее',
     lead: 'Короткие практические заметки: агенты, компромиссы LLM, продуктовые циклы и инфраструктура.',
-    net: 'сеть', posts: 'записи', sections: 'разделы', stable: 'стабильно', tags: 'теги', title: 'блог',
+    net: 'сеть', posts: 'записи', sections: 'разделы', stable: 'стабильно', tags: 'Теги', title: 'блог',
   },
 };
 
@@ -253,7 +253,7 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
   const authorUrl = lang === defaultLang
     ? `${site.url.replace(/\/$/, '')}/about/`
     : `${site.url.replace(/\/$/, '')}/${lang}/about/`;
-  const documentTitle = `${title} | ${site.author}`;
+  const documentTitle = title;
   const localeAlternates = (site.languages || [])
     .filter((code) => code !== lang)
     .map((code) => LANG_META[code]?.ogLocale)

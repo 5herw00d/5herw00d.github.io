@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f7f8fa">
 
-  <title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes | Dmytro My</title>
+  <title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes</title>
   <meta name="description" content="Deploy a project to AWS in 10 minutes with AI agents. Ready-to-use DevOps prompts for ChatGPT, Claude, Gemini, and GLM.">
   <meta name="author" content="Dmytro My">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/main.css?v=20260718-5">
+  <link rel="stylesheet" href="/styles/main.css?v=20260718-8">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (en)" href="/blog/feed.en.xml">
   <link rel="alternate" type="application/rss+xml" title="dmytro.my blog (all)" href="/blog/feed.xml">
@@ -76,13 +76,13 @@
 
         <nav class="rail__toc" aria-label="post sections">
           <div class="rail__toc-inner">
-            <p class="rail__toc-label">contents</p>
+            <p class="rail__toc-label">Contents</p>
             <ol class="rail__toc-list">
 
                 <li>
                   <a href="#prompts-for-different-models">
                     <span class="rail__toc-num">01</span>
-                    <span>prompts for different models</span>
+                    <span>Prompts for different models</span>
                   </a>
                 </li>
 
@@ -117,7 +117,7 @@
                 <li>
                   <a href="#post-deployment-checklist">
                     <span class="rail__toc-num">06</span>
-                    <span>post-deployment checklist</span>
+                    <span>Post-deployment checklist</span>
                   </a>
                 </li>
 
@@ -149,7 +149,7 @@
       <section class="block is-visible">
         <header class="block__head">
           <span class="block__num">¶</span>
-          <h2 class="block__title">read</h2>
+          <h2 class="block__title">Read</h2>
           <span class="block__rule" aria-hidden="true"></span>
           <span class="block__cmd"><span class="prompt">$</span> less aws-ai-agent-deployment.md</span>
         </header>
@@ -161,7 +161,7 @@
             <p>This kind of task would normally take me at least 30 minutes. Without prepared templates, I would need to read documentation, compare services, configure DNS, and verify HTTPS manually.</p>
             <p>This time, the entire launch took about 10 minutes. The project is already online and ready for promotion.</p>
             <p>An AI agent is starting to feel like a system administrator available 24/7. The result still needs to be reviewed: the agent makes the work faster, but the project owner remains responsible for costs, access, and security.</p>
-            <h2 id="prompts-for-different-models">prompts for different models</h2>
+            <h2 id="prompts-for-different-models">Prompts for different models</h2>
             <p>Replace the values in brackets with your project details. If the model cannot access your terminal or AWS account, ask it to prepare the commands and guide you through each step.</p>
             <h3 id="chatgpt">ChatGPT</h3>
             <pre class="code" data-lang="text"><code>Act as my DevOps assistant and help me deploy a web project to AWS.
@@ -254,7 +254,7 @@
             5. Verify the final result.
 
             Never expose secrets or commit credentials to Git. End with a report of created resources, completed checks, estimated costs, remaining risks, and rollback steps.</code></pre>
-            <h2 id="post-deployment-checklist">post-deployment checklist</h2>
+            <h2 id="post-deployment-checklist">Post-deployment checklist</h2>
             <ul><li>The website opens on the primary domain.</li><li>HTTP redirects to HTTPS.</li><li>The SSL certificate is valid.</li><li>The CDN serves the latest version.</li><li>No credentials or secrets were committed to the repository.</li><li>AWS spending limits and alerts are configured.</li></ul>
             <p>The model name is not the most important part. A good result starts with the right process: clarify the requirements, compare the options, approve the plan, deploy, and verify everything.</p>
           </article>
@@ -263,7 +263,7 @@
 
 
         <section class="related-posts" aria-labelledby="related-posts-title-aws-ai-agent-deployment">
-          <h2 class="related-posts__title" id="related-posts-title-aws-ai-agent-deployment">related posts</h2>
+          <h2 class="related-posts__title" id="related-posts-title-aws-ai-agent-deployment">Related posts</h2>
           <div class="related-posts__list">
 
               <a class="related-posts__link" href="/blog/posts/kimi-k3-vs-claude/">
@@ -280,7 +280,7 @@
         </section>
 
 
-        <nav class="post-nav" aria-label="adjacent posts">
+        <nav class="post-nav" aria-label="Adjacent posts">
           <a class="post-nav__btn post-nav__btn--prev" href="/blog/posts/hermes-agent-learning-assistant/">
                 <span class="post-nav__dir">← older</span>
                 <span class="post-nav__title">Hermes Agent: A Personal AI Agent That Learns</span>
