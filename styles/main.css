@@ -974,9 +974,13 @@
   .lead { max-width: 63ch; font-size: 18px; line-height: 1.6; }
   .hero { gap: 28px; padding-top: 18px; }
   .hero__layout { gap: 64px; }
-  .hero--blog, .hero--post {
+  .hero--blog {
     border-bottom: 1px solid var(--line);
     padding-bottom: 42px;
+  }
+  .hero--post {
+    border-bottom: 0;
+    padding-bottom: 0;
   }
   .post-row__title {
     color: var(--text);

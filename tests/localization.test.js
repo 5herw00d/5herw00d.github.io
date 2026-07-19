@@ -4,7 +4,7 @@ const path = require('path');
 const { relatedPostsFor } = require('../scripts/blog-data.js');
 
 const ROOT = path.resolve(__dirname, '..');
-const STYLE_VERSION = '20260718-8';
+const STYLE_VERSION = '20260718-9';
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');

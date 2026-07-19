@@ -20,7 +20,7 @@ const ROOT = __dirname;
 const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
-const STYLE_VERSION = '20260718-8';
+const STYLE_VERSION = '20260718-9';
 
 // language → BCP47 code + OG locale
 const LANG_META = {
