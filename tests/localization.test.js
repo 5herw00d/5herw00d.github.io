@@ -46,26 +46,6 @@ function relatedSection(file) {
 
 assertMatches(
   'styles/main.css',
-  /\.rail__status p\s*\{[^}]*display:\s*flex;[^}]*align-items:\s*baseline;[^}]*justify-content:\s*space-between;[^}]*gap:\s*8px;[^}]*\}/
-);
-assertMatches(
-  'styles/main.css',
-  /\.rail__status p > :last-child\s*\{[^}]*white-space:\s*nowrap;[^}]*text-align:\s*right;[^}]*\}/
-);
-assertMatches(
-  'styles/main.css',
-  /\.rail__status p > :first-child\s*\{[^}]*flex:\s*0 0 auto;[^}]*white-space:\s*nowrap;[^}]*\}/
-);
-assertMatches(
-  'styles/main.css',
-  /\.rail__status \.rail__status-row--slug > :last-child\s*\{[^}]*white-space:\s*normal;[^}]*overflow-wrap:\s*anywhere;[^}]*\}/
-);
-assertIncludes(
-  'ru/blog/posts/aws-ai-agent-deployment/index.html',
-  '<p class="rail__status-row rail__status-row--slug"><span class="key">slug</span><span>aws-ai-agent-deployment</span></p>'
-);
-assertMatches(
-  'styles/main.css',
   /\.visually-hidden\s*\{[^}]*position:\s*absolute;[^}]*clip:\s*rect\(0 0 0 0\);[^}]*overflow:\s*hidden;[^}]*\}/
 );
 
@@ -137,7 +117,6 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['blog/posts/aws-ai-agent-deployment/index.html', 'read · en'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '1 min'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'class="block block--post is-visible"'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', '<p class="rail__status-row rail__status-row--slug">'],
 ].forEach(([file, needle]) => assertIncludes(file, needle));
 
 [
@@ -203,7 +182,6 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['ru/index.html', 'href="/ru/blog/"'],
   ['ru/index.html', '<h1 class="display display--head">'],
   ['ru/index.html', '<span class="display__family">My</span>'],
-  ['ru/index.html', '<span class="key">TZ</span><span>UA · UTC+3</span>'],
   ['ru/about/index.html', '<html lang="ru">'],
   ['ru/about/index.html', '<link rel="canonical" href="https://dmytro.my/ru/about/">'],
   ['ru/about/index.html', 'hreflang="en" href="/about/"'],
@@ -211,12 +189,23 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['ru/about/index.html', 'href="/ru/blog/"'],
   ['ru/about/index.html', 'og:type" content="profile"'],
   ['ru/about/index.html', 'profile:first_name" content="Dmytro"'],
-  ['ru/about/index.html', '<span class="key">TZ</span><span>UA · UTC+3</span>'],
   ['blog/index.html', 'class="site-lang"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'class="site-lang"'],
   ['sitemap.xml', '<loc>https://dmytro.my/ru/</loc>'],
   ['sitemap.xml', '<loc>https://dmytro.my/ru/about/</loc>'],
 ].forEach(([file, needle]) => assertIncludes(file, needle));
+
+// Decorative sidebar status chrome is removed sitewide.
+[
+  'index.html',
+  'about/index.html',
+  'blog/index.html',
+  'ru/index.html',
+  'ru/about/index.html',
+  'ru/blog/index.html',
+  'blog/posts/aws-ai-agent-deployment/index.html',
+  'ru/blog/posts/aws-ai-agent-deployment/index.html',
+].forEach((file) => assertExcludes(file, 'rail__status'));
 
 const awsSummaryEn = 'Deploy a project to AWS in 10 minutes with AI agents. Ready-to-use DevOps prompts for ChatGPT, Claude, Gemini, and GLM.';
 const awsSummaryRu = 'Как развернуть проект на AWS за 10 минут с ИИ-агентом: готовые DevOps-промпты для ChatGPT, Claude, Gemini и GLM.';

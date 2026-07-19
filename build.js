@@ -347,12 +347,6 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
         <li><a href="/" class="rail__link rail__link--ext"><span class="rail__num">←</span><span class="rail__name">${escHtml(ui.homeLink)}</span></a></li>
       </ol>
       ${tocHtml}
-      <div class="rail__status">
-        <p class="rail__status-row rail__status-row--slug"><span class="key">slug</span><span>${escHtml(routeOf(post))}</span></p>
-        <p><span class="key">lang</span><span>${lang}</span></p>
-        <p><span class="key">date</span><span>${escHtml(dateDisp)}</span></p>
-        <p><span class="key">${escHtml(ui.readKey)}</span><span>${readMin} ${escHtml(ui.minute)}</span></p>
-      </div>
     </aside>
 
     <article class="content">
@@ -605,10 +599,6 @@ function localizedBlogIndex(template, site, lang, defaultLang, posts) {
     .replace(/<a href="#latest"([^>]*)><span class="rail__num">01<\/span><span class="rail__name">[^<]+<\/span>/, `<a href="#latest"$1><span class="rail__num">01</span><span class="rail__name">${escHtml(ui.latest)}</span>`)
     .replace(/<a href="#archive"([^>]*)><span class="rail__num">02<\/span><span class="rail__name">[^<]+<\/span>/, `<a href="#archive"$1><span class="rail__num">02</span><span class="rail__name">${escHtml(ui.archive)}</span>`)
     .replace(/<a href="#tags"([^>]*)><span class="rail__num">03<\/span><span class="rail__name">[^<]+<\/span>/, `<a href="#tags"$1><span class="rail__num">03</span><span class="rail__name">${escHtml(ui.tags)}</span>`)
-    .replace(/(<span class="key" data-label-posts>)[^<]+/, `$1${escHtml(ui.posts)}`)
-    .replace(/(<span class="key" data-label-last>)[^<]+/, `$1${escHtml(ui.last)}`)
-    .replace(/(<span class="key" data-label-net>)[^<]+/, `$1${escHtml(ui.net)}`)
-    .replace(/(<span class="ok" data-label-stable>)[^<]+/, `$1${escHtml(ui.stable)}`)
     .replace(/(<p class="eyebrow">)[^<]+/, `$1${escHtml(ui.eyebrow)}`)
     .replace(/(<span class="display__name">)[^<]+/, `$1${escHtml(ui.title)}`)
     .replace(/(<p class="lead">)[^<]+/, `$1${escHtml(ui.lead)}`)
@@ -621,9 +611,7 @@ function localizedBlogIndex(template, site, lang, defaultLang, posts) {
     .replace(/class="lang-chip(?: is-active)?" data-lang="ru"(?: aria-current="page")*/, `class="lang-chip${lang === 'ru' ? ' is-active' : ''}" data-lang="ru"${lang === 'ru' ? ' aria-current="page"' : ''}`)
     .replace(/<!-- posts:start -->[\s\S]*?<!-- posts:end -->/, `<!-- posts:start -->\n          ${listingRows(visiblePosts, lang)}\n          <!-- posts:end -->`)
     .replace(/<!-- archive:start -->[\s\S]*?<!-- archive:end -->/, `<!-- archive:start -->\n          ${archiveRows(visiblePosts, lang)}\n          <!-- archive:end -->`)
-    .replace(/<!-- tags:start -->[\s\S]*?<!-- tags:end -->/, `<!-- tags:start -->\n          ${tagRows(visiblePosts)}\n          <!-- tags:end -->`)
-    .replace(/<span data-count>[^<]*<\/span>/, `<span data-count>${visiblePosts.length}</span>`)
-    .replace(/<span data-last>[^<]*<\/span>/, `<span data-last>${visiblePosts[0] ? escHtml(fmtDate(visiblePosts[0].date)) : '—'}</span>`);
+    .replace(/<!-- tags:start -->[\s\S]*?<!-- tags:end -->/, `<!-- tags:start -->\n          ${tagRows(visiblePosts)}\n          <!-- tags:end -->`);
 
   return html;
 }

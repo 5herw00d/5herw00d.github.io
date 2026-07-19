@@ -110,6 +110,7 @@ Post pages keep the reading surface minimal:
 - Hero: title + meta chips only (no terminal `hero__head` chrome).
 - Body: prose starts immediately; no visible `Read` / `Читать` `h2.block__title` wrapper.
 - Markdown H1 is not duplicated in the body; H2/H3 are rendered with a leading capital.
+- Side rail: navigation (and post TOC when present) only — no `rail__status` block.
 
 ## deploy
 
