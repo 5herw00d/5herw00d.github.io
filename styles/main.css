@@ -974,10 +974,7 @@
   .lead { max-width: 63ch; font-size: 18px; line-height: 1.6; }
   .hero { gap: 28px; padding-top: 18px; }
   .hero__layout { gap: 64px; }
-  .hero--blog {
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 42px;
-  }
+  .hero--blog,
   .hero--post {
     border-bottom: 0;
     padding-bottom: 0;
@@ -1041,14 +1038,17 @@
   .post-list {
     display: grid;
     border: 0;
-    border-top: 1px solid var(--line);
     background: transparent;
   }
   .post-row {
+    border: 0;
     border-bottom: 1px solid var(--line);
     padding: 18px 0 16px;
     display: grid; gap: 8px;
     background: transparent;
+  }
+  .post-row:first-child {
+    border-top: 0;
   }
   .post-row:last-child { border-bottom: 0; }
   .post-row--skel { color: var(--dim); }
