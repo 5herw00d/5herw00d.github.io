@@ -20,7 +20,7 @@ const ROOT = __dirname;
 const BLOG = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(BLOG, 'posts');
 const MANIFEST = path.join(BLOG, 'posts.json');
-const STYLE_VERSION = '20260718-10';
+const STYLE_VERSION = '20260718-11';
 
 // language → BCP47 code + OG locale
 const LANG_META = {
@@ -520,12 +520,12 @@ ${posts.map((post, index) => `            <li class="post-row">
               <a class="post-row__link" href="posts/${escAttr(routeOf(post))}/" lang="${lang}">
                 <span class="post-row__id">${String(index + 1).padStart(3, '0')}</span>
                 <time class="post-row__date" datetime="${escAttr(post.date)}">${escHtml(fmtDate(post.date))}</time>
+                <ul class="post-row__tags">${(post.tags || []).map((tag) => `<li>${escHtml(tag)}</li>`).join('')}</ul>
                 <span class="post-row__lang">${lang}</span>
                 <span class="post-row__title">${escHtml(post.title)}</span>
                 <span class="post-row__arrow" aria-hidden="true">→</span>
               </a>
               <p class="post-row__summary">${escHtml(post.summary || '')}</p>
-              <ul class="post-row__tags">${(post.tags || []).map((tag) => `<li>${escHtml(tag)}</li>`).join('')}</ul>
             </li>`).join('\n')}
           </ol>
           <p class="post-list__empty" data-empty hidden>no posts in this language yet.</p>`;

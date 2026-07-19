@@ -163,12 +163,12 @@
             <a class="post-row__link" href="posts/${encodeURIComponent(p.route || p.slug)}/" lang="${lang}">
               <span class="post-row__id">${id}</span>
               <time class="post-row__date" datetime="${p.date}">${fmtDate(p.date)}</time>
+              <ul class="post-row__tags"></ul>
               <span class="post-row__lang">${lang}</span>
               <span class="post-row__title"></span>
               <span class="post-row__arrow" aria-hidden="true">→</span>
             </a>
             <p class="post-row__summary"></p>
-            <ul class="post-row__tags"></ul>
           `;
           li.querySelector('.post-row__title').textContent = p.title;
           li.querySelector('.post-row__summary').textContent = p.summary || '';
