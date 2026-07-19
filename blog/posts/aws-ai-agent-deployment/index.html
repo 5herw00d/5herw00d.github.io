@@ -142,15 +142,8 @@
         </ul>
       </section>
 
-      <section class="block is-visible">
-        <header class="block__head">
-          <span class="block__num">¶</span>
-          <h2 class="block__title">Read</h2>
-          <span class="block__rule" aria-hidden="true"></span>
-          <span class="block__cmd"><span class="prompt">$</span> less aws-ai-agent-deployment.md</span>
-        </header>
-        <div class="block__body">
-          <article class="prose">
+      <section class="block block--post is-visible" aria-label="Read">
+        <article class="prose">
             <p>I recently deployed a new project to AWS with the help of an AI agent.</p>
             <p>The hosting itself took about five minutes. The agent asked several questions, clarified my requirements and budget, and suggested suitable deployment options.</p>
             <p>Connecting the domain and issuing an SSL certificate took another five minutes. At the same time, the agent configured the CDN.</p>
@@ -253,8 +246,7 @@
             <h2 id="post-deployment-checklist">Post-deployment checklist</h2>
             <ul><li>The website opens on the primary domain.</li><li>HTTP redirects to HTTPS.</li><li>The SSL certificate is valid.</li><li>The CDN serves the latest version.</li><li>No credentials or secrets were committed to the repository.</li><li>AWS spending limits and alerts are configured.</li></ul>
             <p>The model name is not the most important part. A good result starts with the right process: clarify the requirements, compare the options, approve the plan, deploy, and verify everything.</p>
-          </article>
-        </div>
+        </article>
       </section>
 
 

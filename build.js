@@ -365,18 +365,10 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
         </ul>
       </section>
 
-      <section class="block is-visible">
-        <header class="block__head">
-          <span class="block__num">¶</span>
-          <h2 class="block__title">${escHtml(ui.readBlock)}</h2>
-          <span class="block__rule" aria-hidden="true"></span>
-          <span class="block__cmd"><span class="prompt">$</span> less ${escHtml(post.slug)}.md</span>
-        </header>
-        <div class="block__body">
-          <article class="prose">
+      <section class="block block--post is-visible" aria-label="${escAttr(ui.readBlock)}">
+        <article class="prose">
 ${body}
-          </article>
-        </div>
+        </article>
       </section>
 
       ${relatedHtml}

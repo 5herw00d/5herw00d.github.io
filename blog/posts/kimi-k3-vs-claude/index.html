@@ -170,15 +170,8 @@
         </ul>
       </section>
 
-      <section class="block is-visible">
-        <header class="block__head">
-          <span class="block__num">¶</span>
-          <h2 class="block__title">Read</h2>
-          <span class="block__rule" aria-hidden="true"></span>
-          <span class="block__cmd"><span class="prompt">$</span> less kimi-k3-vs-claude.md</span>
-        </header>
-        <div class="block__body">
-          <article class="prose">
+      <section class="block block--post is-visible" aria-label="Read">
+        <article class="prose">
             <p>Kimi K3 and Claude Opus 4.8 sit on different sides of the current LLM tradeoff.</p>
             <p>Kimi K3 is interesting because it is expected to continue Moonshot AI&#39;s push toward cheaper, open-weight, long-context models. Claude is interesting because it is already a mature production model with strong tooling, predictable access, and a long track record in coding and agent workflows.</p>
             <p>That makes the comparison less about one model being universally better. The useful question is narrower: which model is safer for the job you actually need to ship?</p>
@@ -238,8 +231,7 @@
             <p>Claude is the more practical default today. It is easier to trust when the task is customer-facing, code-heavy, or expensive to debug.</p>
             <p>For most builders, the best answer is not a single winner. Use Claude where failure is costly. Test Kimi K3 where openness, context, and price could unlock a workflow that was previously too expensive.</p>
             <p>Sources: <a href="https://kie.ai/blog/kimi-k3-vs-claude" target="_blank" rel="noopener">Kie.ai comparison</a>, <a href="https://www.moonshot.ai/" target="_blank" rel="noopener">Moonshot AI</a>, <a href="https://docs.anthropic.com/" target="_blank" rel="noopener">Anthropic Claude documentation</a>.</p>
-          </article>
-        </div>
+        </article>
       </section>
 
 

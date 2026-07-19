@@ -103,6 +103,14 @@ This pre-renders the post into its locale-aware route (with `<title>`, `<meta de
 - Listing, archive, and tags are pre-rendered per language, then hydrated from `posts.json` in the browser.
 - Update `blog/posts.json` `site.url` if you change domains.
 
+## post page layout
+
+Post pages keep the reading surface minimal:
+
+- Hero: title + meta chips only (no terminal `hero__head` chrome).
+- Body: prose starts immediately; no visible `Read` / `Читать` `h2.block__title` wrapper.
+- Markdown H1 is not duplicated in the body; H2/H3 are rendered with a leading capital.
+
 ## deploy
 
 GitHub Pages — point at the repo root. `.nojekyll` is already in place so Pages won't try to process markdown itself.
