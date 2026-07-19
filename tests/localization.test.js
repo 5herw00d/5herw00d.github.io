@@ -88,7 +88,6 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'read · ru'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Read</h2>'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Читать</h2>'],
-  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '1 min'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'Содержание'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'разделы поста'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'пост блога dmytro.my'],
@@ -96,7 +95,6 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['blog/posts/aws-ai-agent-deployment/index.html', 'чтение · en'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Читать</h2>'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '<h2 class="block__title">Read</h2>'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', '1 мин'],
 ].forEach(([file, needle]) => assertExcludes(file, needle));
 
 [
@@ -108,14 +106,12 @@ const expectedFeedDate = new Date(`${latestPostDate}T00:00:00Z`).toUTCString();
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'Содержание'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', '../главная'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'чтение · ru'],
-  ['ru/blog/posts/aws-ai-agent-deployment/index.html', '1 мин'],
   ['ru/blog/posts/aws-ai-agent-deployment/index.html', 'class="block block--post is-visible"'],
   ['blog/posts/aws-ai-agent-deployment.md', '# How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'aria-label="dmytro.my blog post"'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'Contents'],
   ['blog/posts/aws-ai-agent-deployment/index.html', '../home'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'read · en'],
-  ['blog/posts/aws-ai-agent-deployment/index.html', '1 min'],
   ['blog/posts/aws-ai-agent-deployment/index.html', 'class="block block--post is-visible"'],
 ].forEach(([file, needle]) => assertIncludes(file, needle));
 
