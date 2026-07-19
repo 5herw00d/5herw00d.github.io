@@ -249,6 +249,18 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
         </section>`
     : '';
 
+  const ogImage = `${site.url.replace(/\/$/, '')}/dm.png`;
+  const authorUrl = lang === defaultLang
+    ? `${site.url.replace(/\/$/, '')}/about/`
+    : `${site.url.replace(/\/$/, '')}/${lang}/about/`;
+  const documentTitle = `${title} | ${site.author}`;
+  const localeAlternates = (site.languages || [])
+    .filter((code) => code !== lang)
+    .map((code) => LANG_META[code]?.ogLocale)
+    .filter(Boolean)
+    .map((locale) => `<meta property="og:locale:alternate" content="${escAttr(locale)}">`)
+    .join('\n  ');
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -256,10 +268,11 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
     description: desc,
     datePublished: dateIso,
     dateModified: post.updated || dateIso,
-    author: { '@type': 'Person', name: site.author, url: site.url },
-    publisher: { '@type': 'Person', name: site.author, url: site.url },
+    author: { '@type': 'Person', name: site.author, url: site.url, image: ogImage },
+    publisher: { '@type': 'Person', name: site.author, url: site.url, image: ogImage },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url: url,
+    image: ogImage,
     keywords: (post.tags || []).join(', '),
     inLanguage: meta.bcp47,
   };
@@ -272,11 +285,13 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f7f8fa">
 
-  <title>${escHtml(title)}</title>
+  <title>${escHtml(documentTitle)}</title>
   <meta name="description" content="${escAttr(desc)}">
   <meta name="author" content="${escAttr(site.author)}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="keywords" content="${escAttr(tagsList)}">
   <link rel="canonical" href="${url}">
+  <link rel="author" href="${escAttr(authorUrl)}">
   ${alternateLinks.join('\n  ')}
 
   <!-- Open Graph -->
@@ -286,13 +301,18 @@ function postPage({ site, post, body, headings, readMin, prev, next, relatedPost
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="${escAttr(site.title)}">
   <meta property="og:locale" content="${meta.ogLocale}">
+  ${localeAlternates}
+  <meta property="og:image" content="${escAttr(ogImage)}">
+  <meta property="og:image:alt" content="${escAttr(site.author)}">
   <meta property="article:published_time" content="${escAttr(dateIso)}">
+  <meta property="article:author" content="${escAttr(authorUrl)}">
   ${(post.tags || []).map((t) => `<meta property="article:tag" content="${escAttr(t)}">`).join('\n  ')}
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escAttr(post.title)}">
   <meta name="twitter:description" content="${escAttr(desc)}">
+  <meta name="twitter:image" content="${escAttr(ogImage)}">
   ${site.twitter ? `<meta name="twitter:creator" content="${escAttr(site.twitter)}">` : ''}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -533,12 +553,38 @@ function tagRows(posts) {
 }
 
 function localizedBlogIndex(template, site, lang, defaultLang, posts) {
-  const isDefault = lang === defaultLang;
   const canonical = absoluteUrl(site, listingPath(lang, defaultLang));
-  const title = isDefault ? `${site.title} — ~/blog` : `${site.title} — ~/${lang}/blog`;
+  const ogImage = `${site.url.replace(/\/$/, '')}/dm.png`;
+  const authorUrl = lang === defaultLang
+    ? `${site.url.replace(/\/$/, '')}/about/`
+    : `${site.url.replace(/\/$/, '')}/${lang}/about/`;
+  const meta = LANG_META[lang] || LANG_META.en;
+  const title = lang === 'ru'
+    ? 'Блог Dmytro My — AI SaaS, агенты, LLM'
+    : 'Dmytro My Blog — AI SaaS, Agents, LLM Notes';
   const description = lang === 'ru'
-    ? 'Короткие практические заметки о создании AI SaaS.'
-    : 'Short, practical notes on building AI SaaS.';
+    ? 'Практические заметки Dmytro My о AI SaaS: агенты, LLM, product loops и инфраструктура.'
+    : 'Practical notes by Dmytro My on building AI SaaS: agents, LLM tradeoffs, product loops, and infrastructure.';
+  const ogTitle = lang === 'ru'
+    ? 'Блог Dmytro My — AI SaaS'
+    : 'Dmytro My Blog — AI SaaS Notes';
+  const localeAlternates = (site.languages || [])
+    .filter((code) => code !== lang)
+    .map((code) => LANG_META[code]?.ogLocale)
+    .filter(Boolean)
+    .map((locale) => `<meta property="og:locale:alternate" content="${escAttr(locale)}">`)
+    .join('\n  ');
+  const blogJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: title,
+    description,
+    url: canonical,
+    inLanguage: meta.bcp47,
+    author: { '@type': 'Person', name: site.author, url: site.url, image: ogImage },
+    publisher: { '@type': 'Person', name: site.author, url: site.url },
+    image: ogImage,
+  };
   const visiblePosts = posts.filter((post) => langOf(post, defaultLang) === lang);
   const ui = BLOG_UI[lang] || BLOG_UI.en;
   let html = template;
@@ -547,12 +593,23 @@ function localizedBlogIndex(template, site, lang, defaultLang, posts) {
     .replace(/<html lang="[^"]+">/, `<html lang="${lang}">`)
     .replace(/<title>[^<]*<\/title>/, `<title>${escHtml(title)}</title>`)
     .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escAttr(description)}">`)
+    .replace(/<meta name="author" content="[^"]*">/, `<meta name="author" content="${escAttr(site.author)}">`)
+    .replace(/<meta name="robots" content="[^"]*">/, `<meta name="robots" content="index,follow,max-image-preview:large">`)
     .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${escAttr(canonical)}">`)
-    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${escAttr(title)}">`)
+    .replace(/<link rel="author" href="[^"]*">/, `<link rel="author" href="${escAttr(authorUrl)}">`)
+    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${escAttr(ogTitle)}">`)
     .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${escAttr(description)}">`)
     .replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${escAttr(canonical)}">`)
-    .replace(/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${escAttr(title)}">`)
+    .replace(/<meta property="og:locale" content="[^"]*">/, `<meta property="og:locale" content="${escAttr(meta.ogLocale)}">`)
+    .replace(/<meta property="og:locale:alternate"[^>]*>\s*/g, '')
+    .replace(/(<meta property="og:locale" content="[^"]*">)/, `$1\n  ${localeAlternates}`)
+    .replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${escAttr(ogImage)}">`)
+    .replace(/<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${escAttr(site.author)}">`)
+    .replace(/<meta name="twitter:card" content="[^"]*">/, `<meta name="twitter:card" content="summary_large_image">`)
+    .replace(/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${escAttr(ogTitle)}">`)
     .replace(/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${escAttr(description)}">`)
+    .replace(/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escAttr(ogImage)}">`)
+    .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${JSON.stringify(blogJsonLd)}</script>`)
     .replace(/<body class="page-blog"(?: data-page-lang="[^"]+")?>/, `<body class="page-blog" data-page-lang="${lang}">`)
     .replace(/<main class="site" aria-label="[^"]+">/, `<main class="site" aria-label="${escAttr(site.title)} ${escAttr(ui.title)}">`)
     .replace(/<aside class="rail" aria-label="[^"]+">/, `<aside class="rail" aria-label="${escAttr(ui.sections)}">`)

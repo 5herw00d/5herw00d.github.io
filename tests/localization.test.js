@@ -223,6 +223,42 @@ assertIncludes('blog/posts/aws-ai-agent-deployment/index.html', `<meta property=
 assertIncludes('blog/posts/aws-ai-agent-deployment/index.html', `<meta name="twitter:description" content="${awsSummaryEn}">`);
 assertIncludes('ru/blog/posts/aws-ai-agent-deployment/index.html', `<meta name="description" content="${awsSummaryRu}">`);
 
+// Site-wide SEO baseline: public pages keep human titles and social preview fields.
+const seoPages = [
+  'index.html',
+  'about/index.html',
+  'ru/index.html',
+  'ru/about/index.html',
+  'blog/index.html',
+  'ru/blog/index.html',
+  'blog/posts/aws-ai-agent-deployment/index.html',
+  'ru/blog/posts/aws-ai-agent-deployment/index.html',
+];
+seoPages.forEach((file) => {
+  const html = read(file);
+  assert(!html.includes('<title>dmytro.my — ~/'), `${file}: title should not use terminal path form`);
+  assert(!html.includes('<title>redirecting'), `${file}: public page title should not be a redirect stub`);
+  assert(html.includes('name="description"'), `${file}: description required`);
+  assert(html.includes('name="author" content="Dmytro My"'), `${file}: author required`);
+  assert(html.includes('property="og:title"'), `${file}: og:title required`);
+  assert(html.includes('property="og:description"'), `${file}: og:description required`);
+  assert(html.includes('property="og:image" content="https://dmytro.my/dm.png"'), `${file}: og:image required`);
+  assert(html.includes('name="twitter:title"'), `${file}: twitter:title required`);
+  assert(html.includes('name="twitter:image" content="https://dmytro.my/dm.png"'), `${file}: twitter:image required`);
+  assert(html.includes('name="robots" content="index,follow,max-image-preview:large"'), `${file}: robots required`);
+  assert(html.includes('application/ld+json'), `${file}: JSON-LD required`);
+});
+assertIncludes('blog/index.html', '<title>Dmytro My Blog — AI SaaS, Agents, LLM Notes</title>');
+assertIncludes('ru/blog/index.html', '<title>Блог Dmytro My — AI SaaS, агенты, LLM</title>');
+assertIncludes(
+  'blog/posts/aws-ai-agent-deployment/index.html',
+  '<title>How an AI Agent Configured AWS, a Domain, SSL, and CDN in 10 Minutes | Dmytro My</title>'
+);
+assertIncludes(
+  'ru/blog/posts/aws-ai-agent-deployment/index.html',
+  '<title>Как ИИ-агент настроил AWS, домен, SSL и CDN за 10 минут | Dmytro My</title>'
+);
+
 const relatedEn = relatedSection('blog/posts/aws-ai-agent-deployment/index.html');
 const awsEnPost = manifest.posts.find((post) => post.slug === 'aws-ai-agent-deployment');
 const expectedRelatedEn = relatedPostsFor(awsEnPost, manifest.posts, 'en');
