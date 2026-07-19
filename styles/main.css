@@ -764,7 +764,6 @@
   .contact {
     display: grid;
     border: 0;
-    border-top: 1px solid var(--line);
     background: transparent;
   }
   .contact li + li .contact__row { border-top: 0; }
@@ -775,8 +774,15 @@
     gap: 16px;
     padding: 18px 0;
     color: var(--text-soft);
+    border: 0;
     border-bottom: 1px solid var(--line);
     transition: color .2s ease;
+  }
+  .contact li:first-child .contact__row {
+    border-top: 0;
+  }
+  .contact li:last-child .contact__row {
+    border-bottom: 0;
   }
   .contact__row:hover { background: transparent; padding-left: 0; color: var(--accent); }
   .contact__row:hover .contact__arrow { color: var(--accent); transform: translateX(4px); }
